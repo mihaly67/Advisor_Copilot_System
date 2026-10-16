@@ -47,9 +47,9 @@ def load_tick_data(instrument='BTCUSD', use_full=False):
     """
     RAW_BASE = DATA_DIR / instrument
     # ─── TRAIN adat (data/raw/) — EZT tanítjuk ───
-    train_path = Path(f'/data/LGBM_copilot/data/raw/{instrument}/training_tick_{instrument}.csv')
+    train_path = Path(f'/data/LGBM_copilot/data/raw/{instrument}/{instrument}_training_tick.csv')
     # ─── EXAM adat (data/exam/) — EZT CSAK értékeljük ───
-    exam_path = Path(f'/data/LGBM_copilot/data/exam/{instrument}/exam_tick_{instrument}.csv')
+    exam_path = Path(f'/data/LGBM_copilot/data/exam/{instrument}/{instrument}_exam_tick.csv')
     # ─── Legacy fallback (raw CSV dir) ───
     legacy_train = RAW_BASE / f'Scalper_Copilot_MTF_Data_v2{"" if instrument == "BTCUSD" else ""}_{instrument}.csv'
     if instrument == 'XAUUSD':

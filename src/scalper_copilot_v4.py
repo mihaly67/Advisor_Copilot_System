@@ -36,8 +36,8 @@ def load_tick_data(instrument='BTCUSD', use_full=False):
     """Load tick data. ALWAYS loads train data from data/raw/.
     The exam (külön_vizsga) data is ONLY for out-of-sample evaluation — NEVER for training!
     """
-    train_path = Path(f'/data/LGBM_copilot/data/raw/{instrument}/training_tick_{instrument}.csv')
-    exam_path = Path(f'/data/LGBM_copilot/data/exam/{instrument}/exam_tick_{instrument}.csv')
+    train_path = Path(f'/data/LGBM_copilot/data/raw/{instrument}/{instrument}_training_tick.csv')
+    exam_path = Path(f'/data/LGBM_copilot/data/exam/{instrument}/{instrument}_exam_tick.csv')
     legacy_train = DATA_DIR / instrument / (
         'Scalper_Copilot_MTF_Data_v2_BTCUSD.csv' if instrument == 'BTCUSD'
         else 'Scalper_Copilot_MTF_Data_v2.csv')
