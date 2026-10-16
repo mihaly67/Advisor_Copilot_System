@@ -45,6 +45,13 @@ MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/LSTM → ZMQ PUB → HU
 | `MT5/Include/` | Include fájlok (.mqh) |
 | `cache/` | GPU cache, intermediate files |
 | `_qwen_analysis/` | Qwen mélyelemzés kimenetek |
+| `mcp/state/` | MCP session memóriák (320+ session, fejlesztési történet) |
+| `mcp/context/` | MCP kontextus (memory.jsonl, MCTS fák, fejlesztési irányok) |
+| `mcp/tools/` | MCP Python eszközök (Qwen, orchestrátor, vektorizáló) |
+| `mcp/qwen_analysis/` | Brain Qwen elemzések (139 md — audit, diagnózis, pipeline) |
+| `mcp/logs/` | Log elemzések (.md, .py — NEM .log) |
+| `mcp/data/` | MCP adat (token optimizer, stb.) |
+| `mcp/conversations/` | MCP beszélgetés szösszenetek |
 
 ## Fejlesztési elvek (a Jules rendszer hibáiból tanulva)
 
@@ -55,3 +62,31 @@ MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/LSTM → ZMQ PUB → HU
 5. **Unified threshold** — egyetlen konfiguráció training/eval/live
 6. **Dinamikus Dollar Bar threshold** — instrumentum-specifikus, EMA-based
 7. **OOS LSTM training** — strictly out-of-sample LGBM predikciókkal
+
+## 🛡️ Data Governance (KRITIKUS)
+
+> ⚠️ **BUG FIX 2026-10-16**: Pipeline napokig vizsga (exam) adaton tanult — "külön vizsga" = out-of-sample!
+
+| Adat | Fájl | Méret | Használat |
+|------|------|-------|-----------|
+| **Training** | `data/raw/{INSTR}/{INSTR}_training_tick.csv` | 880MB, 5.2M tick | ✅ TANÍTÁS |
+| **Exam** | `data/exam/{INSTR}/{INSTR}_exam_tick.csv` | 54MB, 4 nap | ❌ CSAK kiértékelés |
+| **M1 Reference** | `data/raw/{INSTR}/M1_history_{INSTR}.csv` | 85MB, 2.7 év | Referencia |
+
+**Szabályok:**
+1. `data/raw/` = TANÍTÁS, `data/exam/` = CSAK KIÉRTÉKELÉS
+2. Pipeline ALAPÉRTELMEZÉSBEN training adatot tölt
+3. Exam adat SOHA nem mehet a model.fit()-be
+4. Szennyezett modellek TÖRÖLVE (2026-10-16)
+
+## v4.01 Pipeline Újdonságok
+
+- Meta-labeling (AFML Ch.3) — másodlagos szűrő
+- Feature interactions (4 új) — tree már nonlinear, csekély hatás
+- Dollar-bar signal threshold — adaptív
+- Sample weights (AFML Ch.4) — **A/B: HURT AUC**, kikapcsolva (--no-weights)
+
+## GitHub
+
+- **Repo**: https://github.com/mihaly67/Advisor_Copilot_System
+- **.gitignore**: venv/, *.log, *.deb, models/, charts/, CSV adatok NEM felküldve
