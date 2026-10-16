@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🔍 Knowledge Search",
+      "type": "shell",
+      "command": "python3 /data/LGBM_copilot/knowledge/knowledge_search.py '${input:query}'",
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "new"}
+    },
+    {
+      "label": "🏗️ Full Pipeline",
+      "type": "shell",
+      "command": "python3 -m src.pipeline",
+      "options": {"cwd": "/data/LGBM_copilot"},
+      "problemMatcher": []
+    },
+    {
+      "label": "📊 Vectorize Knowledge",
+      "type": "shell",
+      "command": "python3 /data/LGBM_copilot/knowledge/knowledge_vectorize.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "🔎 FAISS Search",
+      "type": "shell",
+      "command": "python3 /data/LGBM_copilot/knowledge/faiss_search.py '${input:query}'",
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "new"}
+    },
+    {
+      "label": "✅ Validate Pipeline",
+      "type": "shell",
+      "command": "python3 -m pytest tests/ -v",
+      "options": {"cwd": "/data/LGBM_copilot"},
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "query",
+      "type": "promptString",
+      "description": "Search query",
+      "default": "triple barrier"
+    }
+  ]
+}

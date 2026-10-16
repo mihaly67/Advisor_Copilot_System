@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-toolsai.jupyter",
+    "eamodio.gitlens"
+  ]
+}

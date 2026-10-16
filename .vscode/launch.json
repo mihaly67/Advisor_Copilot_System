@@ -1,0 +1,52 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🔬 Debug Pipeline Step",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "/data/LGBM_copilot",
+      "args": [],
+      "env": {"PYTHONPATH": "/data/LGBM_copilot:/data/LGBM_copilot/knowledge/code_templates"},
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "🔍 Knowledge Search",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "/data/LGBM_copilot/knowledge/knowledge_search.py",
+      "args": ["triple barrier"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "🔎 FAISS Search",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "/data/LGBM_copilot/knowledge/faiss_search.py",
+      "args": ["CUSUM filter meta-labeling"],
+      "console": "integratedTerminal",
+      "env": {"CUDA_VISIBLE_DEVICES": "0"}
+    },
+    {
+      "name": "🚀 v4.01 Pipeline (no weights)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "/data/LGBM_copilot/src/scalper_copilot_v4_01.py",
+      "args": ["--no-weights"],
+      "cwd": "/data/LGBM_copilot",
+      "env": {"PYTHONPATH": "/data/LGBM_copilot:/data/LGBM_copilot/knowledge/code_templates", "CUDA_VISIBLE_DEVICES": "0"},
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "📊 Model Stats Analysis",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "/data/LGBM_copilot/src/model_stats_analysis.py",
+      "args": [],
+      "cwd": "/data/LGBM_copilot",
+      "env": {"PYTHONPATH": "/data/LGBM_copilot"},
+      "console": "integratedTerminal"
+    }
+  ]
+}

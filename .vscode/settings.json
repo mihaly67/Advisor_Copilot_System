@@ -1,0 +1,42 @@
+{
+  // ─── Git / GitHub auto-connect ───
+  "git.enabled": true,
+  "git.autofetch": true,
+  "git.autorefresh": true,
+  "git.autoRepositoryDetection": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.postCommitCommand": "push",
+  "github.gitAuthentication": true,
+
+  // ─── Python ───
+  "python.defaultInterpreterPath": "/home/Jules/jules_venv/bin/python3",
+  "python.terminal.activateEnvironment": true,
+  "python.envFile": "${workspaceFolder}/.env",
+
+  // ─── Editor ───
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // ─── File associations ───
+  "files.associations": {
+    "*.mq5": "cpp",
+    "*.mqh": "cpp"
+  },
+
+  // ─── Search exclude (nagy mappák) ───
+  "search.exclude": {
+    "mcp/state/**": true,
+    "models/**": true,
+    "data/**/*.csv": true,
+    "**/__pycache__": true
+  },
+
+  // ─── Files exclude ───
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  }
+}

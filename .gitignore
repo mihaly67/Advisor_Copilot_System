@@ -33,8 +33,7 @@ env/
 # DEB csomagok
 *.deb
 
-# IDE
-.vscode/
+# IDE user-specifikus (nem verziózott)
 .idea/
 
 # OS
