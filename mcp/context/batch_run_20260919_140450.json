@@ -1,0 +1,640 @@
+[
+  {
+    "repo_name": "UIED",
+    "repo_path": "/data/Brain/UIED",
+    "file_count": 90,
+    "repo_size_mb": 17.82,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:59:04.027946",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/UIED --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 38.769163,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/UIED/_qwen_analysis/UIED_analysis_20260919_135942.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/UIED",
+      "repo_name": "UIED",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "cnn/CNN.py",
+          "README.md",
+          "cnn/Data.py",
+          "cnn/Config.py"
+        ],
+        "missing": [],
+        "valid": [
+          "cnn/CNN.py",
+          "README.md",
+          "cnn/Data.py",
+          "cnn/Config.py"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "UIED",
+        "found": true,
+        "variants_checked": [
+          "UIED",
+          "UIED",
+          "UIED",
+          "uied"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "agentic-os-core",
+    "repo_path": "/data/Brain/agentic-os-core",
+    "file_count": 93,
+    "repo_size_mb": 0.44,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:59:42.809213",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/agentic-os-core --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 31.630348,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/agentic-os-core/_qwen_analysis/agentic-os-core_analysis_20260919_140014.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/agentic-os-core",
+      "repo_name": "agentic-os-core",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "README.md",
+          "pyproject.toml"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "README.md",
+          "pyproject.toml"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "agentic-os-core",
+        "found": true,
+        "variants_checked": [
+          "agentic-os-core",
+          "agentic_os_core",
+          "agenticoscore",
+          "agentic-os-core"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "aichat-main",
+    "repo_path": "/data/Brain/aichat-main",
+    "file_count": 79,
+    "repo_size_mb": 1.72,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:00:14.445460",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/aichat-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 33.512377,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/aichat-main/_qwen_analysis/aichat-main_analysis_20260919_140047.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/aichat-main",
+      "repo_name": "aichat-main",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "assets/roles/%create-prompt%.md",
+          "Cargo.toml",
+          "Argcfile.sh",
+          "assets/roles/%code%.md"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "assets/roles/%create-prompt%.md",
+          "Cargo.toml",
+          "Argcfile.sh",
+          "assets/roles/%code%.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "aichat-main",
+        "found": true,
+        "variants_checked": [
+          "aichat-main",
+          "aichat_main",
+          "aichatmain",
+          "aichat-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "aider-main",
+    "repo_path": "/data/Brain/aider-main",
+    "file_count": 677,
+    "repo_size_mb": 74.17,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:00:47.971627",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/aider-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 31.44607,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/aider-main/_qwen_analysis/aider-main_analysis_20260919_140119.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/aider-main",
+      "repo_name": "aider-main",
+      "confidence": 0.833,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "main/aider/utils.py",
+          "aider/cli.py",
+          "/data/Brain/aider-main/aider/cli.py",
+          "/data/Brain/aider-main/aider/utils.py",
+          "main/aider/cli.py",
+          "aider/main.py",
+          "aider/utils.py",
+          "main/aider/main.py",
+          "/data/Brain/aider-main/aider/main.py"
+        ],
+        "missing": [
+          "aider/cli.py",
+          "/data/Brain/aider-main/aider/cli.py",
+          "main/aider/cli.py"
+        ],
+        "valid": [
+          "main/aider/utils.py",
+          "/data/Brain/aider-main/aider/utils.py",
+          "aider/main.py",
+          "aider/utils.py",
+          "main/aider/main.py",
+          "/data/Brain/aider-main/aider/main.py"
+        ],
+        "missing_ratio": 0.3333333333333333
+      },
+      "repo_name_check": {
+        "expected": "aider-main",
+        "found": true,
+        "variants_checked": [
+          "aider-main",
+          "aider_main",
+          "aidermain",
+          "aider-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.833,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "anubis-mcp-main",
+    "repo_path": "/data/Brain/anubis-mcp-main",
+    "file_count": 274,
+    "repo_size_mb": 1.38,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:01:19.436040",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/anubis-mcp-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 30.981529,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/anubis-mcp-main/_qwen_analysis/anubis-mcp-main_analysis_20260919_140150.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/anubis-mcp-main",
+      "repo_name": "anubis-mcp-main",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "/CLAUDE.md",
+          "README.md",
+          "CLAUDE.md",
+          "/CONTRIBUTING.md",
+          "CONTRIBUTING.md",
+          "/README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "/CLAUDE.md",
+          "README.md",
+          "CLAUDE.md",
+          "/CONTRIBUTING.md",
+          "CONTRIBUTING.md",
+          "/README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "anubis-mcp-main",
+        "found": true,
+        "variants_checked": [
+          "anubis-mcp-main",
+          "anubis_mcp_main",
+          "anubismcpmain",
+          "anubis-mcp-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [],
+        "unverified_count": 0,
+        "total_claims": 0
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "anything-llm-master",
+    "repo_path": "/data/Brain/anything-llm-master",
+    "file_count": 1292,
+    "repo_size_mb": 15.27,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:01:50.457656",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/anything-llm-master --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 39.732353,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/anything-llm-master/_qwen_analysis/anything-llm-master_analysis_20260919_140229.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/anything-llm-master",
+      "repo_name": "anything-llm-master",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "anything-llm-master",
+        "found": true,
+        "variants_checked": [
+          "anything-llm-master",
+          "anything_llm_master",
+          "anythingllmmaster",
+          "anything-llm-master"
+        ]
+      },
+      "technology_claims": {
+        "claims": [],
+        "unverified_count": 0,
+        "total_claims": 0
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "architecture-decision-record",
+    "repo_path": "/data/Brain/architecture-decision-record",
+    "file_count": 670,
+    "repo_size_mb": 1.44,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:02:30.238839",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/architecture-decision-record --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 36.06083,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/architecture-decision-record/_qwen_analysis/architecture-decision-record_analysis_20260919_140305.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/architecture-decision-record",
+      "repo_name": "architecture-decision-record",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "LICENSE.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "LICENSE.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "architecture-decision-record",
+        "found": true,
+        "variants_checked": [
+          "architecture-decision-record",
+          "architecture_decision_record",
+          "architecturedecisionrecord",
+          "architecture-decision-record"
+        ]
+      },
+      "technology_claims": {
+        "claims": [],
+        "unverified_count": 0,
+        "total_claims": 0
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "autogen-main",
+    "repo_path": "/data/Brain/autogen-main",
+    "file_count": 1807,
+    "repo_size_mb": 46.02,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:03:06.342456",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/autogen-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 34.916122,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/autogen-main/_qwen_analysis/autogen-main_analysis_20260919_140340.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/autogen-main",
+      "repo_name": "autogen-main",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "README.md",
+          "FAQ.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "README.md",
+          "FAQ.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "autogen-main",
+        "found": true,
+        "variants_checked": [
+          "autogen-main",
+          "autogen_main",
+          "autogenmain",
+          "autogen-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "bloop-main",
+    "repo_path": "/data/Brain/bloop-main",
+    "file_count": 773,
+    "repo_size_mb": 10.24,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:03:41.310982",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/bloop-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 36.270009,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/bloop-main/_qwen_analysis/bloop-main_analysis_20260919_140417.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/bloop-main",
+      "repo_name": "bloop-main",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "NOTICE.md",
+          "LICENSE.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "NOTICE.md",
+          "LICENSE.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "bloop-main",
+        "found": true,
+        "variants_checked": [
+          "bloop-main",
+          "bloop_main",
+          "bloopmain",
+          "bloop-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [],
+        "unverified_count": 0,
+        "total_claims": 0
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "bloop-oss",
+    "repo_path": "/data/Brain/bloop-oss",
+    "file_count": 679,
+    "repo_size_mb": 15.28,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:04:17.624123",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/bloop-oss --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 33.196922,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/bloop-oss/_qwen_analysis/bloop-oss_analysis_20260919_140450.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/bloop-oss",
+      "repo_name": "bloop-oss",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "README.md",
+          "Cargo.toml"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "README.md",
+          "Cargo.toml"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "bloop-oss",
+        "found": true,
+        "variants_checked": [
+          "bloop-oss",
+          "bloop_oss",
+          "blooposs",
+          "bloop-oss"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  }
+]

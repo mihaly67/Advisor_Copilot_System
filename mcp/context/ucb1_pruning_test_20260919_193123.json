@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-09-19T19:31:23.214944+00:00",
+  "problem": "Hogyan javitsuk a rendszer memoriakezeleset?",
+  "iterations": 20,
+  "depth": 4,
+  "exploration_weight_results": {
+    "0.1": {
+      "elapsed_sec": 0.0,
+      "tree_size": 5,
+      "best_path_steps": 5,
+      "avg_score": 0.9691
+    },
+    "0.5": {
+      "elapsed_sec": 0.0,
+      "tree_size": 5,
+      "best_path_steps": 5,
+      "avg_score": 0.9691
+    },
+    "1.0": {
+      "elapsed_sec": 0.0,
+      "tree_size": 5,
+      "best_path_steps": 5,
+      "avg_score": 0.9691
+    },
+    "1.414": {
+      "elapsed_sec": 0.0,
+      "tree_size": 5,
+      "best_path_steps": 5,
+      "avg_score": 0.9691
+    },
+    "2.0": {
+      "elapsed_sec": 0.0,
+      "tree_size": 5,
+      "best_path_steps": 5,
+      "avg_score": 0.9691
+    }
+  },
+  "pruning_results": {
+    "0.0": {
+      "size_before": 5,
+      "removed": 0,
+      "size_after": 5,
+      "best_path_steps": 5
+    },
+    "0.3": {
+      "size_before": 5,
+      "removed": 0,
+      "size_after": 5,
+      "best_path_steps": 5
+    },
+    "0.5": {
+      "size_before": 5,
+      "removed": 0,
+      "size_after": 5,
+      "best_path_steps": 5
+    },
+    "0.7": {
+      "size_before": 5,
+      "removed": 0,
+      "size_after": 5,
+      "best_path_steps": 5
+    },
+    "0.9": {
+      "size_before": 5,
+      "removed": 0,
+      "size_after": 5,
+      "best_path_steps": 5
+    }
+  }
+}

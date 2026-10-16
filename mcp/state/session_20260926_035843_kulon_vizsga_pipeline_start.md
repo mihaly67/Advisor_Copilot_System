@@ -1,0 +1,4 @@
+# Session: kulon_vizsga_pipeline_start
+*Időbélyeg: 2026-09-26T03:58:43.842893*
+
+Külön vizsga CSV pipeline indítása. Script: /data/dev/projects/z-ai-copilot/src/run_kulon_vizsga.py. Forrás CSV: /tmp/kulon_vizsga.csv (386K sor, 18 oszlop: Timestamp, Bid, Ask, Volumes, Spread, MTF closes, ATR_M15, RSI_M15, pivot R/S). Pipeline: 1) prado_dollar_bars.py → dollar_bars_kulon_vizsga.csv, 2) dom_feature_engineer_mtf.py → features_kulon_vizsga.csv, 3) jules_labeler.py → labeled_kulon_vizsga.csv, 4) model eval (labeled_train.pkl, 15 feature, th_L=0.35 th_S=0.50 th_N=0.60). Python: /home/Jules/jules_venv/bin/python3.

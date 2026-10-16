@@ -1,0 +1,4 @@
+# Session: shap_jules_v102_complete
+*Időbélyeg: 2026-09-26T03:33:58.378062*
+
+SHAP analízis kész (jules_v102). Eredmények: Top feature Slope_Close_14 (SHAP_Total=1.95, Short=2.97, Long=2.86 — szimmetrikus!). MomScore_14 (0.44), Mom10_Direction (0.18). NINCS Regime feature a 15-ben → nincs leakage (ez volt a régi modell problémája). Short vs Long SHAP értékek közel szimmetrikusak — nincs Long-bias. Output fájlok: docs/shap_beeswarm_3class.png, docs/shap_bar_3class.png, docs/shap_stacked_top15.png, models/jules_v102_shap_importance.csv. Script: shap_analyze_oos.py (TreeExplainer, OOS adat, 15 feature).

@@ -22,6 +22,17 @@ data/pipeline_result_*
 # Optuna adatbázis
 *.db
 
+# venv — sosem megy fel
+venv/
+.venv/
+env/
+
+# Nagy log fájlok (36MB+)
+*.log
+
+# DEB csomagok
+*.deb
+
 # IDE
 .vscode/
 .idea/

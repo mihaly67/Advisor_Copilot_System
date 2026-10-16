@@ -1,0 +1,4 @@
+# Session: ml_study_labeling
+*Időbélyeg: 2026-10-12T23:43:23.110433*
+
+TANULÁS: Cimkézési logikák mélyelemzése. 1) TBM (Triple Barrier Method): 3 barrier (TP,SL,Time), label=sign(ret) side labeling (+1/-1) VAGY meta-labeling (0/1). KULCS: target=volatility→adaptív barrier. finmlkit Numba implementáció, meta-labeling pandas vectorized. 2) Trend Labeling (Wu 2020): w paraméter, lokális csúcs/mélypont + w% → trend váltás, minden bar címkézett +1/-1. 3) CUSUM Filter: esemény detekció, s_pos/s_neg akkumuláció, threshold=vol. NavSystem DF_Curve=CUSUM irány. 4) Sample Weights: average_uniqueness (overlapping label súly), return_attribution (hozam súly), time_decay, class_balance, vertical_touch_weights. 5) Meta-labeling pipeline: primary signal→TBM label→meta-model→filter→sizing.

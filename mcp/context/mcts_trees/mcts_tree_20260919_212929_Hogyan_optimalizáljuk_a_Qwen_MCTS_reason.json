@@ -1,0 +1,40 @@
+{
+  "root": {
+    "thought": "Hogyan optimalizáljuk a Qwen MCTS reasoning pipeline teljesítményét?",
+    "score": 2.4,
+    "visits": 4,
+    "avg_score": 0.6,
+    "depth": 0,
+    "children": [
+      {
+        "thought": "MEGKÖZELÍTÉS A: Hyperparameter Tuning — A Qwen MCTS pipeline teljesítményét a hiperparaméterek optimalizálásával lehet javítani. Ez a folyamat a különböző hiperparaméterek értékeinek keresését és tesztelését végzi el, hogy megtalálja a legjobb beállításokat. A hiperparaméterek például a felfedezők számának, a felfedezők mélységének, a felfedezők számának és a felfedezők mélységének változásának gyakoriságának beállítása lehet. (Kockázat: Alacsony)",
+        "score": 3.4,
+        "visits": 3,
+        "avg_score": 1.1333,
+        "depth": 1,
+        "children": [
+          {
+            "thought": "1. Algoritmusos optimalizáció: A Qwen MCTS (Monte Carlo Tree Search) algoritmus teljesítménye nagyon fontos a megoldásához. A teljesítmény javítása érdekében a kód felépítését, a paramétereket, a gyorsító technikákat és a hibakezelést is lehet optimalizálni.",
+            "score": 2.4,
+            "visits": 2,
+            "avg_score": 1.2,
+            "depth": 2,
+            "children": [
+              {
+                "thought": "1. Algoritmusos optimalizáció: A Qwen MCTS (Monte Carlo Tree Search) algoritmus teljesítménye nagyon fontos a megoldásához. A teljesítmény javítása érdekében a kód felépítését, a paramétereket, a gyorsító technikákat és a hibakezelést is lehet optimalizálni.",
+                "score": 1.6,
+                "visits": 1,
+                "avg_score": 1.6,
+                "depth": 3,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "size": 4,
+  "max_depth": 3,
+  "max_children": 20
+}

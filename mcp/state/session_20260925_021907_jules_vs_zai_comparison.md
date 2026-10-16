@@ -1,0 +1,4 @@
+# Session: jules_vs_zai_comparison
+*Időbélyeg: 2026-09-25T02:19:07.259060*
+
+Jules vs Z.ai v1.04 osszehasonlitas kesz. Jules modell: lgbm_model_fusion_v5_tuned.pkl, 10 feature (Tick_Speed, Dist_Micro_R/S, Dist_Sec_R/S, Dist_Ter_R/S, Stoch_State_M1, Upper/Lower_Wick_ATR). Tesztadat: meta_labeled_fused_v5_mom.csv (4295 bar, jul 20-23). Eredmeny: Jules WR=84.5% P=3489 T=2274 (568/day) Opp=336. Z.ai WR=54.3% P=1626 T=2589 (185/day) Opp=0. KULCS MEGALLAPITAS: Jules ZigZag distance feature-ok (Dist_Micro_R/S stb.) lookahead bias-t tartalmaznak - ezek jovobelis ar-extremumok tavolsagat merik, csak utolag szamolhatok. Ez magyarazza a 84.5% WR-t. Z.ai v1.04 ensemble tisztan causalis feature-oket hasznal (NavSystem indikatorok), 0 Opposite, realisabb WR. HTML: docs/compare_jules_vs_zai.html (6.2MB, 4 panel).

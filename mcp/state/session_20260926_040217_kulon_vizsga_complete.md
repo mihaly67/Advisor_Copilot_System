@@ -1,0 +1,4 @@
+# Session: kulon_vizsga_complete
+*Időbélyeg: 2026-09-26T04:02:17.213736*
+
+KÜLÖN VIZSGA CSV PIPELINE KÉSZ. Forrás: Scalper_Copilot_MTF_Data_külön_vizsga.csv (386K sor raw MTF, 18 oszlop). Pipeline script: /data/dev/projects/z-ai-copilot/src/run_kulon_vizsga.py. Lépések: 1) prado_dollar_bars.py → 4,063 dollar bar, 2) dom_feature_engineer_mtf.py → 2,952 sor (08:00-23:59 szűrés), 120 oszlop, 3) jules_labeler.py → Long=599 (20.3%) Short=544 (18.4%) Noise=1809 (61.3%), 4) model eval (labeled_train.pkl, 15 feature). EREDMÉNY: Accuracy=53.4% (OOS 52.1%-nál jobb!). Predikció: Short 21.5% / Noise 60.4% / Long 18.1% (kiensúlyozott, nincs Long-bias). Threshold eval: 1700 trades, WR 39.4%, Profit +310. Időtartam: 2026-09-14 → 2026-09-18 (5 nap). Vizualizáció: docs/viz_jules_v102_kulon_vizsga.html. Predikciók: Master_csv/processed/kulon_vizsga_predictions.csv.

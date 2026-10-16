@@ -1,0 +1,40 @@
+{
+  "root": {
+    "thought": "Hogyan elemezzuk a(z) yggdrasil-mcp repot? 37 fajl, 0.42 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+    "score": 2.4,
+    "visits": 4,
+    "avg_score": 0.6,
+    "depth": 0,
+    "children": [
+      {
+        "thought": "MEGKÖZELÍTÉS A: Full Qwen GPU-t futtatni",
+        "score": 3.2,
+        "visits": 3,
+        "avg_score": 1.0667,
+        "depth": 1,
+        "children": [
+          {
+            "thought": "1. Teljes Qwen futtatása: Ez a leggyorsabb módszer, mivel a teljes Qwen algoritmus használata lehetővé teszi a leggyorsabb eldöntések végzését. A fájlok teljes tartalmának beolvasása és a Qwen algoritmusának alkalmazása a leggyorsabb lehetséges elvegzi a feladatot.",
+            "score": 2.4,
+            "visits": 2,
+            "avg_score": 1.2,
+            "depth": 2,
+            "children": [
+              {
+                "thought": "1. Teljes Qwen futtatása: Ez a leggyorsabb módszer, mivel a teljes Qwen algoritmus használata lehetővé teszi a leggyorsabb eldöntések végzését. A fájlok teljes tartalmának beolvasása és a Qwen algoritmusának alkalmazása a leggyorsabb lehetséges elvegzi a feladatot.",
+                "score": 1.6,
+                "visits": 1,
+                "avg_score": 1.6,
+                "depth": 3,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "size": 4,
+  "max_depth": 3,
+  "max_children": 20
+}

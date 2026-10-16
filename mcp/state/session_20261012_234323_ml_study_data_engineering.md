@@ -1,0 +1,4 @@
+# Session: ml_study_data_engineering
+*Időbélyeg: 2026-10-12T23:43:23.242969*
+
+TANULÁS: Adatmérnökség. Dollar Bars: Σ(vol×price)≥threshold→új bar, vol-adaptív. FootprintData: tick szintű buy/sell volume price_level-önként→VPIN, VolumeProfile. CUSUM Filter: esemény detekció, dinamikus threshold. Sampling: csak szignifikáns változások→TBM bemenet. Pipeline: price→filter→signal→label→feature→model→filter→sizing→execution. Sizing: prob-weighting (prob/margin/odds), vol-targeting, leverage-cap, λ-blend (churn csökkentés), min-trade filter, cost model (long 10bps, short 20bps). Side-aware: long threshold 0.45, short threshold 0.50.

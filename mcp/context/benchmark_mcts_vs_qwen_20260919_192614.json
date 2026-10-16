@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-19T19:26:14.487247+00:00",
+  "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+  "iterations": 4,
+  "depth": 3,
+  "pure_qwen": {
+    "elapsed_sec": 46.6,
+    "backend_calls": {
+      "qwen": 1,
+      "api": 0
+    },
+    "estimated_tokens": 110,
+    "best_path_steps": 4,
+    "best_path_chars": 936,
+    "switch_after": null,
+    "tree_size": 4,
+    "mcts_available": true
+  },
+  "mcts_qwen": {
+    "elapsed_sec": 45.6,
+    "backend_calls": {
+      "qwen": 8,
+      "api": 1
+    },
+    "estimated_tokens": 1230,
+    "best_path_steps": 4,
+    "best_path_chars": 767,
+    "switch_after": 1,
+    "tree_size": 4,
+    "mcts_available": true
+  },
+  "comparison": {
+    "token_reduction_pct": -1018.2,
+    "speed_diff_sec": -1.0,
+    "pure_qwen_tokens": 110,
+    "mcts_qwen_tokens": 1230,
+    "pure_qwen_time": 46.6,
+    "mcts_qwen_time": 45.6
+  }
+}
