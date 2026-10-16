@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "version": "2.1",
+    "created": "2026-10-14",
+    "purpose": "Complete pipeline chain — v2 with signal_filter + model_selection from advisors",
+    "updated": "2026-10-14"
+  },
+  "chain": [
+    {
+      "step": 1,
+      "name": "data_ingestion",
+      "outputs": "raw OHLCV DataFrame",
+      "next": "bar_construction"
+    },
+    {
+      "step": 2,
+      "name": "bar_construction",
+      "code": "code_templates/data_dollar_bars.py",
+      "params": {
+        "BTCUSD": {
+          "threshold": 500000
+        },
+        "XAUUSD": {
+          "threshold": 5000000
+        }
+      },
+      "next": "event_sampling"
+    },
+    {
+      "step": 3,
+      "name": "event_sampling",
+      "code": "code_templates/labeling_cusum_filter.py",
+      "key_insight": "DOWN->Long, UP->Short",
+      "next": "labeling"
+    },
+    {
+      "step": 4,
+      "name": "labeling",
+      "code": "code_templates/labeling_meta_labeling.py",
+      "params": {
+        "BTCUSD": {
+          "profit_mult": 1.5,
+          "stop_mult": 1.0,
+          "max_bars": 20
+        }
+      },
+      "next": "feature_engineering"
+    },
+    {
+      "step": 5,
+      "name": "feature_engineering",
+      "code": [
+        "code_templates/features_direction.py",
+        "code_templates/features_ict.py",
+        "code_templates/features_volume_profile.py",
+        "code_templates/features_session.py"
+      ],
+      "key_insight": "Direction + ICT(FVG+OB+LiqSweep) + VolumeProfile(POC) + Session(KillZone+HTF)",
+      "expected_auc_boost": "+0.04-0.07 with ICT features over direction-only",
+      "next": "signal_filter"
+    },
+    {
+      "step": 6,
+      "name": "signal_filter",
+      "code": "code_templates/signal_quality.py",
+      "key_insight": "FreshTrigger + MultiConfirmation + Cooldown — prevents overtrading",
+      "params": {
+        "min_confirmation_score": 0.6,
+        "cooldown_bars": 3
+      },
+      "anti_patterns": [
+        "AP15: signal on every bar → FreshTrigger only first bar"
+      ],
+      "next": "sample_weights"
+    },
+    {
+      "step": 7,
+      "name": "sample_weights",
+      "code": "code_templates/sample_weights.py",
+      "next": "model_selection"
+    },
+    {
+      "step": 8,
+      "name": "model_selection",
+      "code": "code_templates/model_selection.py",
+      "decision_tree": "decision_trees/model_selection.json",
+      "key_insight": "Single vs Meta-Labeling vs Ensemble — based on data size and accuracy needs",
+      "anti_patterns": [
+        "AP16: single model for direction+sizing → meta-labeling pipeline"
+      ],
+      "next": "training"
+    },
+    {
+      "step": 9,
+      "name": "training",
+      "code": "code_templates/train_lgbm.py",
+      "cv": "code_templates/cross_validation_purged.py",
+      "next": "evaluation"
+    },
+    {
+      "step": 10,
+      "name": "evaluation",
+      "must_beat": "take-all baseline AND buy-and-hold",
+      "next": "threshold_optimization"
+    },
+    {
+      "step": 11,
+      "name": "threshold_optimization",
+      "next": "sizing"
+    },
+    {
+      "step": 12,
+      "name": "sizing",
+      "methods": [
+        "prob_weighting",
+        "vol_targeting",
+        "lambda_blend",
+        "meta_labeling_confidence"
+      ],
+      "next": "deployment"
+    },
+    {
+      "step": 13,
+      "name": "deployment",
+      "next": null
+    },
+    {
+      "step": 14,
+      "name": "feature_selection",
+      "description": "SHAP importance + correlation pruning → optimal feature subset",
+      "input": "trained model + validation features",
+      "output": "selected feature list",
+      "code_ref": "code_templates/feature_selection_lgbm.py",
+      "anti_patterns_prevented": [
+        "AP04",
+        "AP05"
+      ],
+      "source": "lgbm-feature-selection + meta-labeling-alpha-filter/shap"
+    },
+    {
+      "step": 15,
+      "name": "meta_labeling_harness",
+      "description": "Take/skip decision via meta-labeler with P&L objective + purged walk-forward CV",
+      "input": "signals + pre-entry features",
+      "output": "take/skip decisions + probability",
+      "code_ref": "code_templates/meta_labeling_harness.py",
+      "anti_patterns_prevented": [
+        "AP02",
+        "AP07",
+        "AP08",
+        "AP09",
+        "AP18",
+        "AP19"
+      ],
+      "source": "meta-labeling-harness (efenn-dev)"
+    },
+    {
+      "step": 16,
+      "name": "alpha_filter_sizing",
+      "description": "Signal filtering (threshold+gap+TopK) + probability-weighted sizing + vol target",
+      "input": "filtered signals + meta-model probabilities",
+      "output": "position weights + net returns",
+      "code_ref": "code_templates/signal_filter_alpha.py",
+      "anti_patterns_prevented": [
+        "AP02",
+        "AP15"
+      ],
+      "source": "meta-labeling-alpha-filter (Gautier Petit)"
+    }
+  ],
+  "quick_reference": {
+    "cusum_to_side": "DOWN->Long(+1), UP->Short(-1)",
+    "meta_label_meaning": "1=TAKE, 0=SKIP",
+    "asymmetric_barriers": "profit_mult > stop_mult",
+    "feature_priority": "direction > volatility > regime > momentum",
+    "cv_rule": "ALWAYS PurgedKFold, NEVER sklearn KFold",
+    "weight_rule": "ALWAYS sample_weight with financial labels",
+    "leakage_rule": "ALL features shifted by 1"
+  }
+}

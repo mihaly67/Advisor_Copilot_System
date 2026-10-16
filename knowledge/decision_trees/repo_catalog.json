@@ -1,0 +1,58 @@
+{
+  "_meta": {"version": "3.0", "created": "2026-10-14", "purpose": "System-level repo catalog for scalper copilot"},
+  "domains": {
+    "trading_systems": {
+      "description": "Complete trading frameworks — signal to execution",
+      "repos": {
+        "freqtrade": {"path": "/data/ml/freqtrade", "desc": "Crypto trading bot: strategy, backtest, hyperopt, FreqAI, dry/live", "relevance": "HIGH"},
+        "FinRL": {"path": "/data/ml/FinRL-master", "desc": "Financial DRL — PPO/A2C/DDPG agents for trading", "relevance": "MEDIUM"},
+        "qlib": {"path": "/data/ml/qlib-main", "desc": "Microsoft quant platform — data/model/workflow/backtest", "relevance": "HIGH"},
+        "vectorbt": {"path": "/data/ml/vectorbt-master", "desc": "Ultra-fast vectorized backtesting", "relevance": "HIGH"},
+        "tensortrade": {"path": "/data/ml/tensortrade-master", "desc": "RL trading: gym env, action/reward schemes", "relevance": "MEDIUM"},
+        "xauusd-scalping-ai": {"path": "/data/ml/xauusd-scalping-ai", "desc": "XAUUSD scalping AI — same domain as our BTCUSD scalper", "relevance": "HIGH"},
+        "AgenticTrading": {"path": "/data/ml/AgenticTrading-main", "desc": "LLM agents for trading — agentic architecture", "relevance": "HIGH"},
+        "TradingAgents": {"path": "/data/ml/TradingAgents-main", "desc": "Multi-agent LLM trading system", "relevance": "MEDIUM"},
+        "quantreplay": {"path": "/data/ml/quantreplay-master", "desc": "Quantitative replay/backtesting", "relevance": "MEDIUM"}
+      }
+    },
+    "data_engineering": {
+      "description": "Data pipelines, bar construction, streaming, storage",
+      "repos": {
+        "financial-ml-toolkit": {"path": "/data/ml/Labelling, mormalisation , featuring, learning/financial-ml-toolkit-main", "desc": "PRIMARY — TBM, CUSUM, dollar bars, features, weights", "relevance": "CRITICAL"},
+        "triple_barrier": {"path": "/data/ml/triple_barrier-main", "desc": "OOP Triple Barrier labeling", "relevance": "HIGH"},
+        "findatapy": {"path": "/data/ml/findatapy-master", "desc": "Multi-source market data fetching + caching", "relevance": "MEDIUM"},
+        "finmarketpy": {"path": "/data/ml/finmarketpy-master", "desc": "Financial market analysis — vol, microstructure", "relevance": "MEDIUM"},
+        "ArcticDB": {"path": "/data/ml/ArcticDB-master", "desc": "High-perf time-series DB with versioning", "relevance": "MEDIUM"},
+        "prefect": {"path": "/data/ml/prefect-main", "desc": "DAG workflow orchestration + scheduling", "relevance": "MEDIUM"},
+        "zenml": {"path": "/data/ml/zenml-main", "desc": "MLOps pipeline — steps, stacks, model versioning", "relevance": "MEDIUM"},
+        "mql-zmq": {"path": "/data/ml/mql-zmq", "desc": "ZeroMQ bridge MT5 ↔ Python", "relevance": "HIGH"},
+        "mt5linux": {"path": "/data/ml/mt5linux-master", "desc": "MT5 Linux Python API", "relevance": "MEDIUM"},
+        "yfinance": {"path": "/data/ml/yfinance-main", "desc": "Yahoo Finance data download", "relevance": "LOW"}
+      }
+    },
+    "feature_engineering": {
+      "description": "Feature generation, selection, transformation",
+      "repos": {
+        "ta-lib": {"path": "/data/ml/ta-lib-python-master", "desc": "150+ technical indicators (C speed)", "relevance": "HIGH"},
+        "AlphaPy": {"path": "/data/ml/AlphaPy-master", "desc": "Boolean feature transforms for tree models", "relevance": "HIGH"},
+        "shap": {"path": "/data/ml/shap-master", "desc": "SHAP values — feature importance + explainability", "relevance": "HIGH"},
+        "pyts": {"path": "/data/ml/pyts-master", "desc": "Time series classification features", "relevance": "MEDIUM"},
+        "stumpy": {"path": "/data/ml/stumpy-master", "desc": "Matrix Profile — motif/anomaly detection", "relevance": "MEDIUM"},
+        "hmmlearn": {"path": "/data/ml/hmmlearn-master", "desc": "HMM — Gaussian/GMM regime detection", "relevance": "MEDIUM"},
+        "DART": {"path": "/data/ml/DART-master", "desc": "Time series annotation/regression", "relevance": "LOW"},
+        "Gramian-Angular-Fields": {"path": "/data/ml/Gramian-Angular-Fields-main", "desc": "GAF image encoding for CNN", "relevance": "LOW"}
+      }
+    },
+    "experiment_tracking": {
+      "description": "Hyperopt, experiment tracking, model management",
+      "repos": {
+        "optuna": {"path": "/data/ml/optuna-master", "desc": "TPE/CMA-ES hyperopt, pruning, multi-objective", "relevance": "CRITICAL"},
+        "LightGBM": {"path": "/data/ml/LightGBM-main", "desc": "Our primary model — GBDT leaf-wise", "relevance": "CRITICAL"},
+        "LightGBM-Quant": {"path": "/data/ml/LightGBM-Quant-Model-master", "desc": "LightGBM quantitative modeling examples", "relevance": "HIGH"},
+        "river": {"path": "/data/ml/river-master", "desc": "Online/streaming ML — concept drift detection", "relevance": "HIGH"},
+        "mljar-supervised": {"path": "/data/ml/mljar-supervised", "desc": "AutoML with ensemble stacking", "relevance": "MEDIUM"},
+        "tensorboard": {"path": "/data/ml/tensorboard-master", "desc": "Training visualization", "relevance": "LOW"}
+      }
+    }
+  }
+}

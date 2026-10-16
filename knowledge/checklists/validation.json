@@ -1,0 +1,61 @@
+{
+  "_meta": {"version": "1.0", "created": "2026-10-13", "purpose": "Validation checklists for every pipeline step"},
+  "checklists": {
+    "data_quality": {
+      "description": "Data quality checks before any processing",
+      "items": [
+        {"check": "No NaN in OHLCV columns", "action": "df.isnull().sum()", "fix": "Interpolate or drop"},
+        {"check": "High >= Low for all bars", "action": "(df['high'] >= df['low']).all()", "fix": "Swap H/L or drop invalid"},
+        {"check": "Volume > 0 for all bars", "action": "(df['volume'] > 0).all()", "fix": "Drop zero-volume bars"},
+        {"check": "No duplicate timestamps", "action": "df.index.duplicated().sum() == 0", "fix": "Keep last or aggregate"},
+        {"check": "Sorted by time", "action": "df.index.is_monotonic_increasing", "fix": "df.sort_index()"},
+        {"check": "No lookahead in features", "action": "Every feature uses .shift(1)", "fix": "Add shift(1) to all features"}
+      ]
+    },
+    "labeling": {
+      "description": "Label validation after Triple Barrier Method",
+      "items": [
+        {"check": "Label distribution reasonable", "action": "labels.value_counts()", "pass_if": "Not 99%/1% (extreme imbalance)"},
+        {"check": "TP rate > 20%", "action": "(labels==1).mean() > 0.20", "fail_meaning": "Barriers too tight or features non-predictive"},
+        {"check": "Timeout rate < 50%", "action": "(labels==0).mean() < 0.50", "fail_meaning": "Vertical barrier too short"},
+        {"check": "Long and Short labels balanced", "action": "abs(long_pct - short_pct) < 0.15", "fail_meaning": "Asymmetric market or bug"},
+        {"check": "No identical labels for consecutive events", "action": "labels.diff().abs().sum() > len(labels)*0.1", "fail_meaning": "Labels not discriminative"},
+        {"check": "Average return for label=1 > 0", "action": "df[df.label==1]['return'].mean() > 0", "fail_meaning": "Label definition error"}
+      ]
+    },
+    "features": {
+      "description": "Feature engineering validation",
+      "items": [
+        {"check": "No feature with NaN > 5%", "action": "(X.isnull().mean() < 0.05).all()", "fix": "Drop or fill with rolling median"},
+        {"check": "No feature with inf", "action": "np.isinf(X).sum().sum() == 0", "fix": "Clip or replace"},
+        {"check": "No feature corr > 0.95 with label", "action": "X.corrwith(y).abs().max() < 0.95", "fail_meaning": "LEAKAGE! Feature uses future info"},
+        {"check": "No feature pair corr > 0.95", "action": "X.corr().abs().unstack().max() < 0.95", "fix": "Drop one of correlated pair"},
+        {"check": "Direction features present", "action": "'df_curve' in X.columns and 'flow_delta' in X.columns", "fail_meaning": "Missing critical direction features"},
+        {"check": "Boolean features present", "action": "any(col.startswith('above_') or col.startswith('rsi_') for col in X.columns)", "fail_meaning": "Trees need boolean splits"},
+        {"check": "Feature stationary (ADF p<0.05)", "action": "adfuller(feature)[1] < 0.05", "fix": "Fractional differencing (frac_diff)"}
+      ]
+    },
+    "model_training": {
+      "description": "Model training validation",
+      "items": [
+        {"check": "Using PurgedKFold, NOT sklearn KFold", "action": "Check CV class", "fail_meaning": "LEAKAGE — inflated metrics"},
+        {"check": "Sample weights applied", "action": "model.fit(..., sample_weight=weights)", "fail_meaning": "Biased toward overlapping labels"},
+        {"check": "OOS AUC > 0.55", "action": "metrics['auc'] > 0.55", "fail_meaning": "Model not predictive"},
+        {"check": "OOS AUC < 0.90", "action": "metrics['auc'] < 0.90", "fail_meaning": "Too good — likely leakage"},
+        {"check": "Train-OOS AUC gap < 0.10", "action": "train_auc - oos_auc < 0.10", "fail_meaning": "Overfitting"},
+        {"check": "Feature importance makes sense", "action": "Top features include direction features", "fail_meaning": "Model using noise features"}
+      ]
+    },
+    "evaluation": {
+      "description": "Out-of-sample evaluation",
+      "items": [
+        {"check": "OOS period sufficient (> 20% of data)", "action": "len(oos) / len(total) > 0.20"},
+        {"check": "Net P&L > 0 in OOS", "action": "oos_pnl.sum() > 0"},
+        {"check": "Sharpe ratio > 0.5 in OOS", "action": "oos_sharpe > 0.5"},
+        {"check": "Max drawdown acceptable", "action": "max_dd < 0.20"},
+        {"check": "Win rate consistent with label distribution", "action": "abs(win_rate - expected_win_rate) < 0.05"},
+        {"check": "Performance better than take-all baseline", "action": "oos_sharpe > baseline_sharpe"}
+      ]
+    }
+  }
+}

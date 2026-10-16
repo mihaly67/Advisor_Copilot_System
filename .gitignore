@@ -1,0 +1,35 @@
+# LGBM Copilot — .gitignore
+
+# === NEM felküldendő (túl nagy / generált) ===
+models/
+charts/
+__pycache__/
+*.pyc
+*.pyo
+
+# Nyers adat CSV-k (GB-ok, symlink célpontok NEM versionáltók)
+data/raw/BTCUSD/*.csv
+data/raw/XAUUSD/*.csv
+data/exam/BTCUSD/*.csv
+data/exam/XAUUSD/*.csv
+data/labeled/
+data/processed/
+data/synthetic_btcusd.csv
+data/features_*
+data/labels_*
+data/pipeline_result_*
+
+# Optuna adatbázis
+*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+*.bak

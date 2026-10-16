@@ -1,0 +1,109 @@
+{
+  "_meta": {"version": "1.0", "created": "2026-10-13", "purpose": "Desktop visualization & trading panel repos catalog"},
+  "categories": {
+    "charting": {
+      "description": "Financial charting libraries for trading visualization",
+      "repos": {
+        "lightweight-charts-python": {
+          "path": "/data/vizualizácio/lightweight-charts-python",
+          "type": "TradingView-style charting",
+          "language": "Python",
+          "use": "Primary chart — candlestick + indicators + trades overlay",
+          "features": ["candlestick", "volume histogram", "line indicators", "crosshair", "time scale"]
+        },
+        "lightweight-charts-master": {
+          "path": "/data/vizualizácio/lightweight-charts-master",
+          "type": "TradingView Lightweight Charts JS library",
+          "language": "TypeScript",
+          "use": "Web-based charting if needed"
+        },
+        "finplot": {
+          "path": "/data/vizualizácio/finplot",
+          "type": "Fast financial plotting for PyQt",
+          "language": "Python",
+          "use": "High-performance chart for PyQt5 desktop app",
+          "features": ["resampled OHLC", "volume", "indicators", "fast"]
+        },
+        "plotly.py-main": {
+          "path": "/data/vizualizácio/plotly.py-main",
+          "type": "Interactive plotting",
+          "language": "Python",
+          "use": "Research notebooks — interactive analysis charts"
+        }
+      }
+    },
+    "gui_frameworks": {
+      "description": "Desktop GUI frameworks",
+      "repos": {
+        "DearPyGui": {
+          "path": "/data/vizualizácio/DearPyGui",
+          "type": "Immediate mode GPU-accelerated GUI",
+          "language": "Python/C++",
+          "use": "HUD + trading panel — FAST rendering, good for real-time",
+          "features": ["GPU accelerated", "real-time", "tables", "plots", "docking"],
+          "preferred": true
+        },
+        "pyqtgraph": {
+          "path": "/data/vizualizácio/pyqtgraph",
+          "type": "Scientific plotting for PyQt/PySide",
+          "language": "Python/C++",
+          "use": "Fast real-time plots, alternative to DearPyGui",
+          "features": ["real-time", "OpenGL", "ImageView", "PlotWidget"]
+        },
+        "CustomTkinter-master": {
+          "path": "/data/vizualizácio/CustomTkinter-master",
+          "type": "Modern themed Tkinter",
+          "language": "Python",
+          "use": "Simple settings dialogs, not for charts"
+        }
+      }
+    },
+    "trading_panel": {
+      "description": "Trading panel + MT5 integration",
+      "repos": {
+        "MT5-Python-Trading-main": {
+          "path": "/data/vizualizácio/MT5-Python-Trading-main",
+          "type": "MT5 Python integration",
+          "language": "Python",
+          "use": "MT5 connection, order management, account info"
+        },
+        "PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop-master": {
+          "path": "/data/vizualizácio/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop-master",
+          "type": "MT4/MT5 API connector with drag-n-drop",
+          "language": "Python",
+          "use": "Trading panel drag-n-drop interface"
+        },
+        "hud_v5_cfd": {
+          "path": "/data/vizualizácio/hud_v5_cfd.py",
+          "type": "Existing HUD v5 implementation",
+          "language": "Python",
+          "use": "Reference — existing HUD code for CFD trading"
+        }
+      }
+    },
+    "tv_integration": {
+      "description": "TradingView integration",
+      "repos": {
+        "tv_frontend": {
+          "path": "/data/vizualizácio/tv_frontend",
+          "type": "TradingView frontend",
+          "language": "JavaScript/HTML",
+          "use": "Web-based TradingView chart frontend"
+        },
+        "charting-library-examples-master": {
+          "path": "/data/vizualizácio/charting-library-examples-master",
+          "type": "TradingView Charting Library examples",
+          "language": "Multiple",
+          "use": "Reference implementations"
+        }
+      }
+    }
+  },
+  "recommended_stack": {
+    "hud": "DearPyGui — GPU accelerated, real-time, docking",
+    "chart": "lightweight-charts-python — TradingView style candlestick",
+    "research": "plotly — interactive analysis notebooks",
+    "mt5": "MT5-Python-Trading-main — order management",
+    "panel": "DearPyGui + MT5 connector — trading panel with live orders"
+  }
+}

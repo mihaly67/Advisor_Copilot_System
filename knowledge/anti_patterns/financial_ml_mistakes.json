@@ -1,0 +1,185 @@
+{
+  "_meta": {
+    "version": "1.1",
+    "created": "2026-10-13",
+    "purpose": "Common ML mistakes in financial ML and their fixes",
+    "updated": "2026-10-14"
+  },
+  "anti_patterns": [
+    {
+      "id": "AP01",
+      "category": "labeling",
+      "severity": "CRITICAL",
+      "wrong": "Fixed pip TP/SL (e.g., TP=50 pips, SL=50 pips)",
+      "right": "Volatility-adjusted: TP = entry ± tp_mult × EWMA_vol",
+      "why": "Fixed pip ignores volatility regime — over-labels in calm markets, under-labels in volatile",
+      "reference": "AFML Ch.3 — Triple Barrier Method"
+    },
+    {
+      "id": "AP02",
+      "category": "labeling",
+      "severity": "CRITICAL",
+      "wrong": "Meta-labeling to predict direction (Long/Short)",
+      "right": "Meta-labeling for take/skip (0/1) given direction from primary",
+      "why": "Meta-label is binary 0/1 — cannot express direction. Side MUST come from primary model or CUSUM",
+      "reference": "AFML Ch.3 — Meta-labeling"
+    },
+    {
+      "id": "AP03",
+      "category": "labeling",
+      "severity": "CRITICAL",
+      "wrong": "Symmetric TP=SL for meta-labeling (TP=SL=2×ATR)",
+      "right": "Asymmetric: profit_mult > stop_mult (e.g., PT=1.5σ, SL=1.0σ)",
+      "why": "Prado: 'PT > SL gives the signal more room to be right'. Symmetric → ~50/50 → random",
+      "reference": "AFML Ch.3"
+    },
+    {
+      "id": "AP04",
+      "category": "validation",
+      "severity": "CRITICAL",
+      "wrong": "sklearn KFold with financial labels",
+      "right": "PurgedKFold with pct_embargo ≥ 0.01",
+      "why": "Standard KFold leaks: train labels overlap test period → inflated OOS metrics",
+      "reference": "AFML Ch.7-12"
+    },
+    {
+      "id": "AP05",
+      "category": "features",
+      "severity": "CRITICAL",
+      "wrong": "RSI/ADX/Stochastic as direction features",
+      "right": "DF_Curve, Flow_Delta, PV_Corr, Mom_Persistence, Vol_Adj_Mom, VR_1_4",
+      "why": "RSI/ADX/Stochastic AUC≈0.53 for direction — barely better than random. They measure magnitude, not direction",
+      "reference": "digest_direction_features.md"
+    },
+    {
+      "id": "AP06",
+      "category": "features",
+      "severity": "CRITICAL",
+      "wrong": "Raw price as feature",
+      "right": "Returns, log-returns, or fractionally differenced prices",
+      "why": "Raw price non-stationary → model learns price level, not dynamics",
+      "reference": "AFML Ch.5 — Fractional Differentiation"
+    },
+    {
+      "id": "AP07",
+      "category": "data",
+      "severity": "HIGH",
+      "wrong": "Time bars (1min, 5min) for ML",
+      "right": "Dollar bars or volume bars",
+      "why": "Time bars oversample in volatile periods → heteroscedastic → poor ML performance",
+      "reference": "AFML Ch.2"
+    },
+    {
+      "id": "AP08",
+      "category": "training",
+      "severity": "CRITICAL",
+      "wrong": "Unweighted training with financial labels",
+      "right": "sample_weight = average_uniqueness × return_attribution",
+      "why": "Overlapping triple barriers create concurrent labels → unweighted = biased toward overlaps",
+      "reference": "AFML Ch.4"
+    },
+    {
+      "id": "AP09",
+      "category": "features",
+      "severity": "HIGH",
+      "wrong": "Only float features for LightGBM",
+      "right": "Mix boolean + float — trees split better on boolean",
+      "why": "AlphaPy: boolean features enable context combinations (e.g., CUSUM_Down & RSI_Oversold)",
+      "reference": "AlphaPy transforms"
+    },
+    {
+      "id": "AP10",
+      "category": "features",
+      "severity": "CRITICAL",
+      "wrong": "Feature uses close[t] for prediction at t (no shift)",
+      "right": "All features use .shift(1) — only data up to t-1",
+      "why": "Using close[t] is lookahead bias → leakage → inflated OOS → production failure",
+      "reference": "Leakage audit protocol"
+    },
+    {
+      "id": "AP11",
+      "category": "sizing",
+      "severity": "MEDIUM",
+      "wrong": "Same threshold for long and short (e.g., 0.5)",
+      "right": "Side-aware: long threshold=0.45, short threshold=0.50",
+      "why": "Shorts are riskier → need higher confidence threshold",
+      "reference": "meta-labeling-alpha-filter"
+    },
+    {
+      "id": "AP12",
+      "category": "config",
+      "severity": "HIGH",
+      "wrong": "Hardcoded instrument parameters",
+      "right": "Read from concept_map.json → instruments[SYMBOL]",
+      "why": "Each instrument has different vol, tick size, dollar threshold — hardcoding = bugs",
+      "reference": "AGENTS.md"
+    },
+    {
+      "id": "AP13",
+      "category": "features",
+      "severity": "HIGH",
+      "wrong": "FVG detection without ATR size filter",
+      "right": "FVG gap_size >= ATR * min_size_atr (e.g., 0.5)",
+      "why": "Without ATR filter, tiny gaps in choppy markets create noise features — too many false FVGs",
+      "reference": "advisors/BAKOMEGoldScalper — FVG_MinSizeATR parameter"
+    },
+    {
+      "id": "AP14",
+      "category": "features",
+      "severity": "MEDIUM",
+      "wrong": "Volume Profile POC requires footprint/tick data",
+      "right": "Approximate POC from OHLC bar volume — distribute bar volume centered at close price",
+      "why": "BTCUSD/XAUUSD have no footprint data — but OHLC+V proxy is effective for POC detection",
+      "reference": "advisors/nq1_Scalping_Strategy — Volume Profile from bar data"
+    },
+    {
+      "id": "AP15",
+      "category": "signal",
+      "severity": "HIGH",
+      "wrong": "Emitting signal on every bar where condition holds",
+      "right": "Fresh Trigger: signal only on FIRST bar of new condition + cooldown period",
+      "why": "Without Fresh Trigger, model generates 10+ identical signals in a trending move → overtrading",
+      "reference": "advisors/CSA-15 — Fresh Trigger concept"
+    },
+    {
+      "id": "AP16",
+      "category": "model",
+      "severity": "HIGH",
+      "wrong": "Single complex model for both direction and sizing",
+      "right": "Meta-labeling pipeline: primary model for SIDE, secondary for SIZE (take/skip)",
+      "why": "One model cannot optimize both direction accuracy and position sizing simultaneously — meta-labeling separates concerns",
+      "reference": "MlFinLab AFML Ch.3 + advisors/EA31337 ensemble approach"
+    },
+    {
+      "id": "AP17",
+      "category": "features",
+      "severity": "HIGH",
+      "wrong": "No time-of-day / session filter — trading all hours equally",
+      "right": "Kill Zone filter + session_vol_rank: only trade in high-vol sessions (London/NY open)",
+      "why": "Asian session has 3-5x less volume — signals in low-vol hours have much lower win rate",
+      "reference": "advisors/BAKOMEGoldScalper — Silver Bullet kill zones"
+    },
+    {
+      "id": "AP18",
+      "title": "Post-trade judge (Narrator vs Trader)",
+      "description": "Training a model on realized trade outcomes (exit price, P&L, MFE/MAE) to rate trades. The answer is already in the inputs — look-ahead bias. The model can never make money because at decision time those inputs don't exist.",
+      "wrong_approach": "Give model the realized outcome and ask it to classify good/bad trades",
+      "correct_approach": "Meta-labeling: secondary model decides take/skip using ONLY pre-entry information. Features from df[df.index < entry_ts], label is the forward return.",
+      "detection": "Any feature that references trade exit, P&L, or outcome is look-ahead",
+      "severity": "CRITICAL",
+      "source": "meta-labeling-harness (efenn-dev) — RESEARCH_NOTE.md",
+      "code_ref": "/data/LGBM_copilot/knowledge/code_templates/meta_labeling_harness.py"
+    },
+    {
+      "id": "AP19",
+      "title": "Single-split validation flattery",
+      "description": "Reporting results from a single held-out split. Looks great on noise (Sharpe 1.8 on random data) but collapses under purged walk-forward CV. The honest result is often that apparent profit is mostly market exposure, not skill.",
+      "wrong_approach": "Train/test single split, report test metrics",
+      "correct_approach": "Purged + embargoed walk-forward CV. Benchmark against buy-and-hold beta. Report how many folds beat beta. A verdict that can say NO.",
+      "detection": "If no cross-validation or only k-fold (not walk-forward), result is unreliable",
+      "severity": "CRITICAL",
+      "source": "meta-labeling-harness (efenn-dev) — RESEARCH_NOTE.md",
+      "code_ref": "/data/LGBM_copilot/knowledge/code_templates/meta_labeling_harness.py"
+    }
+  ]
+}

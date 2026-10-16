@@ -1,0 +1,57 @@
+{
+  "_meta": {"version": "1.0", "created": "2026-10-13", "purpose": "RAG building knowledge — repos and techniques for optimal RAG construction"},
+  "rag_infrastructure": {
+    "path": "/data/RAG_epito_ismeretek",
+    "vectorizer": "9_perfect_gpu_vectorize.py — P4000 GPU, 384 batch, async pipeline",
+    "search": "advanced_rag_search.py — multi-stage FAISS → rerank → LLM",
+    "db": "rag_knowledge.db (260MB) + rag_vectors.index (545MB)",
+    "embedding_model": "all-MiniLM-L6-v2 (384 dim)",
+    "llm_model": "Qwen/Qwen2.5-1.5B-Instruct (P2000 4-bit)"
+  },
+  "current_rag_dbs": {
+    "ml_rag_v2": {
+      "path": "/data/ml/_vectorized/ml_rag_v2.db",
+      "size": "2.9GB",
+      "description": "ML + trading repos — financial ML, labeling, features, models",
+      "faiss_index": "/data/ml/ml.index"
+    },
+    "brain_rag": {
+      "path": "/data/Brain/_vectorized/brain_rag.db",
+      "size": "2.1GB",
+      "description": "Agentic/LLM/RAG/MCP repos — 89 repo, 247K chunks"
+    },
+    "gui_rag": {
+      "path": "/data/vizualizácio/gui_rag.db",
+      "size": "35MB",
+      "description": "GUI/charting repos — DearPyGui, lightweight-charts, etc."
+    }
+  },
+  "rag_building_repos": {
+    "sentence-transformers": {"path": "/data/RAG_epito_ismeretek/sentence-transformers-main", "use": "Embedding model training + inference"},
+    "chroma": {"path": "/data/RAG_epito_ismeretek/chroma-main", "use": "Vector DB alternative to FAISS+SQLite"},
+    "faiss": {"path": "/data/RAG_epito_ismeretek/faiss-main", "use": "FAISS library — efficient similarity search"},
+    "graphrag": {"path": "/data/RAG_epito_ismeretek/graphrag-main", "use": "Microsoft GraphRAG — graph-based global summarization"},
+    "langchain": {"path": "/data/RAG_epito_ismeretek/langchain-master", "use": "LangChain — chain/prompt patterns for RAG"},
+    "langgraph": {"path": "/data/RAG_epito_ismeretek/langgraph-master", "use": "LangGraph — stateful multi-actor RAG agents"},
+    "llama_index": {"path": "/data/RAG_epito_ismeretek/llama_index-main", "use": "LlamaIndex — data framework for LLM apps"},
+    "fastembed": {"path": "/data/RAG_epito_ismeretek/fastembed-main", "use": "Fast embedding — lightweight, no torch dependency"},
+    "sqlite-vec": {"path": "/data/RAG_epito_ismeretek/sqlite-vec-main", "use": "SQLite vector extension — in-DB vector search"}
+  },
+  "rag_optimization_for_copilot": {
+    "current_approach": "FAISS + SQLite + concept_map (4-level hierarchy)",
+    "strengths": ["Fast keyword search", "Hierarchical navigation saves tokens", "GPU embedding available"],
+    "weaknesses": ["No semantic search in rag_query MCP (SQL LIKE only)", "Brain FAISS index not built yet", "Knowledge space not yet in FAISS"],
+    "improvements": [
+      "1. Build brain_rag FAISS index (need vectorization)",
+      "2. Add FAISS search to rag_query MCP tool (faiss_search.py exists)",
+      "3. Re-vectorize after knowledge space update (144 new chunks added)",
+      "4. Consider sqlite-vec for in-DB vector search (no separate FAISS index)"
+    ],
+    "alternative_approaches": {
+      "chroma": "Chroma DB — simpler API, built-in embedding, but less control",
+      "sqlite_vec": "SQLite-vec — vector search inside existing DB, no separate index",
+      "graph_rag": "GraphRAG — graph-based, better for global questions, but heavy",
+      "hybrid": "FAISS for speed + GraphRAG for depth — best of both but complex"
+    }
+  }
+}

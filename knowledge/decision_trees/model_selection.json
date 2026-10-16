@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "created": "2026-10-14",
+    "purpose": "Model selection decision tree for scalper copilot — from advisor repo insights",
+    "source": "advisors/ (MlFinLab, EA31337, CSA-15, BAKOME, EURUSD_Scalper)"
+  },
+  "root_question": "What model architecture do you need?",
+  "decision_nodes": {
+    "direction_only": {"question": "Predict trade DIRECTION only (Long/Short)?", "yes": "single_direction_model", "no": "direction_and_size"},
+    "direction_and_size": {"question": "Need BOTH direction AND bet size (take/skip)?", "yes": "meta_labeling_pipeline", "no": "ensemble_approach"},
+    "ensemble_approach": {"question": "Multiple simple sub-models voting?", "yes": "ensemble_voting", "no": "single_direction_model"}
+  },
+  "methods": {
+    "single_direction_model": {
+      "description": "One LightGBM model predicting side (+1/-1)",
+      "when_to_use": ["Simple pipeline", "Limited data", "Quick iteration"],
+      "recommended": {
+        "model": "LightGBM", "objective": "binary",
+        "key_params": {"num_leaves": 31, "learning_rate": 0.05, "feature_fraction": 0.8, "bagging_fraction": 0.8, "scale_pos_weight": "n_neg/n_pos"},
+        "cv": "PurgedKFold with pct_embargo>=0.01",
+        "sample_weight": "average_uniqueness × return_attribution × time_decay"
+      },
+      "pros": ["Simple", "Fast training", "Easy to interpret"],
+      "cons": ["No bet sizing", "No trade filtering"],
+      "expected_auc": "0.62-0.70",
+      "reference": "code_templates/train_lgbm.py"
+    },
+    "meta_labeling_pipeline": {
+      "description": "Two-stage: primary model for SIDE, secondary model for SIZE (take/skip)",
+      "when_to_use": ["Best accuracy needed", "Position sizing important", "Enough data for two models"],
+      "recommended": {
+        "stage1": {"name": "primary_side_model", "purpose": "Predict direction: +1 or -1", "model": "LightGBM", "labels": "triple_barrier_side (+1/-1/0)", "features": "ALL direction + volatility + regime features"},
+        "stage2": {"name": "secondary_size_model", "purpose": "Given direction, predict: take (1) or skip (0)", "model": "LightGBM", "labels": "meta_labels (1=TP hit, 0=SL/timeout)", "features": "direction + primary_confidence + meta_features", "critical": "Asymmetric: profit_mult > stop_mult (e.g., 1.5σ vs 1.0σ)"},
+        "output": "trade = side_model.predict() if size_model.predict() == 1 else NO_TRADE"
+      },
+      "pros": ["Best accuracy", "Built-in trade filtering", "Position sizing from confidence"],
+      "cons": ["Two models to train/maintain", "More data needed", "Cascade error if stage1 wrong"],
+      "expected_auc_stage1": "0.62-0.70", "expected_auc_stage2": "0.58-0.65",
+      "source_insight": "MlFinLab AFML Ch.3 — Meta-labeling is SIZE filter NOT direction!",
+      "reference": "code_templates/labeling_meta_labeling.py + code_templates/model_selection.py",
+      "anti_pattern": "AP02: NEVER use meta-labeling for direction"
+    },
+    "long_short_split": {
+      "description": "Separate models for Long and Short — different features/thresholds",
+      "when_to_use": ["Long/Short asymmetry significant", "Different optimal features per side"],
+      "recommended": {
+        "long_model": {"model": "LightGBM", "labels": "Long-side TBM labels", "threshold": 0.45, "key_features": "Momentum_Persistence, Flow_Delta, POC_Distance"},
+        "short_model": {"model": "LightGBM", "labels": "Short-side TBM labels", "threshold": 0.50, "key_features": "Vol_Adj_Mom, PV_Correlation, FVG_Bearish"}
+      },
+      "pros": ["Side-specific optimization", "Different thresholds"],
+      "cons": ["2x training time", "2x maintenance"],
+      "expected_auc_long": "0.65-0.72", "expected_auc_short": "0.62-0.68",
+      "source_insight": "Our V3 pipeline: Long=0.6715 Short=0.6461"
+    },
+    "ensemble_voting": {
+      "description": "Multiple simple sub-models vote independently, weighted by recent performance",
+      "when_to_use": ["Robustness needed", "Multiple signal sources", "Like EA31337"],
+      "recommended": {
+        "architecture": "N simple models → weighted vote → signal",
+        "weight_update": "exponential_decay on recent performance (sharpe/AUC)",
+        "min_agreement": "60% of models must agree",
+        "sub_models": ["trend_following: DF_Curve + Vol_Adj_Mom + Trending", "mean_reversion: RSI_Oversold + CUSUM_Down + Above_EMA20", "breakout: FVG + Squeeze_Firing + Volume_Surge", "structural: POC_Proximity + OrderBlock + Session"]
+      },
+      "source_insight": "EA31337: 30+ strategies voting, adaptive weights"
+    }
+  },
+  "threshold_selection": {
+    "side_aware": {"long_threshold": 0.45, "short_threshold": 0.50, "why": "Shorts riskier → higher confidence (AP11)"},
+    "meta_labeling": {"method": "size_model.predict_proba > threshold → take", "typical": "0.55-0.65"},
+    "profit_optimal": {"method": "grid search threshold → max OOS profit", "when": "Production deployment"}
+  },
+  "feature_count_vs_auc": {
+    "guidelines": ["Start with 8-12 features", "Add ICT (FVG, OB, POC) → +0.02-0.04 AUC", "Add session (KillZone, Hour) → +0.01-0.02 AUC", "SHAP pruning: drop importance < 0.01", "Correlation pruning: remove corr > 0.95", "SWEET SPOT: 15-20 features after pruning"],
+    "current_v3": {"feature_count": 5, "auc": 0.7035, "potential_with_ict": "0.72-0.75"}
+  }
+}

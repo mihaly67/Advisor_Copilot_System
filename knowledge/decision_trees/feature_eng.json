@@ -1,0 +1,507 @@
+{
+  "_meta": {
+    "version": "3.0",
+    "created": "2026-10-13",
+    "purpose": "Feature engineering catalog — categorized, with code references and when-to-use",
+    "updated": "2026-10-14"
+  },
+  "categories": {
+    "direction": {
+      "description": "Features that carry DIRECTIONAL information (bull/bear signal)",
+      "priority": "HIGHEST — these predict trade direction",
+      "features": {
+        "DF_Curve": {
+          "logic": "CUSUM sign → bull/bear direction",
+          "python_proxy": "s_pos=max(0,s_pos+ret), s_neg=min(0,s_neg+ret); sign(s_pos) if s_pos>thr else sign(s_neg)",
+          "auc_expect": "0.58-0.65",
+          "available": "NavSystem MQL5 + Python proxy",
+          "when": "PRIMARY direction feature"
+        },
+        "Flow_Delta": {
+          "logic": "volume × (close_position - 0.5) × 2 → buy/sell pressure",
+          "python_proxy": "volume * ((close-low)/(high-low) - 0.5) * 2",
+          "auc_expect": "0.55-0.60",
+          "available": "NavSystem MQL5 + Python proxy",
+          "when": "Order flow direction proxy"
+        },
+        "PV_Correlation": {
+          "logic": "rolling corr(pct_change, volume) → price-volume comovement",
+          "python_proxy": "close.pct_change().rolling(20).corr(volume)",
+          "auc_expect": "0.55-0.58",
+          "available": "Python from OHLC+V",
+          "when": "Price-volume pressure"
+        },
+        "Momentum_Persistence": {
+          "logic": "%(returns > 0) in rolling window → trend persistence",
+          "python_proxy": "(close.pct_change() > 0).rolling(20).mean()",
+          "auc_expect": "0.55-0.57",
+          "available": "Python from OHLC",
+          "when": "Trend continuation signal"
+        },
+        "Vol_Adj_Momentum": {
+          "logic": "momentum / volatility → risk-adjusted direction",
+          "python_proxy": "close.pct_change(10) / close.pct_change().rolling(20).std()",
+          "auc_expect": "0.56-0.60",
+          "available": "Python from OHLC",
+          "when": "Risk-adjusted direction"
+        },
+        "Variance_Ratio_1_4": {
+          "logic": "VR(1,4) = var(r4)/(4×var(r1)) → trending if >0.25, MR if <0.25",
+          "python_proxy": "var(close.pct_change(4)) / (4 * var(close.pct_change()))",
+          "auc_expect": "0.55-0.57",
+          "available": "Python from OHLC",
+          "when": "Regime detection (trending vs MR)"
+        }
+      }
+    },
+    "volatility": {
+      "description": "Volatility features — magnitude, NOT direction",
+      "priority": "HIGH — for barrier sizing and risk management",
+      "features": {
+        "EWMA_Vol": {
+          "logic": "EWMA std of returns, span=20",
+          "when": "Barrier sizing (TBM target)",
+          "reference": "financial-ml-toolkit/pipeline/labeling.py::get_volatility"
+        },
+        "ATR": {
+          "logic": "Average True Range, period=14",
+          "when": "Stop sizing, barrier width"
+        },
+        "Parkinson_Vol": {
+          "logic": "sqrt(1/(2n) × Σln(H/L)²)",
+          "when": "More efficient vol estimator (uses H,L only)",
+          "reference": "finmlkit/features.py::ParkinsonRange"
+        },
+        "Realized_Vol": {
+          "logic": "sqrt(Σr²) over window",
+          "when": "Intraday vol measurement"
+        },
+        "Bollinger_PctB": {
+          "logic": "(close - lower) / (upper - lower)",
+          "when": "Where price is within Bollinger bands"
+        }
+      }
+    },
+    "regime": {
+      "description": "Market regime features",
+      "priority": "HIGH — model should know current regime",
+      "features": {
+        "ADX": {
+          "logic": "Average Directional Index — trend STRENGTH (not direction!)",
+          "warning": "ADX = trend strength, NOT direction! Do not use as direction feature!",
+          "when": "Regime filter (trending vs ranging)"
+        },
+        "Variance_Ratio": {
+          "logic": "Already in direction category — dual use",
+          "when": "Trending vs mean-reversion"
+        },
+        "HMM_Regime": {
+          "logic": "Hidden Markov Model state (bull/bear/sideways)",
+          "when": "If regime detection needed beyond CUSUM"
+        },
+        "Vol_Regime": {
+          "logic": "Volatility percentile rank (high/low vol regime)",
+          "when": "Vol-adjusted position sizing"
+        }
+      }
+    },
+    "momentum": {
+      "description": "Momentum features",
+      "priority": "MEDIUM — useful but less than direction/vol",
+      "features": {
+        "ROC_N": {
+          "logic": "(close/shift(close,N) - 1) × 100",
+          "when": "Rate of change at multiple horizons",
+          "horizons": [
+            1,
+            5,
+            10,
+            20
+          ]
+        },
+        "RSI_14": {
+          "logic": "Wilder RSI, period=14",
+          "when": "Overbought/oversold CONTEXT (not direction!)"
+        },
+        "MACD": {
+          "logic": "EMA12 - EMA26, signal=EMA9, histogram=MACD-signal",
+          "when": "Momentum direction + divergence"
+        },
+        "Stoch_K": {
+          "logic": "(close-L14)/(H14-L14)×100",
+          "when": "Overbought/oversold"
+        }
+      }
+    },
+    "volume_flow": {
+      "description": "Volume and order flow features",
+      "priority": "HIGH when available",
+      "features": {
+        "VPIN": {
+          "logic": "Volume-synchronized PIN (probability of informed trading)",
+          "requires": "Footprint data (buy/sell volume) — NOT available for BTCUSD/XAUUSD",
+          "proxy": "Use Flow_Delta + PV_Correlation instead"
+        },
+        "OBV": {
+          "logic": "On Balance Volume = cumsum(sign(ret)×volume)",
+          "when": "Cumulative volume direction"
+        },
+        "Volume_Profile": {
+          "logic": "Volume at each price level → POC/HVA/LVA",
+          "requires": "Footprint data or tick-level",
+          "proxy": "Approximate from OHLC bar volume — see features_volume_profile.py"
+        },
+        "Volume_Profile_POC": {
+          "logic": "Price level with max volume — MAGNETIC S/R",
+          "when": "Strongest structural support/resistance",
+          "source": "advisors/nq1_Scalping_Strategy",
+          "code": "code_templates/features_volume_profile.py",
+          "expected_auc": "0.57-0.60"
+        },
+        "Flow_Acceleration": {
+          "logic": "d/dt(volume × close_position) → flow change rate",
+          "when": "Order flow acceleration"
+        },
+        "Tick_Imbalance": {
+          "logic": "cumsum(sign(price_change)×volume)",
+          "when": "Order flow imbalance proxy"
+        }
+      }
+    },
+    "ict": {
+      "description": "ICT (Inner Circle Trader) structural features — from advisor repos",
+      "priority": "HIGHEST — strongest S/R signals not yet in our pipeline",
+      "source": "advisors/BAKOMEGoldScalper — Ultimate_ICT_Gold_Scalper_v3.0.mq5",
+      "features": {
+        "FVG_Bullish": {
+          "logic": "low[i] > high[i-1] and gap >= ATR*0.5 → bullish inefficiency",
+          "when": "Fair Value Gap up — price tends to return to fill",
+          "expected_auc": "0.55-0.58",
+          "anti_pattern": "AP13: must filter by ATR size"
+        },
+        "FVG_Bearish": {
+          "logic": "high[i] < low[i-1] and gap >= ATR*0.5 → bearish inefficiency",
+          "when": "Fair Value Gap down"
+        },
+        "FVG_Size_ATR": {
+          "logic": "gap_size / ATR → normalized gap magnitude",
+          "when": "Continuous FVG strength measure"
+        },
+        "OrderBlock_Bullish": {
+          "logic": "bearish candle[i-1] + large bullish candle[i] where body>ATR",
+          "when": "Structural bullish S/R zone"
+        },
+        "OrderBlock_Bearish": {
+          "logic": "bullish candle[i-1] + large bearish candle[i] where body>ATR",
+          "when": "Structural bearish S/R zone"
+        },
+        "LiqSweep_High": {
+          "logic": "price breaks swing high (≥2 touches) then reverses below",
+          "when": "Trapped longs → bearish reversal"
+        },
+        "LiqSweep_Low": {
+          "logic": "price breaks swing low (≥2 touches) then reverses above",
+          "when": "Trapped shorts → bullish reversal"
+        }
+      },
+      "code": "code_templates/features_ict.py",
+      "confluence_insight": "FVG + OB + KillZone all must align → +0.04-0.07 AUC vs single feature"
+    },
+    "session": {
+      "description": "Session / time-of-day features — from advisor repos",
+      "priority": "HIGH — institutional activity clusters in kill zones",
+      "source": "advisors/BAKOMEGoldScalper (Silver Bullet) + CSA-15 (HTF filter)",
+      "features": {
+        "KillZone_London": {
+          "logic": "hour ∈ [8,9) UTC → London open high vol",
+          "when": "Breakout signals"
+        },
+        "KillZone_NY": {
+          "logic": "hour ∈ [13,16) UTC → NY open high vol",
+          "when": "Reversal signals"
+        },
+        "KillZone_Overlap": {
+          "logic": "hour ∈ [12,16) UTC → highest vol",
+          "when": "Best signals"
+        },
+        "Hour_Sin": {
+          "logic": "sin(2π × hour/24) — cyclical encoding",
+          "when": "Hour of day for tree models"
+        },
+        "Hour_Cos": {
+          "logic": "cos(2π × hour/24) — cyclical encoding",
+          "when": "Hour of day for tree models"
+        },
+        "Session_Vol_Rank": {
+          "logic": "historical volume percentile for this hour",
+          "when": "Relative activity level"
+        },
+        "HTF_Trend": {
+          "logic": "EMA on resampled HTF close → trend direction",
+          "when": "Higher timeframe alignment",
+          "source": "CSA-15"
+        }
+      },
+      "code": "code_templates/features_session.py",
+      "anti_pattern": "AP17: trading all hours equally → only trade in kill zones"
+    },
+    "signal_quality": {
+      "description": "Signal quality filters — from advisor repos",
+      "priority": "HIGH — prevents overtrading and signal repetition",
+      "source": "CSA-15 (multi-confirmation) + EURUSD_Scalper (7-point scoring)",
+      "features": {
+        "Confirmation_Score": {
+          "logic": "weighted sum of boolean conditions / total weight",
+          "when": "Multi-confluence validation (CSA-15: 6/8 min, EURUSD: 4/7 min)"
+        },
+        "Fresh_Trigger": {
+          "logic": "signal only on FIRST bar of new condition + cooldown",
+          "when": "Prevents 10+ identical signals in a trend",
+          "anti_pattern": "AP15"
+        },
+        "Cooldown": {
+          "logic": "minimum bars between signals",
+          "when": "Prevents overtrading"
+        },
+        "Strong_Trend_Boost": {
+          "logic": "if confirmation ≥ 6/7 → boost lot by 2.5x",
+          "when": "High-confidence signal sizing",
+          "source": "EURUSD_Scalper"
+        }
+      },
+      "code": "code_templates/signal_quality.py"
+    },
+    "boolean_context": {
+      "description": "Boolean features for tree models — AlphaPy style",
+      "priority": "HIGH for LightGBM — trees love boolean splits",
+      "features": {
+        "Above_EMA20": {
+          "logic": "close > EMA(close,20)",
+          "when": "Bullish context"
+        },
+        "RSI_Oversold": {
+          "logic": "RSI < 30",
+          "when": "Potential bounce"
+        },
+        "CUSUM_Up": {
+          "logic": "CUSUM s_pos > threshold",
+          "when": "Upward event detected"
+        },
+        "Bullish_Bar": {
+          "logic": "close > open",
+          "when": "Bullish candle"
+        },
+        "MACD_Bullish": {
+          "logic": "MACD > signal",
+          "when": "Momentum positive"
+        },
+        "High_Vol_Regime": {
+          "logic": "ATR > ATR.rolling(50).quantile(0.75)",
+          "when": "High volatility regime"
+        },
+        "Trending": {
+          "logic": "Variance_Ratio_1_4 > 0.25",
+          "when": "Trending regime"
+        }
+      },
+      "context_combinations": {
+        "Fade_Short_Setup": "CUSUM_Down & RSI_Oversold → bounce long",
+        "Bounce_Long_Setup": "CUSUM_Down & Above_EMA20 → supported bounce",
+        "Breakout_Setup": "CUSUM_Down & Stoch_Overbought → reversal short",
+        "Trend_Continuation": "Trending & Above_EMA20 & MACD_Bullish → continue long"
+      }
+    },
+    "quant_ohlcv_catalog": {
+      "description": "540+ OHLCV indicators from quant-ohlcv-features (7 categories)",
+      "priority": "HIGH — comprehensive feature catalog for pipeline construction",
+      "source": "/data/ml/Labelling, mormalisation , featuring, learning/quant-ohlcv-feature-master/",
+      "interface": "signal(df, n, factor_name) → df with new column",
+      "subcategories": {
+        "momentum": {
+          "count": 240,
+          "scalper_relevance": "HIGH",
+          "top_features": [
+            "Rsi",
+            "Rsimean",
+            "Macd",
+            "Zlmacd",
+            "Skdj",
+            "Cci",
+            "CciMagic",
+            "Roc",
+            "RocVol",
+            "Bias",
+            "Mtm",
+            "Dbcd",
+            "Dbcd_taker",
+            "Cmo",
+            "Fisher"
+          ],
+          "when": "Overbought/oversold, divergence, mean-reversion"
+        },
+        "volatility": {
+          "count": 107,
+          "scalper_relevance": "HIGH",
+          "top_features": [
+            "Bbw",
+            "Atr",
+            "Keltner",
+            "Donchian",
+            "Uvl",
+            "Cv",
+            "Natr",
+            "Hvol"
+          ],
+          "when": "Stop sizing, squeeze detection, regime identification"
+        },
+        "volume": {
+          "count": 82,
+          "scalper_relevance": "HIGH",
+          "top_features": [
+            "Obv",
+            "Mfi",
+            "Cmf",
+            "Wvad",
+            "Ad",
+            "Vpvr",
+            "Vroc",
+            "Vratio"
+          ],
+          "when": "Volume confirmation, flow direction, accumulation"
+        },
+        "trend": {
+          "count": 73,
+          "scalper_relevance": "MEDIUM",
+          "top_features": [
+            "Ema",
+            "Sma",
+            "Dema",
+            "Tema",
+            "Adx",
+            "Aroon",
+            "Ichimoku",
+            "Dmi"
+          ],
+          "when": "Moving averages, directional indicators, regression"
+        },
+        "price": {
+          "count": 19,
+          "scalper_relevance": "MEDIUM",
+          "top_features": [
+            "Vwap",
+            "Typical",
+            "Wclose",
+            "Midpoint"
+          ],
+          "when": "Price-derived reference levels"
+        },
+        "liquidity": {
+          "count": 8,
+          "scalper_relevance": "HIGH (microstructure)",
+          "top_features": [
+            "Amihud",
+            "Illiquidity",
+            "Liquidity_v3",
+            "MarketPl"
+          ],
+          "when": "Slippage proxy, market depth, execution quality"
+        },
+        "composite": {
+          "count": 11,
+          "scalper_relevance": "MEDIUM",
+          "top_features": [
+            "Damaov10",
+            "Msbt",
+            "Adx+mtm",
+            "CoppAtrBull",
+            "PriceVolumeResist"
+          ],
+          "when": "Multi-factor combinations across categories"
+        }
+      }
+    },
+    "meta_labeling_filter": {
+      "description": "Signal refinement via meta-labeling (take/skip + sizing)",
+      "priority": "HIGHEST — critical for signal quality",
+      "source": "meta-labeling-harness + meta-labeling-alpha-filter",
+      "features": {
+        "p_take": {
+          "logic": "P(take) from meta-model — take/skip decision",
+          "when": "Primary meta-labeling signal"
+        },
+        "p_margin": {
+          "logic": "max(0, P(take) - max(P(skip), P(fade)))",
+          "when": "Margin sizing mode"
+        },
+        "meta_threshold": {
+          "logic": "Side-specific threshold (long=0.45, short=0.50)",
+          "when": "Asymmetric filtering"
+        },
+        "meta_gap": {
+          "logic": "P(take) - max(P(competing)) >= 0.10",
+          "when": "Overtrading guard"
+        },
+        "weight_mode": {
+          "logic": "prob|margin|odds → position size",
+          "when": "Sizing by confidence"
+        },
+        "vol_target": {
+          "logic": "EWMA(63) vol → scale to target 20%",
+          "when": "Risk management"
+        },
+        "leverage_cap": {
+          "logic": "Hard cap at 3x gross leverage",
+          "when": "Risk management"
+        }
+      }
+    }
+  },
+  "feature_selection": {
+    "methods": {
+      "correlation_pruning": {
+        "logic": "Remove features with corr > 0.95 (keep higher AUC)",
+        "when": "ALWAYS — reduce redundancy"
+      },
+      "shap_importance": {
+        "logic": "SHAP values → drop low-importance features",
+        "when": "After initial training",
+        "reference": "/data/ml/shap-master/"
+      },
+      "mutual_information": {
+        "logic": "MI between feature and label",
+        "when": "Non-linear relationship detection"
+      },
+      "frac_diff": {
+        "logic": "Fractional differencing: find min d where series is stationary but max memory preserved",
+        "when": "Price series → fractionally differenced features",
+        "reference": "digest_frac_diff.md"
+      }
+    },
+    "anti_patterns": [
+      {
+        "wrong": "RSI/ADX/Stochastic as direction feature",
+        "right": "DF_Curve, Flow_Delta, PV_Corr, Mom_Persistence",
+        "why": "RSI/ADX/Stoch AUC≈0.53 — barely better than random for direction"
+      },
+      {
+        "wrong": "All float features for LightGBM",
+        "right": "Mix boolean + float — trees split better on boolean",
+        "why": "AlphaPy: boolean features let trees find context combinations"
+      },
+      {
+        "wrong": "Raw price as feature",
+        "right": "Returns, log-returns, or fractionally differenced prices",
+        "why": "Raw price non-stationary → model learns price level, not dynamics"
+      }
+    ]
+  },
+  "leakage_prevention": {
+    "rules": [
+      "Every feature must use .shift(1) or rolling that ends at t-1",
+      "Never use close[t] in feature for prediction at t",
+      "Verify: corr(feature, label) < 0.95 (if > 0.95, likely leakage)",
+      "Label uses future data (barriers) — features must NOT",
+      "Feature at time t must only use data up to time t-1"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "created": "2026-10-13",
+    "purpose": "Copilot data engineering decision tree"
+  },
+  "root_question": "What data transformation do you need?",
+  "decision_nodes": {
+    "bar_construction": {"question": "Need to construct bars from raw ticks/prices?", "yes": "bar_type", "no": "sampling"},
+    "bar_type": {"question": "Which bar type?", "options": {"dollar_bar": "DollarBar", "volume_bar": "VolumeBar", "time_bar": "TimeBar", "tick_bar": "TickBar", "imbalance_bar": "ImbalanceBar"}},
+    "sampling": {"question": "Need event-based sampling?", "yes": "cusum_sampling", "no": "feature_prep"},
+    "cusum_sampling": {"question": "Which sampling filter?", "options": {"cusum": "CUSUM Filter", "volatility": "Volatility Sampling", "microstructure": "Microstructure (VPIN)"}},
+    "feature_prep": {"question": "Preparing features for model?", "yes": "feature_engineering", "no": "data_quality"},
+    "data_quality": {"question": "Data quality issue?", "options": {"missing": "Handle missing data", "outliers": "Winsorize/clip", "lookahead": "Leakage audit"}}
+  },
+  "methods": {
+    "DollarBar": {
+      "description": "Bar when cumulative dollar volume ≥ threshold: Σ(price×volume) ≥ threshold",
+      "why_best": "Volatility-adaptive, reduces noise, syncs with market activity",
+      "params": {
+        "threshold": {"BTCUSD": 500000, "XAUUSD": 5000000, "default": "median daily dollar volume / 10"}
+      },
+      "implementation": {
+        "reference": "financial-ml-toolkit/pipeline/bars.py::dollar_bars",
+        "code_template": "code_templates/data_dollar_bars.py"
+      },
+      "properties": ["Vol-adaptive: more bars in active periods, fewer in quiet", "Reduces heteroscedasticity", "Better for ML than time bars"],
+      "anti_patterns": [{"wrong": "Time bars (1min, 5min)", "right": "Dollar bars or volume bars", "why": "Time bars sample more in volatile periods → heteroscedastic"}]
+    },
+    "VolumeBar": {
+      "description": "Bar when cumulative volume ≥ threshold",
+      "when_preferred": "When volume is more informative than dollar volume (e.g., fixed contract size)",
+      "params": {"threshold": "median daily volume / 10"}
+    },
+    "TimeBar": {
+      "description": "Fixed time interval bars (1min, 5min, 1hour)",
+      "when_preferred": "NEVER for ML — only for visualization or reporting",
+      "warning": "Time bars oversample in volatile periods → heteroscedastic → BAD for ML"
+    },
+    "ImbalanceBar": {
+      "description": "Bars triggered by order flow imbalance (tick imbalance, volume imbalance)",
+      "when_preferred": "When tick-level data available with buy/sell classification",
+      "reference": "finmlkit/bars.py::ImbalanceBar",
+      "note": "Requires footprint or tick-level data — NOT available with OHLC only"
+    },
+    "CUSUM_sampling": {
+      "description": "Sample only when CUSUM detects significant deviation",
+      "logic": "s_pos=max(0,s_pos+ret-thr), s_neg=min(0,s_neg+ret+thr)",
+      "params": {"threshold": "EWMA volatility (dynamic)"},
+      "output": "Event timestamps for labeling",
+      "key_use": "CUSUM events = TBM input → only label at significant moves",
+      "reference": "financial-ml-toolkit/pipeline/labeling_advanced.py::cusum_filter"
+    },
+    "FootprintData": {
+      "description": "Tick-level buy/sell volume at each price level",
+      "uses": ["VPIN (volume-synchronized probability of informed trading)", "Volume Profile (POC, HVA, LVA)", "Order flow imbalance"],
+      "availability": {"BTCUSD": "NOT available — use OHLC+volume proxies", "XAUUSD": "NOT available — use OHLC+volume proxies"},
+      "proxies": {
+        "DF_Curve": "CUSUM sign → direction proxy",
+        "Flow_Delta": "volume × (close_position - 0.5) × 2 → flow proxy",
+        "PV_Correlation": "rolling corr(pct_change, volume) → pressure proxy",
+        "Tick_Imbalance": "cumsum(sign(price_change) × volume) → imbalance proxy"
+      }
+    }
+  },
+  "pipeline_steps": [
+    {"step": 1, "name": "raw_data", "action": "Load OHLC+volume from CSV/MT5", "output": "DataFrame with open,high,low,close,volume"},
+    {"step": 2, "name": "bar_construction", "action": "Dollar bars from raw data", "output": "Dollar bar DataFrame", "code": "code_templates/data_dollar_bars.py"},
+    {"step": 3, "name": "event_sampling", "action": "CUSUM filter on dollar bars", "output": "Event timestamps + directions", "code": "code_templates/labeling_cusum_filter.py"},
+    {"step": 4, "name": "labeling", "action": "TBM on events only", "output": "Labels (+1/-1/0 or 1/0)", "code": "code_templates/labeling_meta_labeling.py"},
+    {"step": 5, "name": "features", "action": "Direction + volatility + regime features", "output": "Feature DataFrame", "code": "code_templates/features_direction.py"},
+    {"step": 6, "name": "sample_weights", "action": "Average uniqueness + return attribution", "output": "Weight array", "code": "code_templates/sample_weights.py"},
+    {"step": 7, "name": "training", "action": "LightGBM with PurgedKFold", "output": "Trained model + OOS metrics", "code": "code_templates/train_lgbm.py"},
+    {"step": 8, "name": "evaluation", "action": "OOS P&L, Sharpe, drawdown", "output": "Performance report", "code": "code_templates/eval_performance.py"}
+  ]
+}

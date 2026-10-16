@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "created": "2026-10-13",
+    "purpose": "Copilot labeling decision tree for LLM consumption",
+    "usage": "Read FIRST for labeling task → follow decision nodes → use code_template"
+  },
+  "root_question": "What type of labeling do you need?",
+  "decision_nodes": {
+    "trade_direction": {"question": "Predict TRADE DIRECTION (Long/Short)?", "yes": "side_labeling", "no": "trade_quality"},
+    "trade_quality": {"question": "Decide WHETHER TO TRADE (take/skip)?", "yes": "meta_labeling", "no": "trend_identification"},
+    "trend_identification": {"question": "Identify TREND REGIMES (up/down/noise)?", "yes": "trend_labeling", "no": "event_detection"},
+    "event_detection": {"question": "Detect SIGNIFICANT EVENTS only?", "yes": "cusum_filter", "no": "ERROR: re-specify"}
+  },
+  "methods": {
+    "side_labeling": {
+      "description": "Predict trade direction: +1 (Long) or -1 (Short)",
+      "when_to_use": ["Primary model needs direction signal", "No existing strategy provides side"],
+      "recommended": {
+        "method": "triple_barrier_side",
+        "logic": "TBM symmetric barriers → label=sign(return at first barrier hit)",
+        "params": {
+          "target": "EWMA volatility (span=20) × multiplier",
+          "tp_mult": {"BTCUSD": 2.0, "XAUUSD": 2.5, "default": 2.0},
+          "sl_mult": {"BTCUSD": 2.0, "XAUUSD": 1.5, "default": 2.0},
+          "vertical_barrier_bars": {"BTCUSD": 50, "XAUUSD": 100, "default": 50}
+        },
+        "reference": "financial-ml-toolkit/pipeline/labeling.py::triple_barrier_labels",
+        "code_template": "code_templates/labeling_triple_barrier_side.py",
+        "output": "Series of +1/-1/0"
+      },
+      "critical_rules": ["NEVER fixed pip TP/SL — always volatility-adjusted", "Label=sign(return at FIRST barrier hit)", "Vertical barrier=max holding period"],
+      "anti_patterns": [{"wrong": "Fixed TP=50 pips", "right": "TP=entry±tp_mult×EWMA_vol", "why": "Fixed ignores volatility regime"}]
+    },
+    "meta_labeling": {
+      "description": "Binary 0/1: was primary signal CORRECT? Position sizing and trade filtering",
+      "prerequisite": "MUST have primary side signal first!",
+      "when_to_use": ["Primary model provides direction (+1/-1)", "Decide: take or skip?", "Position sizing based on confidence"],
+      "recommended": {
+        "method": "triple_barrier_meta",
+        "logic": "Given side, label=1 if TP hit, label=0 if SL hit or timeout",
+        "params": {
+          "profit_mult": {"BTCUSD": 1.5, "XAUUSD": 2.5, "default": 1.5},
+          "stop_mult": {"BTCUSD": 1.0, "XAUUSD": 1.5, "default": 1.0},
+          "vertical_barrier_bars": {"BTCUSD": 20, "XAUUSD": 30, "default": 20}
+        },
+        "reference": "financial-ml-toolkit/pipeline/labeling.py::get_meta_labels",
+        "code_template": "code_templates/labeling_meta_labeling.py",
+        "output": "Series of 1 (take) or 0 (skip)"
+      },
+      "critical_rules": ["Meta-labeling is SIZE FILTER (0/1), NOT direction!", "Label=1 → TAKE, Label=0 → SKIP", "Asymmetric: profit_mult > stop_mult"],
+      "anti_patterns": [{"wrong": "Meta-labeling for direction", "right": "Meta-labeling for take/skip given direction", "why": "Binary 0/1 cannot express Long vs Short"}]
+    },
+    "trend_labeling": {
+      "description": "Label every bar: uptrend (+1) or downtrend (-1), Wu et al. 2020",
+      "recommended": {
+        "method": "auto_labeling_wu2020",
+        "params": {"w": {"BTCUSD": 0.005, "XAUUSD": 0.003, "default": 0.005}},
+        "reference": "Financial-Time-Series-Trend-Labeling-main/",
+        "code_template": "code_templates/labeling_trend_wu.py",
+        "output": "Series of +1/-1 for EVERY bar"
+      }
+    },
+    "cusum_filter": {
+      "description": "Event detection: sample only significant moves",
+      "key_insight": "CUSUM direction = primary side! DOWN→Long, UP→Short",
+      "recommended": {
+        "method": "cusum_filter_prado",
+        "logic": "s_pos=max(0,s_pos+ret-thr), s_neg=min(0,s_neg+ret+thr)",
+        "params": {"threshold": "EWMA volatility (dynamic)"},
+        "reference": "financial-ml-toolkit/pipeline/labeling_advanced.py::cusum_filter",
+        "code_template": "code_templates/labeling_cusum_filter.py",
+        "output": "DataFrame with event timestamps + directions"
+      },
+      "critical_rules": ["Dynamic threshold=EWMA vol", "DOWN→Long entry (contrarian)", "UP→Short entry (contrarian)"]
+    },
+    "trend_scanning": {
+      "description": "Trend Scanning labels: OLS t-value sign as label, |t-value| as weight",
+      "when_to_use": ["Adaptive labels — no fixed TP/SL needed", "Labels adapt to market dynamics", "When Triple Barrier labels are too rigid"],
+      "recommended": {
+        "method": "trend_scanning_ols",
+        "logic": "For each bar, fit OLS on lookback window → t-value of slope. label=sign(t-value), weight=|t-value|",
+        "params": {"lookback": {"BTCUSD": 50, "XAUUSD": 100, "default": 50}},
+        "reference": "MlFinLab/mlfinlab/labeling/ → trend_scanning_labels",
+        "output": "Series of +1/-1 with weight=|t-value|"
+      },
+      "pros": ["No fixed barriers needed", "Adapts to market speed", "|t-value| = natural sample weight"],
+      "cons": ["Computationally expensive", "Sensitive to lookback window", "No explicit TP/SL for risk management"],
+      "source": "advisors/python_bots/MlFinLab — AFML labeling methods"
+    },
+    "scoring_labeling": {
+      "description": "Multi-confirmation scoring → label: only label bars where ≥K/N conditions agree",
+      "when_to_use": ["Want high-precision labels only", "Filter noise from weak signals"],
+      "recommended": {
+        "method": "confirmation_threshold_labeling",
+        "logic": "Score each bar on N conditions → label only if score ≥ K (e.g., 6/8 or 4/7)",
+        "params": {"CSA-15": {"conditions": 8, "min_score": 6}, "EURUSD_Scalper": {"conditions": 7, "min_score": 4}},
+        "reference": "advisors/traderview_pine/CSA-15 + advisors/mt5_mql5/EURUSD_Scalping_Robot"
+      },
+      "source_insight": "CSA-15: 8-point scoring, min 6/8 = 0.75 threshold | EURUSD: 7-point, min 4/7 = 0.57"
+    }
+  },
+  "method_comparison": {
+    "description": "Labeling method comparison for scalper copilot",
+    "table": [
+      {"method": "Triple Barrier (current)", "signal_rate": "Medium", "best_for": "Balanced", "complexity": "Medium", "our_status": "✅ Current V3"},
+      {"method": "Fixed Time Horizon", "signal_rate": "High", "best_for": "Simple, fast", "complexity": "Low", "our_status": "❌ Not used"},
+      {"method": "Trend Scanning", "signal_rate": "Variable", "best_for": "Adaptive", "complexity": "High", "our_status": "❌ NEW from MlFinLab"},
+      {"method": "Meta-Labeling", "signal_rate": "Configurable", "best_for": "Best accuracy", "complexity": "High", "our_status": "❌ NEW from MlFinLab"},
+      {"method": "Scoring Labeling", "signal_rate": "Low (high precision)", "best_for": "Noise filtering", "complexity": "Medium", "our_status": "❌ NEW from CSA-15/EURUSD"}
+    ]
+  },
+  "pipeline": "cusum_filter → primary_side → meta_labeling → sample_weights → model → eval",
+  "sample_weights": {
+    "methods": {
+      "average_uniqueness": {"logic": "1/concurrent_labels", "when": "ALWAYS with financial labels"},
+      "return_attribution": {"logic": "weight=|return|", "when": "Focus on profitable"},
+      "time_decay": {"logic": "weight×exp(-decay×age)", "when": "Non-stationary"},
+      "class_balance": {"logic": "scale_pos_weight=n_neg/n_pos", "when": "Imbalanced"}
+    }
+  },
+  "cross_validation": {
+    "required": "PurgedKFold with pct_embargo≥0.01 — NEVER sklearn KFold!",
+    "reference": "meta-labeling-harness-main/cross_validate.py"
+  }
+}

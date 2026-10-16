@@ -1,0 +1,63 @@
+{
+  "_meta": {"version": "3.0", "part": "2", "created": "2026-10-14"},
+  "domains": {
+    "portfolio_risk": {
+      "description": "Portfolio optimization, risk management, sizing",
+      "repos": {
+        "PyPortfolioOpt": {"path": "/data/ml/PyPortfolioOpt-main", "desc": "Markowitz, Black-Litterman, HRP", "relevance": "MEDIUM"},
+        "Riskfolio-Lib": {"path": "/data/ml/Riskfolio-Lib-master", "desc": "CVaR/CDaR risk-aware optimization", "relevance": "MEDIUM"},
+        "quantstats": {"path": "/data/ml/quantstats-master", "desc": "Sharpe, drawdown, tearsheet", "relevance": "HIGH"},
+        "barrier-method": {"path": "/data/ml/barrier-method-main", "desc": "Barrier method ML reference", "relevance": "HIGH"}
+      }
+    },
+    "visualization": {
+      "description": "Charting, dashboards, reporting",
+      "repos": {
+        "chartpy": {"path": "/data/ml/chartpy-master", "desc": "Financial charting multi-backend", "relevance": "MEDIUM"},
+        "plotly": {"path": "/data/ml/plotly.py", "desc": "Interactive charts", "relevance": "MEDIUM"},
+        "pyqtgraph": {"path": "/data/Brain/pyqtgraph-master", "desc": "Fast Qt scientific plotting", "relevance": "MEDIUM"},
+        "quantstats-viz": {"path": "/data/ml/quantstats-master", "desc": "Portfolio tearsheets", "relevance": "HIGH"}
+      }
+    },
+    "mcp_agent_infra": {
+      "description": "MCP, agent frameworks, AI infra",
+      "repos": {
+        "Qwen-Agent": {"path": "/data/Brain/Qwen-Agent", "desc": "Qwen agent + RAG + MCP", "relevance": "HIGH"},
+        "langgraph": {"path": "/data/Brain/langgraph-main", "desc": "Stateful multi-actor orchestration", "relevance": "HIGH"},
+        "deepagents": {"path": "/data/Brain/deepagents-main", "desc": "Batteries-included agent harness", "relevance": "HIGH"},
+        "modelcontextprotocol": {"path": "/data/Brain/modelcontextprotocol-main", "desc": "MCP spec", "relevance": "HIGH"},
+        "LightRAG": {"path": "/data/Brain/LightRAG-main", "desc": "Graph RAG", "relevance": "HIGH"},
+        "cline": {"path": "/data/Brain/cline-main", "desc": "Our coding copilot", "relevance": "HIGH"},
+        "langchain": {"path": "/data/Brain/langchain-master", "desc": "Chain/prompt patterns", "relevance": "MEDIUM"},
+        "autogen": {"path": "/data/Brain/autogen-main", "desc": "Multi-agent conversations", "relevance": "MEDIUM"},
+        "chroma": {"path": "/data/Brain/chroma-main", "desc": "Vector store", "relevance": "MEDIUM"},
+        "mem0": {"path": "/data/Brain/mem0-aio", "desc": "Agent memory", "relevance": "MEDIUM"}
+      }
+    },
+    "rag_knowledge": {
+      "description": "RAG, embedding, vectorization, doc processing",
+      "repos": {
+        "sentence-transformers": {"path": "/data/Brain/sentence-transformers-main", "desc": "Embedding models (MiniLM)", "relevance": "HIGH"},
+        "sqlite-vec": {"path": "/data/Brain/sqlite-vec-main", "desc": "SQLite vector extension", "relevance": "MEDIUM"},
+        "anubis-mcp": {"path": "/data/Brain/anubis-mcp-main", "desc": "MCP knowledge server", "relevance": "MEDIUM"},
+        "yggdrasil-mcp": {"path": "/data/Brain/yggdrasil-mcp", "desc": "MCP knowledge tree", "relevance": "MEDIUM"}
+      }
+    },
+    "anomaly_regime": {
+      "description": "Anomaly, regime detection",
+      "repos": {
+        "dtaianomaly": {"path": "/data/ml/dtaianomaly-main", "desc": "TS anomaly toolkit", "relevance": "MEDIUM"},
+        "hidden_markov": {"path": "/data/ml/hidden_markov-master", "desc": "HMM implementation", "relevance": "MEDIUM"},
+        "hmmlearn": {"path": "/data/ml/hmmlearn-master", "desc": "HMM sklearn-compatible", "relevance": "MEDIUM"}
+      }
+    },
+    "time_series_models": {
+      "description": "SOTA time series forecasting",
+      "repos": {
+        "Time-Series-Library": {"path": "/data/ml/Time-Series-Library-main", "desc": "PatchTST, iTransformer", "relevance": "MEDIUM"},
+        "Financial-TS-Forecast": {"path": "/data/ml/Financial-Time-Series-Forecasting-main", "desc": "Financial TS collection", "relevance": "MEDIUM"}
+      }
+    }
+  },
+  "relevance_counts": {"CRITICAL": 3, "HIGH": 21, "MEDIUM": 35, "LOW": 40, "total_useful": 59}
+}
