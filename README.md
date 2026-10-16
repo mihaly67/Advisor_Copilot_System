@@ -2,13 +2,13 @@
 
 > **Hely:** `/data/LGBM_copilot/`
 > **Lemez:** `/dev/sdb1` (219GB, 10% használat, 188GB szabad)
-> **Cél:** MT5 EA + LGBM/LSTM copilot fejlesztés — Dollar Bar Triple Barrier módszerrel
+> **Cél:** MT5 EA + LGBM/MLP copilot fejlesztés — Dollar Bar Triple Barrier módszerrel
 > **Előd rendszer:** `/home/Jules/LGBM_mlops` (referencia, kritikai elemzés: `docs/analysis/`)
 
 ## Architektúra
 
 ```
-MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/LSTM → ZMQ PUB → HUD
+MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/MLP → ZMQ PUB → HUD
      ↑                                                           ↓
      └───────────── PRED|Signal|P_Long|P_Short|P_Noise ←──────────┘
 ```
@@ -18,17 +18,17 @@ MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/LSTM → ZMQ PUB → HU
 | Mappa | Tartalom |
 |-------|----------|
 | `src/data_pipeline/` | Dollar Bar generálás, feature engineering (anti-leakage) |
-| `src/labeling/` | Triple Barrier címkézés (ATR-alapú, anti-overlabeling) |
-| `src/models/` | LGBM és LSTM modellek tanítása |
+| `src/labeling/` | Triple Barrier címkézés (tervezett — még nincs implementálva) |
+| `src/models/` | LGBM és MLP modellek tanítása |
 | `src/evaluation/` | Walk-forward CV, purged k-fold, multi-regime teszt |
 | `src/live/` | Éles copilot backend (TCP 5555/5556, ZMQ PUB 5557) |
 | `src/utils/` | Segédprogramok (adatbetöltés, normalizáció, stb.) |
 | `data/raw/` | Nyers MT5 CSV adatok (tick, OHLCV) |
 | `data/processed/` | Feldolgozott (Dollar Bar, fused features) |
-| `data/labeled/` | Triple Barrier címkézett adatok |
+| `data/labeled/` | Triple Barrier címkézett adatok (tervezett) |
 | `data/exam/` | Vak vizsga adatok (out-of-sample) |
 | `models/lgbm/` | LightGBM modellek (.pkl) |
-| `models/lstm/` | LSTM modellek (.pth) |
+| `models/mlp/` | MLP meta-advisor modellek (.pth) — távoli jövő |
 | `models/scalers/` | Normalizációs paraméterek (.npy) |
 | `scripts/mt5_collectors/` | MQL5 adatgyűjtő scriptek (.mq5) |
 | `scripts/batch/` | Batch feldolgozó scriptek (.sh) |
@@ -61,7 +61,7 @@ MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/LSTM → ZMQ PUB → HU
 4. **Walk-forward validáció** — purged k-fold CV, multi-regime, multi-day
 5. **Unified threshold** — egyetlen konfiguráció training/eval/live
 6. **Dinamikus Dollar Bar threshold** — instrumentum-specifikus, EMA-based
-7. **OOS LSTM training** — strictly out-of-sample LGBM predikciókkal
+7. **OOS MLP meta-advisor** — strictly out-of-sample LGBM predikciókkal (távoli jövő)
 
 ## 🛡️ Data Governance (KRITIKUS)
 

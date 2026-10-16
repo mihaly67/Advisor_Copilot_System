@@ -17,11 +17,12 @@ dom_labeler_v5.py: fixed dollar (pt=1.5, sl=1.0) — nem ATR-skalazott
 AI_Labeled_Data_Exporter_v8.1.mq5: ATR-based (TpAttrMult=1.5, SlAttrMult=1.0)
 Ket kulonbozo labeling rendszer — inkonzisztens
 
-## 4. KRITIKUS: LSTM Meta-Advisor Compounding Overfitting
-shap_meta_analyzer.py: LSTM LGBM P_Long/Short/Noise-bol tanul
+## 4. KRITIKUS: Meta-Advisor Compounding Overfitting (korábbi LSTM)
+shap_meta_analyzer.py: Meta-Advisor LGBM P_Long/Short/Noise-bol tanul
 LGBM training data predictions = overfitting bias
-LSTM ebbol tanul = kettos overfitting
+Meta-Advisor ebbol tanul = kettos overfitting
 Nincs proper out-of-sample validacio
+Megoldas: MLP meta-advisor strictly OOS LGBM predictions (távoli jövő)
 
 ## 5. SULYOS: Evaluation Threshold Mismatch
 evaluate_blind_exam_v5.py: P_SIGNAL_MIN=0.494, P_NOISE_MAX=0.351
@@ -55,7 +56,7 @@ Training 29 feature kozott van, Live 10 feature kozott van
 2. Walk-Forward Validation (FinRL, qlib) — purged k-fold CV
 3. Anti-Leakage Feature Engineering — shift-before-rolling, real-time ZigZag
 4. Dollar Bar Improvement — dynamic threshold, vektorizalt
-5. LSTM Meta-Advisor Fix — strictly OOS LGBM predictions
+5. MLP Meta-Advisor Fix — strictly OOS LGBM predictions (távoli jövő)
 6. Unified Threshold System — training=evaluation=live
 
 ## SUDO MEGJEGYZES

@@ -112,29 +112,29 @@ def triple_barrier_atr_based(df, tp_atr_mult=1.5, sl_atr_mult=1.0,
 
 ---
 
-## 📊 FÁZIS 8: DUAL/MULTI SYSTEM ARCHITEKTÚRA (LGBM+LSTM SUPERVISOR)
+## 📊 FÁZIS 8: DUAL/MULTI SYSTEM ARCHITEKTÚRA (LGBM+MLP SUPERVISOR) — távoli jövő
 
 ### Option 1: Stacking Ensemble — **AJÁNLOTT**
 
 ```python
 # Stage 1: Base Models
 lgbm_probs = lgbm_model.predict_proba(features)[0]  # [P_Long, P_Short, P_Noise]
-lstm_probs = lstm_model.predict_proba(features_sequence)[-1]
+mlp_probs = mlp_model.predict_proba(features)[0]  # MLP meta-advisor
 
 # Stage 2: Stacking Meta-Model (Ridge Regression)
-P_Long = lgbm_probs[2] * 0.7 + lstm_probs[2] * 0.3
-P_Short = lgbm_probs[0] * 0.7 + lstm_probs[0] * 0.3
-P_Noise = lgbm_probs[1] * 0.7 + lstm_probs[1] * 0.3
+P_Long = lgbm_probs[2] * 0.7 + mlp_probs[2] * 0.3
+P_Short = lgbm_probs[0] * 0.7 + mlp_probs[0] * 0.3
+P_Noise = lgbm_probs[1] * 0.7 + mlp_probs[1] * 0.3
 ```
 
 ### Option 2: Meta-Learning Regime Detection
 - Stage 1: HMM regime (trend/range/breakout)
-- Stage 2: Per-regime prediction (LGBM-Trend, LGBM-Range, LSTM-Breakout)
+- Stage 2: Per-regime prediction (LGBM-Trend, LGBM-Range, MLP-Breakout)
 - Stage 3: Meta-learner regime-based weights
 
-### Option 3: Transformer Encoder + LSTM Decoder
+### Option 3: Transformer Encoder + MLP
 - Stage 1: Transformer self-attention on features
-- Stage 2: LSTM temporal sequence prediction
+- Stage 2: MLP meta-prediction
 - Stage 3: Fusion
 
 ---
@@ -155,9 +155,9 @@ P_NOISE_MAX = 0.470
 P_REGIME_THRESHOLD = 0.6
 
 REGIME_WEIGHTS = {
-    'trend': {'lgbm': 0.7, 'lstm': 0.3},
-    'range': {'lgbm': 0.8, 'lstm': 0.2},
-    'breakout': {'lgbm': 0.4, 'lstm': 0.6}
+    'trend': {'lgbm': 0.7, 'mlp': 0.3},
+    'range': {'lgbm': 0.8, 'mlp': 0.2},
+    'breakout': {'lgbm': 0.4, 'mlp': 0.6}
 }
 ```
 
@@ -190,7 +190,7 @@ REGIME_WEIGHTS = {
 | 5 | DYNAMIC DOLLAR BAR: $80K XAUUSD, EMA-based |
 | 6 | GYŰJTŐ SCRIPT: MT5 független |
 | 7 | TRIPLE BARRIER: ATR-alapú, anti-overlabeling |
-| 8 | DUAL/MULTI SYSTEM: LGBM+LSTM stacking ensemble |
+| 8 | DUAL/MULTI SYSTEM: LGBM+MLP stacking ensemble (távoli jövő) |
 | 9 | WALK-FORWARD CV: Purged k-fold CV |
 | 10 | ÉLES BACKEND: Unified thresholds |
 | 11 | LIVE BACKEND: TCP 5555/5556 + ZMQ PUB 5557 |
@@ -213,7 +213,7 @@ REGIME_WEIGHTS = {
 - ✅ ATR-alapú dynamic barriers (nem fixed)
 - ✅ $80K Dollar Bar threshold (scalper-specifikus)
 - ✅ Max bars ≤1.5h (long), ≤50 perc (short)
-- ✅ LGBM+LSTM stacking ensemble (multi-system)
+- ✅ LGBM+MLP stacking ensemble (multi-system, távoli jövő)
 - ✅ Purged k-fold CV (anti-leakage)
 
 ema_volume = df['dollar_volume'].rolling(100).mean()
