@@ -52,6 +52,8 @@ MT5 EA (MQL5) → TCP Socket → Python Backend → LGBM/MLP → ZMQ PUB → HUD
 | `mcp/logs/` | Log elemzések (.md, .py — NEM .log) |
 | `mcp/data/` | MCP adat (token optimizer, stb.) |
 | `mcp/conversations/` | MCP beszélgetés szösszenetek |
+| `graphrag_data/` | Microsoft GraphRAG tudásgráf (entity+relation+community) |
+| `src/graphrag_query.py` | GraphRAG lekérdező (local/global search) |
 
 ## Fejlesztési elvek (a Jules rendszer hibáiból tanulva)
 

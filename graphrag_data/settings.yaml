@@ -1,0 +1,24 @@
+### GraphRAG Configuration for Scalper Copilot
+
+model:
+  model_name: "qwen2.5-coder-7b-instruct"
+  model_type: "ollama"  
+  api_base: "http://localhost:11434/v1"
+
+embedding:
+  model_name: "nomic-embed-text"
+  model_type: "ollama"
+  api_base: "http://localhost:11434/v1"
+
+chunks:
+  size: 1200
+  overlap: 100
+
+community:
+  max_cluster_size: 10
+
+storage:
+  type: "file"
+
+cache:
+  type: "file"

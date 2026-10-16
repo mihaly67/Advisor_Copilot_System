@@ -33,6 +33,11 @@ env/
 # DEB csomagok
 *.deb
 
+# GraphRAG output (generált gráf adatok)
+graphrag_data/output/
+graphrag_data/cache/
+graphrag_data/lancedb/
+
 # IDE user-specifikus (nem verziózott)
 .idea/
 

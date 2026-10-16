@@ -2,11 +2,11 @@
 Self-Upgrade Module — Brain-alapú hatékonyság növelés
 
 Koncepciók beépítése:
-1. CRSM: Sparse-Gated Context Injection (prioritizált kontextus)
+1. CRSM: Sparse-Gated Context Injection (prioritazált kontextus)
 2. CRSM: Multi-Headed Consensus (többszörös validáció)
 3. Yggdrasil: Deep Planning fázisok (init→clarify→explore→evaluate→finalize)
 4. trace-wave: Decision Trace (döntés lánc dokumentálás)
-5. LightRAG: Entity-Relation keresés (relációs tudás gráf)
+5. Microsoft GraphRAG: Entity-Relationship-Community tudásgráf (hierarchikus Leiden)
 """
 
 import json, time
