@@ -1373,7 +1373,7 @@ def tool_chart_analyzer(path="", html="", method="auto", wait_ms=3000) -> str:
         return f"HIBA: {e}"
 
 def tool_chart_visual_analyzer(path="", wait_ms=3000, output_path="") -> str:
-    """Vizuális predikció elemzés — dominancia, ellentrenjelzések, amplitúdó anomáliák, tartomány fedés."""
+    """Vizuális predikció elemzés — strukturált 'tapogató' adat az AI számára: ASCII chart, counter-signal pozíciók, eloszlások."""
     import urllib.request
     backend_url = "http://127.0.0.1:8420"
     try:
@@ -1388,28 +1388,120 @@ def tool_chart_visual_analyzer(path="", wait_ms=3000, output_path="") -> str:
         if "error" in result:
             return f"HIBA: {result['error']}"
         
-        out = ["🔮 VIZUÁLIS PREDIKCIÓ ELEMZÉS", "=" * 45]
+        out = ["🔮 PREDIKCIÓ TAPOGATÓ ELEMZÉS (AI-látás)", "=" * 50]
         out.append(f"Forrás: {path}")
         
+        # === DOMINANCIA ===
         d = result.get("dominance", {})
         if d:
             out.append(f"\n📊 DOMINANCIA:")
             out.append(f"  Long: {d.get('long_pct',0)}%  Short: {d.get('short_pct',0)}%  Neutral: {d.get('neutral_pct',0)}%")
             out.append(f"  Váltások: {d.get('transitions',0)}")
+            secs = d.get("sections", [])
+            if secs:
+                out.append(f"  Szekciók (első 30):")
+                for i, s in enumerate(secs[:30]):
+                    bar = "█" * min(s.get("length",1), 40)
+                    col = "🟢" if s["type"]=="long" else "🔴"
+                    out.append(f"    {col} [{s['start_idx']:4d}-{s['end_idx']:4d}] {bar} ({s['length']} bar)")
         
         cs = result.get("counter_signals", {})
         if cs:
-            out.append(f"\n⚠️ ELLENTRENJELZÉSEK:")
-            out.append(f"  Összes: {cs.get('count',0)}")
-            out.append(f"  Long short-domain: {cs.get('long_in_short_domain',0)}")
-            out.append(f"  Short long-domain: {cs.get('short_in_long_domain',0)}")
+            cl = cs.get("counter_long", [])
+            csh = cs.get("counter_short", [])
+            wl = cs.get("with_long", [])
+            wsh = cs.get("with_short", [])
+            total_counter = cs.get("count", 0)
+            total_with = len(wl) + len(wsh)
+            ratio = round(100*total_counter/(total_counter+total_with),1) if (total_counter+total_with)>0 else 0
+            
+            out.append(f"\n⚠️ ELLENTRENŰ HÁROMSZÖGEK (valódi detektálás):")
+            out.append(f"  Összes counter: {total_counter}  |  Normális (with): {total_with}  |  Counter ratio: {ratio}%")
+            out.append(f"  🔺 Counter Long (short domain): {len(cl)}  |  With Long: {len(wl)}")
+            out.append(f"  🔻 Counter Short (long domain): {len(csh)}  |  With Short: {len(wsh)}")
+            
+            if cl:
+                out.append(f"\n  🔺 Counter Long jelek (P(DIR=Long)<0.5 domain-ban):")
+                for e in cl:
+                    out.append(f"    {e['time']}  ${e['price']:,.0f}  P={e['prob']:.3f}")
+            if csh:
+                out.append(f"\n  🔻 Counter Short jelek (P(DIR=Long)>0.5 domain-ban) — első 30:")
+                for e in csh[:30]:
+                    out.append(f"    {e['time']}  ${e['price']:,.0f}  P={e['prob']:.3f}")
+                if len(csh) > 30:
+                    out.append(f"    ... és még {len(csh)-30} db")
+            
+            # Idő/ár/P eloszlások
+            if cl or csh:
+                out.append(f"\n📈 COUNTER-SIGNAL IDŐBELI ELHELYEZKEDÉS:")
+                hours = {}
+                for e in (cl + csh):
+                    try:
+                        h = int(e["time"].split(" ")[1].split(":")[0])
+                        hours[h] = hours.get(h, 0) + 1
+                    except: pass
+                out.append(f"  Óra szerint:")
+                max_h = max(hours.values()) if hours else 1
+                for h in range(24):
+                    cnt = hours.get(h, 0)
+                    bar = "█" * int(40 * cnt / max_h) if max_h > 0 and cnt > 0 else ""
+                    if cnt > 0: out.append(f"    {h:02d}:00  {cnt:3d} {bar}")
+                
+                all_prices = [e["price"] for e in (cl + csh)]
+                if all_prices:
+                    pmin, pmax = min(all_prices), max(all_prices)
+                    nbins = 10; bw = (pmax - pmin) / nbins if pmax > pmin else 1
+                    bins = [0] * nbins
+                    for p in all_prices: bins[min(int((p-pmin)/bw),nbins-1)] += 1
+                    out.append(f"\n  Ár-sáv szerint:")
+                    max_b = max(bins) if bins else 1
+                    for i in range(nbins):
+                        lo, hi = pmin+i*bw, pmin+(i+1)*bw
+                        bar = "█" * int(30*bins[i]/max_b) if max_b>0 and bins[i]>0 else ""
+                        out.append(f"    ${lo:,.0f}-${hi:,.0f}  {bins[i]:3d} {bar}")
+                
+                all_probs = [e["prob"] for e in (cl + csh)]
+                if all_probs:
+                    prmin, prmax = min(all_probs), max(all_probs)
+                    nb2 = 10; pbw = (prmax-prmin)/nb2 if prmax>prmin else 0.01
+                    pbins = [0]*nb2
+                    for p in all_probs: pbins[min(int((p-prmin)/pbw),nb2-1)] += 1
+                    out.append(f"\n  P(DIR=Long) szerint:")
+                    max_pb = max(pbins) if pbins else 1
+                    for i in range(nb2):
+                        lo, hi = prmin+i*pbw, prmin+(i+1)*pbw
+                        bar = "█" * int(30*pbins[i]/max_pb) if max_pb>0 and pbins[i]>0 else ""
+                        out.append(f"    P={lo:.2f}-{hi:.2f}  {pbins[i]:3d} {bar}")
+            
+            # Clustering
+            if csh and len(csh) > 5:
+                out.append(f"\n  🔍 Counter Short sűrűségi foltok:")
+                times_sorted = sorted([e["time"] for e in csh])
+                clusters = []
+                cur_start = cur_end = times_sorted[0]; cur_count = 1
+                def _to_min(s):
+                    p=s.replace("-"," ").replace(":"," ").split(); return int(p[2])*1440+int(p[3])*60+int(p[4])
+                for t in times_sorted[1:]:
+                    try:
+                        if _to_min(t) - _to_min(cur_end) < 5:
+                            cur_end = t; cur_count += 1
+                        else:
+                            clusters.append((cur_start, cur_end, cur_count))
+                            cur_start = cur_end = t; cur_count = 1
+                    except: pass
+                clusters.append((cur_start, cur_end, cur_count))
+                clusters.sort(key=lambda x: -x[2])
+                for start, end, cnt in clusters[:10]:
+                    bar = "⚠" * min(cnt, 20)
+                    out.append(f"    {start} → {end}  [{cnt} jelek] {bar}")
         
         aa = result.get("amplitude_anomalies", {})
         if aa:
             out.append(f"\n📈 AMPLITÚDÓ ANOMÁLIÁK:")
             out.append(f"  Burst-ek: {aa.get('count',0)}")
-            for s in aa.get("sections", [])[:5]:
-                out.append(f"    {s['direction']}: idx {s['start_idx']}-{s['end_idx']} ({s['length']} bar)")
+            for s in aa.get("sections", [])[:10]:
+                bar = "█" * min(s.get("length",1), 30)
+                out.append(f"    {s['direction']}: idx {s['start_idx']}-{s['end_idx']} {bar} ({s['length']} bar)")
         
         ro = result.get("range_overlap", {})
         if ro:
@@ -1417,10 +1509,37 @@ def tool_chart_visual_analyzer(path="", wait_ms=3000, output_path="") -> str:
             out.append(f"  Long: {ro.get('long_range')} (spread: {ro.get('long_spread',0)})")
             out.append(f"  Short: {ro.get('short_range')} (spread: {ro.get('short_spread',0)})")
             out.append(f"  Fedés: {ro.get('overlap_pct',0)}%")
+            if ro.get('overlap_pct',0) > 50:
+                out.append(f"  ⚠️ Magas fedés → jelek gyakran azonos ár-sávban")
+        
+        # === MEGÁLLAPÍTÁSOK ===
+        out.append(f"\n🧠 MEGÁLLAPÍTÁSOK:")
+        findings = []
+        cs = result.get("counter_signals", {})
+        if d.get("short_pct",0) > 60:
+            findings.append("Short dominancia erős (>60%) → long jelek gyanúsabbak")
+        if d.get("long_pct",0) > 60:
+            findings.append("Long dominancia erős (>60%) → short jelek gyanúsabbak")
+        if cs.get("count",0) > 100:
+            findings.append(f"Sok ellentrendű jel ({cs['count']}db) → modell nem követi konzekven predikcióját")
+        if cs.get("long_in_short_domain",0) > 0:
+            findings.append(f"Long jelek short domain-ban ({cs['long_in_short_domain']}db) → HÁROMSZÖG CSAPDA")
+        if cs.get("short_in_long_domain",0) > 50:
+            findings.append(f"Sok short jel long domain-ban ({cs['short_in_long_domain']}db) → short ignorálja long predikciót")
+        ratio_val = 0
+        tc = cs.get("count",0); tw = len(cs.get("with_long",[])) + len(cs.get("with_short",[]))
+        if (tc+tw) > 0: ratio_val = round(100*tc/(tc+tw),1)
+        if ratio_val > 30:
+            findings.append(f"Counter ratio {ratio_val}% > 30% → VESZÉLY: minden 3. jel ellentrendű!")
+        elif ratio_val > 15:
+            findings.append(f"Counter ratio {ratio_val}% > 15% → FIGYELMEZTETÉS")
+        if ro.get("overlap_pct",0) > 60:
+            findings.append(f"Ár fedés {ro['overlap_pct']}% > 60% → irány megkülönböztetés nehéz")
+        for i, f in enumerate(findings):
+            out.append(f"  {i+1}. {f}")
         
         if result.get("output_path"):
-            out.append(f"\n💾 HTML mentve: {result['output_path']}")
-        out.append(f"HTML méret: {result.get('html_length',0)} bytes")
+            out.append(f"\n💾 HTML: {result['output_path']} ({result.get('html_length',0)} bytes)")
         
         return "\n".join(out)
         
