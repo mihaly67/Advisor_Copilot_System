@@ -1137,87 +1137,72 @@ def tool_shared_brain(action="server_status", text="", query="",
         return f"HIBA: {e}"
 
 
-def tool_glm_chat(action="chat", model="glm-4-flash", prompt="", system="",
-                   temperature=0.7, max_tokens=4096, top_k=5, query="") -> str:
-    """GLM API hívás a ZhipuAI SDK-n keresztül (z.ai / 智谱AI)."""
+def tool_zhipu_embedding(text="", texts="") -> str:
+    """ZhipuAI embedding-3 (2048 dim) — szöveg → vektor, Brain RAG vektorizáláshoz."""
     try:
         from zhipuai import ZhipuAI
         api_key = os.environ.get("ZHIPUAI_API_KEY", "")
         if not api_key:
-            return "HIBA: ZHIPUAI_API_KEY környezeti változó nincs beállítva.\nSzerezd: https://open.bigmodel.cn/ → API kulcs → export ZHIPUAI_API_KEY=..."
+            return "HIBA: ZHIPUAI_API_KEY nincs beállítva. (Ugyanaz a kulcs amit Cline használ.)"
         client = ZhipuAI(api_key=api_key)
         
-        if action == "chat":
-            if not prompt: return "HIBA: prompt szükséges"
-            msg_list = []
-            if system: msg_list.append({"role": "system", "content": system})
-            msg_list.append({"role": "user", "content": prompt})
-            response = client.chat.completions.create(
-                model=model, messages=msg_list,
-                temperature=temperature, max_tokens=max_tokens)
-            content = response.choices[0].message.content
-            usage = response.usage
-            return json.dumps({"model": model, "response": content,
-                "usage": {"prompt_tokens": usage.prompt_tokens,
-                          "completion_tokens": usage.completion_tokens,
-                          "total_tokens": usage.total_tokens}
-            }, ensure_ascii=False, indent=2)
+        if texts:  # Bulk embedding (JSON lista)
+            import json as _json
+            text_list = _json.loads(texts) if isinstance(texts, str) else texts
+            results = []
+            for t in text_list:
+                resp = client.embeddings.create(model="embedding-3", input=t)
+                emb = resp.data[0].embedding
+                results.append({"text": t[:60], "dims": len(emb), "preview": emb[:3],
+                                "norm": round(sum(x*x for x in emb)**0.5, 4)})
+            return _json.dumps({"model": "embedding-3", "count": len(results),
+                                "embeddings": results}, ensure_ascii=False, indent=2)
         
-        elif action == "stream":
-            if not prompt: return "HIBA: prompt szükséges"
-            msg_list = []
-            if system: msg_list.append({"role": "system", "content": system})
-            msg_list.append({"role": "user", "content": prompt})
-            response = client.chat.completions.create(
-                model=model, messages=msg_list,
-                temperature=temperature, max_tokens=max_tokens, stream=True)
-            chunks = []
-            for chunk in response:
-                if chunk.choices[0].delta.content:
-                    chunks.append(chunk.choices[0].delta.content)
-            return json.dumps({"model": model, "response": "".join(chunks),
-                "chunks": len(chunks)}, ensure_ascii=False, indent=2)
+        if not text:
+            return "HIBA: text (vagy texts JSON lista) szükséges"
+        response = client.embeddings.create(model="embedding-3", input=text)
+        emb = response.data[0].embedding
+        return json.dumps({"model": "embedding-3", "text": text[:60],
+            "dimensions": len(emb), "preview": emb[:5],
+            "norm": round(sum(x*x for x in emb)**0.5, 4)}, indent=2)
+    except Exception as e:
+        return f"HIBA: {e}"
+
+
+def tool_zhipu_vision(image_url="", image_path="", prompt="Mit látsz ezen a képen?") -> str:
+    """GLM-4V-Flash vision — kép → szöveg (OCR, képelemzés, diagram olvasás)."""
+    try:
+        from zhipuai import ZhipuAI
+        api_key = os.environ.get("ZHIPUAI_API_KEY", "")
+        if not api_key:
+            return "HIBA: ZHIPUAI_API_KEY nincs beállítva. (Ugyanaz a kulcs amit Cline használ.)"
+        client = ZhipuAI(api_key=api_key)
         
-        elif action == "embed":
-            if not prompt: return "HIBA: prompt (text) szükséges"
-            response = client.embeddings.create(model="embedding-3", input=prompt)
-            emb = response.data[0].embedding
-            return json.dumps({"model": "embedding-3", "dimensions": len(emb),
-                "preview": emb[:5], "norm": round(sum(x*x for x in emb)**0.5, 4)}, indent=2)
-        
-        elif action == "models":
-            return json.dumps({"models": [
-                {"id": "glm-5.3", "desc": "GLM-5.3 flagship (agentic coding, 744B MoE)"},
-                {"id": "glm-5.3-flash", "desc": "GLM-5.3-Flash (fast, 320B hybrid attn)"},
-                {"id": "glm-4-plus", "desc": "GLM-4-Plus (reasoning, coding)"},
-                {"id": "glm-4-flash", "desc": "GLM-4-Flash (fast, cheap)"},
-                {"id": "glm-4-long", "desc": "GLM-4-Long (1M context)"},
-                {"id": "glm-4v-flash", "desc": "GLM-4V-Flash (vision)"},
-                {"id": "embedding-3", "desc": "2048-dim text embedding"},
-                {"id": "cogview-3-flash", "desc": "Image generation"},
-            ]}, indent=2, ensure_ascii=False)
-        
-        elif action == "rag_recall":
-            if not query: return "HIBA: query szükséges"
-            kg_ctx = ""
-            try:
-                kg_result = tool_knowledge_graph(action="context", query=query, top_k=top_k)
-                kg_ctx = kg_result[:2000]
-            except: pass
-            sys_p = "Te egy kognitív memória asszisztens vagy. A helyi tudásgráf kontextusát használva válaszolj."
-            if kg_ctx: sys_p += f"\n\nHelyi KG kontextus:\n{kg_ctx}"
-            response = client.chat.completions.create(
-                model=model, messages=[
-                    {"role": "system", "content": sys_p},
-                    {"role": "user", "content": query},
-                ], temperature=temperature, max_tokens=max_tokens)
-            return json.dumps({"model": model, "query": query,
-                "kg_context_used": bool(kg_ctx),
-                "response": response.choices[0].message.content
-            }, ensure_ascii=False, indent=2)
-        
+        # Kép forrás: URL vagy base64
+        if image_url:
+            img_content = [{"type": "image_url", "image_url": {"url": image_url}}]
+        elif image_path:
+            import base64
+            with open(image_path, "rb") as f:
+                b64 = base64.b64encode(f.read()).decode()
+            ext = image_path.rsplit(".", 1)[-1].lower()
+            mime = {"png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg",
+                    "gif": "image/gif", "webp": "image/webp"}.get(ext, "image/png")
+            img_content = [{"type": "image_url", "image_url": {"url": f"data:{mime};base64,{b64}"}}]
         else:
-            return f"HIBA: ismeretlen action: {action}\nElérhető: chat, stream, embed, models, rag_recall"
+            return "HIBA: image_url vagy image_path szükséges"
+        
+        response = client.chat.completions.create(
+            model="glm-4v-flash",
+            messages=[{"role": "user", "content": img_content + [{"type": "text", "text": prompt}]}],
+            temperature=0.1, max_tokens=1024)
+        
+        result = response.choices[0].message.content
+        usage = response.usage
+        return json.dumps({"model": "glm-4v-flash", "response": result,
+            "usage": {"prompt_tokens": usage.prompt_tokens,
+                      "completion_tokens": usage.completion_tokens}
+        }, ensure_ascii=False, indent=2)
     except Exception as e:
         return f"HIBA: {e}"
 
@@ -1352,16 +1337,16 @@ def dispatch_tool(name: str, args: dict) -> str:
                 int(args.get("width", 1280)),
                 int(args.get("height", 900)),
             )
-        elif name == "glm_chat":
-            return tool_glm_chat(
-                args.get("action", "chat"),
-                args.get("model", "glm-4-flash"),
-                args.get("prompt", ""),
-                args.get("system", ""),
-                float(args.get("temperature", 0.7)),
-                int(args.get("max_tokens", 4096)),
-                int(args.get("top_k", 5)),
-                args.get("query", ""),
+        elif name == "zhipu_embedding":
+            return tool_zhipu_embedding(
+                args.get("text", ""),
+                args.get("texts", ""),
+            )
+        elif name == "zhipu_vision":
+            return tool_zhipu_vision(
+                args.get("image_url", ""),
+                args.get("image_path", ""),
+                args.get("prompt", "Mit látsz ezen a képen?"),
             )
         else:
             return f"HIBA: ismeretlen tool: {name}"
@@ -1566,23 +1551,32 @@ async def serve():
         })
 
     @server.tool(
-        name="glm_chat",
+        name="zhipu_embedding",
         description=(
-            "GLM API hívás a ZhipuAI SDK-n keresztül (z.ai / 智谱AI). "
-            "action='chat': egyszeri chat, action='stream': streaming, action='embed': embedding, "
-            "action='models': elérhető modellek, action='rag_recall': KG+GLM kombinált RAG. "
-            "Modellek: glm-5.3, glm-5.3-flash, glm-4-plus, glm-4-flash, glm-4-long, glm-4v-flash."
+            "ZhipuAI embedding-3 (2048 dim) — szöveg → vektor. "
+            "Brain RAG vektorizáláshoz, szemantikus kereséshez. "
+            "text: egy szöveg, texts: JSON lista tömeges embedeléshez."
         ),
     )
-    def glm_chat(action: str = "chat", model: str = "glm-4-flash", prompt: str = "",
-                 system: str = "", temperature: float = 0.7, max_tokens: int = 4096,
-                 top_k: int = 5, query: str = "") -> str:
-        """GLM API hívás a ZhipuAI SDK-n keresztül."""
-        _log(f"call_tool: glm_chat action={action} model={model}")
-        return dispatch_tool("glm_chat", {
-            "action": action, "model": model, "prompt": prompt,
-            "system": system, "temperature": temperature,
-            "max_tokens": max_tokens, "top_k": top_k, "query": query
+    def zhipu_embedding(text: str = "", texts: str = "") -> str:
+        """ZhipuAI embedding-3 szöveg vektorizálás."""
+        _log(f"call_tool: zhipu_embedding text_len={len(text)}")
+        return dispatch_tool("zhipu_embedding", {"text": text, "texts": texts})
+
+    @server.tool(
+        name="zhipu_vision",
+        description=(
+            "GLM-4V-Flash vision — kép → szöveg. OCR, képelemzés, diagram olvasás. "
+            "image_url: online kép URL, image_path: lokális fájl útvonal, "
+            "prompt: kérdés a képről."
+        ),
+    )
+    def zhipu_vision(image_url: str = "", image_path: str = "",
+                     prompt: str = "Mit látsz ezen a képen?") -> str:
+        """GLM-4V-Flash képelemzés."""
+        _log(f"call_tool: zhipu_vision path={image_path}")
+        return dispatch_tool("zhipu_vision", {
+            "image_url": image_url, "image_path": image_path, "prompt": prompt
         })
 
     _log("MCP szerver indul stdio transport-tal (MCPServer API)...")
