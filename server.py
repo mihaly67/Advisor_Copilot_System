@@ -1372,6 +1372,65 @@ def tool_chart_analyzer(path="", html="", method="auto", wait_ms=3000) -> str:
     except Exception as e:
         return f"HIBA: {e}"
 
+def tool_chart_visual_analyzer(path="", wait_ms=3000, output_path="") -> str:
+    """Vizuális predikció elemzés — dominancia, ellentrenjelzések, amplitúdó anomáliák, tartomány fedés."""
+    import urllib.request
+    backend_url = "http://127.0.0.1:8420"
+    try:
+        data = json.dumps({
+            "path": path, "wait_ms": wait_ms, "output_path": output_path
+        }).encode()
+        req = urllib.request.Request(f"{backend_url}/chart-visual-analyze", data=data,
+                                    headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            result = json.loads(resp.read().decode())
+        
+        if "error" in result:
+            return f"HIBA: {result['error']}"
+        
+        out = ["🔮 VIZUÁLIS PREDIKCIÓ ELEMZÉS", "=" * 45]
+        out.append(f"Forrás: {path}")
+        
+        d = result.get("dominance", {})
+        if d:
+            out.append(f"\n📊 DOMINANCIA:")
+            out.append(f"  Long: {d.get('long_pct',0)}%  Short: {d.get('short_pct',0)}%  Neutral: {d.get('neutral_pct',0)}%")
+            out.append(f"  Váltások: {d.get('transitions',0)}")
+        
+        cs = result.get("counter_signals", {})
+        if cs:
+            out.append(f"\n⚠️ ELLENTRENJELZÉSEK:")
+            out.append(f"  Összes: {cs.get('count',0)}")
+            out.append(f"  Long short-domain: {cs.get('long_in_short_domain',0)}")
+            out.append(f"  Short long-domain: {cs.get('short_in_long_domain',0)}")
+        
+        aa = result.get("amplitude_anomalies", {})
+        if aa:
+            out.append(f"\n📈 AMPLITÚDÓ ANOMÁLIÁK:")
+            out.append(f"  Burst-ek: {aa.get('count',0)}")
+            for s in aa.get("sections", [])[:5]:
+                out.append(f"    {s['direction']}: idx {s['start_idx']}-{s['end_idx']} ({s['length']} bar)")
+        
+        ro = result.get("range_overlap", {})
+        if ro:
+            out.append(f"\n🔄 TARTOMÁNY FEDÉS:")
+            out.append(f"  Long: {ro.get('long_range')} (spread: {ro.get('long_spread',0)})")
+            out.append(f"  Short: {ro.get('short_range')} (spread: {ro.get('short_spread',0)})")
+            out.append(f"  Fedés: {ro.get('overlap_pct',0)}%")
+        
+        if result.get("output_path"):
+            out.append(f"\n💾 HTML mentve: {result['output_path']}")
+        out.append(f"HTML méret: {result.get('html_length',0)} bytes")
+        
+        return "\n".join(out)
+        
+    except urllib.error.URLError:
+        return "HIBA: MCP Backend API nem elérhető (port 8420)"
+    except Exception as e:
+        return f"HIBA: {e}"
+
+
+
 
 def dispatch_tool(name: str, args: dict) -> str:
     """Egy MCP tool hívás végrehajtása név szerint."""
@@ -1463,6 +1522,12 @@ def dispatch_tool(name: str, args: dict) -> str:
                 args.get("method", "auto"),
                 int(args.get("wait_ms", 3000)),
             )
+        elif name == "chart_visual_analyzer":
+            return tool_chart_visual_analyzer(
+                args.get("path", ""),
+                int(args.get("wait_ms", 3000)),
+                args.get("output_path", ""),
+            )
         else:
             return f"HIBA: ismeretlen tool: {name}"
     except Exception as e:
@@ -1485,7 +1550,7 @@ async def serve():
             "analyze_with_qwen, store_session, read_session, "
             "repository_memory_indexer, rag_query, knowledge_graph, "
             "cognitive_memory, shared_brain, visualize, "
-            "zhipu_embedding, zhipu_vision, chart_analyzer."
+            "zhipu_embedding, zhipu_vision, chart_analyzer, chart_visual_analyzer."
         ),
     )
 
@@ -1714,6 +1779,26 @@ async def serve():
         return dispatch_tool("chart_analyzer", {
             "path": path, "html": html, "method": method, "wait_ms": wait_ms
         })
+
+    server.add_tool(
+        name="chart_visual_analyzer",
+        description=(
+            "Vizuális predikció elemző — Plotly HTML-ből teljes adatkinyerés (Playwright DOM) + "
+            "interaktív HTML generálás: (1) Long/Short dominancia görbe P(DIR=Long) időben, "
+            "(2) Signal elhelyezkedés ár-tartomány scatter, (3) Ár-tartomány eloszlás hisztogram + fedés, "
+            "(4) Amplitúdó anomália Z-score detektálás, (5) Dominancia váltás timeline. "
+            "path: Plotly HTML fájl útvonal, wait_ms: render várakozás, output_path: eredmény HTML mentés."
+        ),
+    )
+    def chart_visual_analyzer(path: str = "", wait_ms: int = 3000,
+                              output_path: str = "") -> str:
+        """Vizuális predikció elemzés — dominancia, ellentrenjelzések, amplitúdó, fedés."""
+        _log(f"call_tool: chart_visual_analyzer path={path}")
+        return dispatch_tool("chart_visual_analyzer", {
+            "path": path, "wait_ms": wait_ms, "output_path": output_path
+        })
+
+
 
     _log("MCP szerver indul stdio transport-tal (MCPServer API)...")
     # Ellenőrizzük, hogy a stdin/stdout elérhető-e

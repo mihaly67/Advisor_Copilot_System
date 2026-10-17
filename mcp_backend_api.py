@@ -107,6 +107,8 @@ class H(BaseHTTPRequestHandler):
             self._j(html_to_screenshot(html,b.get('width',1280),b.get('height',900),output_path=b.get('output_path')))
         elif self.path=='/chart-analyze':
             self._j(self._ca(b))
+        elif self.path=='/chart-visual-analyze':
+            self._j(self._cva(b))
         elif self.path=='/cognitive-memory': self._j(self._cm(b))
         elif self.path=='/shared-brain': self._j(self._sb(b))
         else: self._j({"error":f"Unknown: {self.path}"},404)
@@ -152,6 +154,28 @@ class H(BaseHTTPRequestHandler):
                 return analyze(html_content=html_content, method=method, wait_ms=wait_ms)
             else:
                 return {"error":"Need 'path' or 'html' in request body"}
+        except Exception as e:
+            return {"error":str(e)[:500]}
+    def _cva(self,b):
+        """Chart visual analyzer endpoint — full data extraction + HTML generation."""
+        try:
+            sys.path.insert(0, '/data/mcp_server')
+            from chart_analyzer import extract_full_data
+            from chart_visual_analyzer import generate_visual_analysis
+            hp = b.get('path','')
+            wait_ms = b.get('wait_ms',3000)
+            output_path = b.get('output_path','')
+            if not hp or not os.path.exists(hp):
+                return {"error":"Need 'path' pointing to Plotly HTML file"}
+            # Full data extraction
+            plot_data = extract_full_data(html_path=hp, wait_ms=wait_ms)
+            if plot_data.get("error"):
+                return {"error": plot_data["error"]}
+            # Visual analysis generation
+            out = output_path if output_path else hp.replace('.html', '_visual_analysis.html')
+            result = generate_visual_analysis(plot_data, output_path=out)
+            result["method"] = "playwright_full + visual_analysis"
+            return result
         except Exception as e:
             return {"error":str(e)[:500]}
     def log_message(self,*a): pass

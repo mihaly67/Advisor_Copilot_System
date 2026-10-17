@@ -163,6 +163,94 @@ def extract_plotly_traces_regex(html: str) -> dict:
 
 # ─── Playwright DOM query: Plotly adatok kinyerése JS futtatásával ───
 
+# ─── Full data extraction JS: complete y/x arrays (downsampled) for visual analysis ───
+
+JS_EXTRACT_FULL = """
+() => {
+    const MAX_PTS = 2000;  // max points per array (downsample if larger)
+    function downsample(arr, maxPts) {
+        if (!arr || arr.length <= maxPts) return arr ? Array.from(arr) : [];
+        const step = arr.length / maxPts;
+        const out = [];
+        for (let i = 0; i < maxPts; i++) {
+            out.push(arr[Math.floor(i * step)]);
+        }
+        return out;
+    }
+    function roundArr(arr, dec=4) {
+        const m = Math.pow(10, dec);
+        return arr.map(v => v == null ? null : Math.round(v * m) / m);
+    }
+    const plots = {};
+    const divs = document.querySelectorAll('[id]');
+    for (const div of divs) {
+        if (window.Plotly && div.data) {
+            const traces = [];
+            for (const trace of div.data) {
+                const t = { type: trace.type || 'scatter', name: trace.name || '' };
+                // Full x array
+                if (trace.x && trace.x.length > 0) {
+                    t.x = downsample(trace.x, MAX_PTS);
+                    t.x_count = trace.x.length;
+                }
+                // Full y array
+                if (trace.y && trace.y.length > 0) {
+                    const vals = trace.y.filter(v => v != null && !isNaN(v));
+                    t.y = roundArr(downsample(trace.y, MAX_PTS));
+                    t.y_count = trace.y.length;
+                    t.y_min = Math.min(...vals);
+                    t.y_max = Math.max(...vals);
+                    t.y_mean = vals.reduce((a,b) => a+b, 0) / vals.length;
+                    // Std dev
+                    const mean = t.y_mean;
+                    const variance = vals.reduce((a,b) => a + (b-mean)*(b-mean), 0) / vals.length;
+                    t.y_std = Math.sqrt(variance);
+                }
+                // Candlestick OHLCV
+                if (trace.type === 'candlestick') {
+                    t.num_bars = trace.x ? trace.x.length : 0;
+                    if (trace.open) t.open = roundArr(downsample(trace.open, MAX_PTS), 2);
+                    if (trace.high) t.high = roundArr(downsample(trace.high, MAX_PTS), 2);
+                    if (trace.low) t.low = roundArr(downsample(trace.low, MAX_PTS), 2);
+                    if (trace.close) t.close = roundArr(downsample(trace.close, MAX_PTS), 2);
+                    if (trace.x && trace.x.length > 0) {
+                        t.time_start = String(trace.x[0]);
+                        t.time_end = String(trace.x[trace.x.length - 1]);
+                    }
+                    if (trace.close && trace.close.length > 0) {
+                        const closes = trace.close.filter(v => v != null);
+                        t.price_min = Math.min(...closes);
+                        t.price_max = Math.max(...closes);
+                    }
+                }
+                traces.push(t);
+            }
+            const layout = {};
+            if (div.layout) {
+                layout.title = typeof div.layout.title === 'string'
+                    ? div.layout.title
+                    : (div.layout.title && div.layout.title.text) || '';
+                if (div.layout.shapes) {
+                    layout.shapes = div.layout.shapes.map(s => ({
+                        type: s.type||'line', y0: s.y0, y1: s.y1,
+                        color: s.line ? s.line.color : '', dash: s.line ? s.line.dash : ''
+                    }));
+                }
+                if (div.layout.annotations) {
+                    layout.annotations = div.layout.annotations.filter(a => a.text).map(a => a.text);
+                }
+            }
+            plots[div.id] = { traces, layout, num_traces: traces.length };
+        }
+    }
+    plots['_meta'] = {
+        title: document.title,
+        num_scripts: document.querySelectorAll('script').length
+    };
+    return plots;
+}
+"""
+
 JS_EXTRACT_PLOTLY = """
 () => {
     const plots = {};
@@ -311,7 +399,57 @@ def extract_plotly_playwright(html_path=None, html_content=None,
         )
 
 
-def analyze(html_path=None, html_content=None, method="auto", wait_ms=3000):
+async def _playwright_extract_full(html_path=None, html_content=None,
+                                     wait_ms=3000, width=1600, height=1200):
+    """Playwright: FULL data extraction (downsampled arrays) for visual analysis."""
+    from playwright.async_api import async_playwright
+    result = {"method": "playwright_full", "plots": {}}
+    tmp_html = None
+    try:
+        if html_path and os.path.exists(html_path):
+            file_url = f"file://{os.path.abspath(html_path)}"
+        elif html_content:
+            tmp_html = tempfile.NamedTemporaryFile(suffix='.html', mode='w', delete=False, dir='/tmp')
+            tmp_html.write(html_content); tmp_html.close()
+            file_url = f"file://{tmp_html.name}"
+        else:
+            return {"error": "Need html_path or html_content"}
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(
+                headless=True,
+                args=['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']
+            )
+            page = await browser.new_page(viewport={"width": width, "height": height})
+            await page.goto(file_url, wait_until="load", timeout=30000)
+            await page.wait_for_timeout(wait_ms)
+            try:
+                plotly_data = await page.evaluate(JS_EXTRACT_FULL)
+                result["plots"] = plotly_data
+            except Exception as e:
+                result["js_error"] = str(e)[:500]
+            await browser.close()
+    except Exception as e:
+        result["error"] = str(e)[:500]
+        result["traceback"] = traceback.format_exc()[:1000]
+    finally:
+        if tmp_html:
+            try: os.unlink(tmp_html.name)
+            except: pass
+    return result
+
+def extract_full_data(html_path=None, html_content=None, wait_ms=3000):
+    """Sync wrapper for full data extraction."""
+    import asyncio
+    try:
+        return asyncio.run(_playwright_extract_full(html_path, html_content, wait_ms))
+    except RuntimeError:
+        import concurrent.futures
+        with concurrent.futures.ThreadPoolExecutor() as pool:
+            future = pool.submit(asyncio.run,
+                _playwright_extract_full(html_path, html_content, wait_ms))
+            return future.result(timeout=90)
+
+
     """HTML chart elemzés. method: auto/playwright/regex"""
     if html_path and os.path.exists(html_path):
         with open(html_path, 'r', encoding='utf-8', errors='ignore') as f:
