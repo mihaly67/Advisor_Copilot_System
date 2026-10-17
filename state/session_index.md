@@ -348,3 +348,4 @@ Minden új session mentése automatikusan frissíti ezt a listát.
 - [20261017_130547] chart_analyzer_complete -> session_20261017_130547_chart_analyzer_complete.md
 - [20261017_132449] chart_analyzer_done -> session_20261017_132449_chart_analyzer_done.md
 - [20261017_142638] chart_visual_analyzer_done -> session_20261017_142638_chart_visual_analyzer_done.md
+- [20261017_150524] chart_visual_analyzer_tapogato -> session_20261017_150524_chart_visual_analyzer_tapogato.md

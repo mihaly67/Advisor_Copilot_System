@@ -525,3 +525,28 @@ if __name__ == "__main__":
     with open(out_path, 'w') as f:
         json.dump(result, f, ensure_ascii=False, indent=2, default=str)
     print(f"💾 Mentve: {out_path}")
+
+
+def analyze(html_path=None, html_content=None, method="auto", wait_ms=3000):
+    """Unified analyze entry point — wraps extract_full_data with stats."""
+    if html_path and os.path.exists(html_path):
+        data = extract_full_data(html_path=html_path, wait_ms=wait_ms)
+    elif html_content:
+        data = extract_plotly_traces_regex(html_content)
+    else:
+        return {"error": "Need html_path or html_content"}
+    if data.get("error"):
+        return data
+    # Summary stats
+    result = {"method": data.get("method", "unknown"), "plots": {}}
+    for pid, pdata in data.get("plots", {}).items():
+        if pid == "_meta": continue
+        traces = []
+        for t in pdata.get("traces", []):
+            td = {"name": t.get("name","?"), "type": t.get("type","?")}
+            if t.get("y"): td["y_count"] = len([v for v in t["y"] if v is not None])
+            if t.get("x"): td["x_count"] = t.get("x_count", len(t["x"]))
+            traces.append(td)
+        result["plots"][pid] = {"traces": traces}
+    result["meta"] = data.get("plots", {}).get("_meta", {})
+    return result
