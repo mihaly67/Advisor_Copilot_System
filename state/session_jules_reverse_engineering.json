@@ -1,0 +1,78 @@
+{
+  "stage": "jules_full_reverse_engineering",
+  "date": "2026-10-03",
+  "status": "COMPLETE",
+  "summary": "Jules rendszer teljes visszafejtése — 27+4 script átolvasva",
+  "excluded": ["LSTM Meta-Advisor", "CatBoost", "Kaufman AMA"],
+  "pipeline": {
+    "step1": "prado_dollar_bars.py → Tick → Dollar Bar ($444K threshold)",
+    "step2": "dom_labeler_v5.py → Triple Barrier (PT=$1.5, SL=$1.0, max=5, strict wick)",
+    "step3": "fuse_macro_to_dollar_bars.py → ZigZag + Wick + Stoch → 10 feature fúzió",
+    "step4": "train_lgbm_fusion_v5.py → LGBM tréning (fix hiperparaméterek)"
+  },
+  "dollar_bar": {
+    "threshold": 444000,
+    "logic": "Dollar_Value = Total_Trade_Vol * Mid_Price, iteratív akkumuláció",
+    "adaptive": "aktív ~1-3 perc, illikviden 10+ perc → megszünteti a lagot"
+  },
+  "features_10": {
+    "Dist_Micro_R": "(Micro_R - Close) / ATR_14",
+    "Dist_Micro_S": "(Close - Micro_S) / ATR_14",
+    "Dist_Sec_R": "(Sec_R - Close) / ATR_14",
+    "Dist_Sec_S": "(Close - Sec_S) / ATR_14",
+    "Dist_Ter_R": "(Ter_R - Close) / ATR_14",
+    "Dist_Ter_S": "(Close - Ter_S) / ATR_14",
+    "Upper_Wick_ATR": "(High - max(O,C)) / ATR_14",
+    "Lower_Wick_ATR": "(min(O,C) - Low) / ATR_14",
+    "Stoch_State_M1": "(Stoch_K - 50) / 50",
+    "Tick_Speed": "len(bar_ticks)"
+  },
+  "labeler": {
+    "entry": "Open of NEXT bar (no lookahead)",
+    "pt": 1.5,
+    "sl": 1.0,
+    "max_bars": 5,
+    "intra_bar": true,
+    "ambiguity": "SL wins (worst-case)"
+  },
+  "trainer": {
+    "n_estimators": 781,
+    "learning_rate": 0.0142,
+    "num_leaves": 57,
+    "max_depth": 6,
+    "min_child_samples": 24,
+    "colsample_bytree": 0.566,
+    "class_weight": "balanced"
+  },
+  "decision_logic": {
+    "4d_threshold": {"P_LONG_MIN": 0.350, "P_SHORT_MIN": 0.360, "P_NOISE_MAX": 0.470},
+    "stoch_hard_filter": "Stoch<50→Long blokkolva, Stoch>50→Short blokkolva",
+    "stability": "deque(maxlen=3), 3 egyforma signal → stable"
+  },
+  "live_architecture": {
+    "threads": ["MacroReceiver(TCP:5555)", "TickReceiver(TCP:5556)"],
+    "o1_tricks": "bar_open/high/low globális, macro_cache dict+Lock, deque(maxlen=15) ATR",
+    "inference_time": "~1ms",
+    "flow": "TICK→mid_price→dollar_vol→accumulate→if >=$444K→ATR→10 feature→predict_proba→4D threshold→Stoch filter→stability→signal→ZMQ:5557"
+  },
+  "jules_7_alapelv": {
+    "1_bar_tipus_a_feature": "$444K adaptív időzés",
+    "2_tiz_elég": "27+→10, 6 Dist mindent kódol",
+    "3_hard_filter_gt_soft": "Stoch+EMA utólag, fizikai szabály",
+    "4_meta_ellenőrzés": "KIHAGYVA v1-hez",
+    "5_o1_él": "dict+deque, nincs Pandas, ~1ms",
+    "6_aszimmetria": "PT/SL=1.5, P_L/P_S=0.35/0.36",
+    "7_ea_az_igazság": "Python nem számol ZigZag-ot"
+  },
+  "zai_plan": {
+    "implement": [
+      "1. Dollar Bar Engine: $444K, O(1) OHLC",
+      "2. 10 Feature: 6 Dist + 2 Wick + Stoch + Tick_Speed",
+      "3. LGBM UJRA tanítani dollar bar adaton",
+      "4. Döntés: 4D threshold + Stoch filter + stability",
+      "5. O(1) architektúra: dict+Lock, nincs Pandas"
+    ],
+    "open_question": "Z.ai honnan kapja a ZigZag pivotokat és Stoch_K-t?"
+  },
+  "analysis_file": "/data/Brain/_qwen_analysis/jules_deep_script_analysis.md"
+}

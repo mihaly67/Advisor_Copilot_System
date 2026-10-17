@@ -1,0 +1,685 @@
+[
+  {
+    "repo_name": "pix2struct",
+    "repo_path": "/data/Brain/pix2struct",
+    "file_count": 61,
+    "repo_size_mb": 0.13,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:31:42.360032",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/pix2struct --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 35.569016,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/pix2struct/_qwen_analysis/pix2struct_analysis_20260919_143217.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/pix2struct",
+      "repo_name": "pix2struct",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "__init__.py",
+          "README.md",
+          "setup.py"
+        ],
+        "missing": [],
+        "valid": [
+          "__init__.py",
+          "README.md",
+          "setup.py"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "pix2struct",
+        "found": true,
+        "variants_checked": [
+          "pix2struct",
+          "pix2struct",
+          "pix2struct",
+          "pix2struct"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "postgres-master",
+    "repo_path": "/data/Brain/postgres-master",
+    "file_count": 7648,
+    "repo_size_mb": 138.01,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:32:18.054028",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/postgres-master --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 34.584662,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/postgres-master/_qwen_analysis/postgres-master_analysis_20260919_143251.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/postgres-master",
+      "repo_name": "postgres-master",
+      "confidence": 0.812,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          ".cirrus.tasks.yml",
+          "contrib/pgcrypto/scripts/pgp_session_data.py",
+          "cirrus.yml",
+          ".cirrus.yml",
+          "wrapper.sh",
+          "tasks.yml",
+          "contrib/start-scripts/macos/postgres-wrapper.sh",
+          "README.md"
+        ],
+        "missing": [
+          "cirrus.yml",
+          "wrapper.sh",
+          "tasks.yml"
+        ],
+        "valid": [
+          ".cirrus.tasks.yml",
+          "contrib/pgcrypto/scripts/pgp_session_data.py",
+          ".cirrus.yml",
+          "contrib/start-scripts/macos/postgres-wrapper.sh",
+          "README.md"
+        ],
+        "missing_ratio": 0.375
+      },
+      "repo_name_check": {
+        "expected": "postgres-master",
+        "found": true,
+        "variants_checked": [
+          "postgres-master",
+          "postgres_master",
+          "postgresmaster",
+          "postgres-master"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.812,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "pydantic-core",
+    "repo_path": "/data/Brain/pydantic-core",
+    "file_count": 264,
+    "repo_size_mb": 3.04,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:32:52.742294",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/pydantic-core --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 35.166449,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/pydantic-core/_qwen_analysis/pydantic-core_analysis_20260919_143327.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/pydantic-core",
+      "repo_name": "pydantic-core",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "Cargo.toml",
+          "README.md",
+          "pyproject.toml"
+        ],
+        "missing": [],
+        "valid": [
+          "Cargo.toml",
+          "README.md",
+          "pyproject.toml"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "pydantic-core",
+        "found": true,
+        "variants_checked": [
+          "pydantic-core",
+          "pydantic_core",
+          "pydanticcore",
+          "pydantic-core"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 3
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "python-sdk-main",
+    "repo_path": "/data/Brain/python-sdk-main",
+    "file_count": 429,
+    "repo_size_mb": 2.91,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:33:27.920876",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/python-sdk-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 34.127197,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/python-sdk-main/_qwen_analysis/python-sdk-main_analysis_20260919_143401.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/python-sdk-main",
+      "repo_name": "python-sdk-main",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "pyproject.toml",
+          "AGENTS.md"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "pyproject.toml",
+          "AGENTS.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "python-sdk-main",
+        "found": true,
+        "variants_checked": [
+          "python-sdk-main",
+          "python_sdk_main",
+          "pythonsdkmain",
+          "python-sdk-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "qdrant",
+    "repo_path": "/data/Brain/qdrant",
+    "file_count": 1648,
+    "repo_size_mb": 27.49,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:34:02.089860",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/qdrant --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 24.426957,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/qdrant/_qwen_analysis/qdrant_analysis_20260919_143425.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/qdrant",
+      "repo_name": "qdrant",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "Cargo.toml",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "Cargo.toml",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "qdrant",
+        "found": true,
+        "variants_checked": [
+          "qdrant",
+          "qdrant",
+          "qdrant",
+          "qdrant"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "rq-master",
+    "repo_path": "/data/Brain/rq-master",
+    "file_count": 145,
+    "repo_size_mb": 2.09,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:34:26.550423",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/rq-master --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 32.154112,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/rq-master/_qwen_analysis/rq-master_analysis_20260919_143457.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/rq-master",
+      "repo_name": "rq-master",
+      "confidence": 0.707,
+      "risk_level": "MEDIUM",
+      "file_references": {
+        "referenced": [
+          "config.yaml",
+          "deepsource.toml",
+          ".pre-commit-config.yaml",
+          "pyproject.toml",
+          ".deepsource.toml",
+          "CHANGES.md",
+          "README.md"
+        ],
+        "missing": [
+          "config.yaml",
+          "deepsource.toml"
+        ],
+        "valid": [
+          ".pre-commit-config.yaml",
+          "pyproject.toml",
+          ".deepsource.toml",
+          "CHANGES.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.2857142857142857
+      },
+      "repo_name_check": {
+        "expected": "rq-master",
+        "found": true,
+        "variants_checked": [
+          "rq-master",
+          "rq_master",
+          "rqmaster",
+          "rq-master"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "REVIEW"
+    },
+    "confidence": 0.707,
+    "risk_level": "MEDIUM",
+    "recommendation": "REVIEW"
+  },
+  {
+    "repo_name": "rust-sdk-main",
+    "repo_path": "/data/Brain/rust-sdk-main",
+    "file_count": 221,
+    "repo_size_mb": 2.19,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:34:58.715352",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/rust-sdk-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 29.892833,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/rust-sdk-main/_qwen_analysis/rust-sdk-main_analysis_20260919_143527.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/rust-sdk-main",
+      "repo_name": "rust-sdk-main",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "ROADMAP.md",
+          "Cargo.toml",
+          "SECURITY.md",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "ROADMAP.md",
+          "Cargo.toml",
+          "SECURITY.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "rust-sdk-main",
+        "found": true,
+        "variants_checked": [
+          "rust-sdk-main",
+          "rust_sdk_main",
+          "rustsdkmain",
+          "rust-sdk-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "sccache-action-main",
+    "repo_path": "/data/Brain/sccache-action-main",
+    "file_count": 14,
+    "repo_size_mb": 1.47,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:35:28.613500",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/sccache-action-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 33.504493,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/sccache-action-main/_qwen_analysis/sccache-action-main_analysis_20260919_143601.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/sccache-action-main",
+      "repo_name": "sccache-action-main",
+      "confidence": 0.65,
+      "risk_level": "MEDIUM",
+      "file_references": {
+        "referenced": [
+          ".prettierrc.json",
+          "prettierrc.json",
+          ".eslintrc.json",
+          "README.md",
+          "eslintrc.json"
+        ],
+        "missing": [
+          "prettierrc.json",
+          "eslintrc.json"
+        ],
+        "valid": [
+          ".prettierrc.json",
+          ".eslintrc.json",
+          "README.md"
+        ],
+        "missing_ratio": 0.4
+      },
+      "repo_name_check": {
+        "expected": "sccache-action-main",
+        "found": true,
+        "variants_checked": [
+          "sccache-action-main",
+          "sccache_action_main",
+          "sccacheactionmain",
+          "sccache-action-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "REVIEW"
+    },
+    "confidence": 0.65,
+    "risk_level": "MEDIUM",
+    "recommendation": "REVIEW"
+  },
+  {
+    "repo_name": "sentence-transformers-main",
+    "repo_path": "/data/Brain/sentence-transformers-main",
+    "file_count": 643,
+    "repo_size_mb": 20.34,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:36:02.131143",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/sentence-transformers-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 41.846126,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/sentence-transformers-main/_qwen_analysis/sentence-transformers-main_analysis_20260919_143643.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/sentence-transformers-main",
+      "repo_name": "sentence-transformers-main",
+      "confidence": 0.75,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "config.yaml",
+          "NOTICE.txt",
+          ".pre-commit-config.yaml",
+          "pyproject.toml",
+          "README.md"
+        ],
+        "missing": [
+          "config.yaml"
+        ],
+        "valid": [
+          "NOTICE.txt",
+          ".pre-commit-config.yaml",
+          "pyproject.toml",
+          "README.md"
+        ],
+        "missing_ratio": 0.2
+      },
+      "repo_name_check": {
+        "expected": "sentence-transformers-main",
+        "found": true,
+        "variants_checked": [
+          "sentence-transformers-main",
+          "sentence_transformers_main",
+          "sentencetransformersmain",
+          "sentence-transformers-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.75,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "servers-main",
+    "repo_path": "/data/Brain/servers-main",
+    "file_count": 134,
+    "repo_size_mb": 1.3,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:36:43.993412",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/servers-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 38.35627,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/servers-main/_qwen_analysis/servers-main_analysis_20260919_143721.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/servers-main",
+      "repo_name": "servers-main",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CLAUDE.md",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "CLAUDE.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "servers-main",
+        "found": true,
+        "variants_checked": [
+          "servers-main",
+          "servers_main",
+          "serversmain",
+          "servers-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 3
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  }
+]

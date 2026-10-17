@@ -1,0 +1,258 @@
+{
+  "version": "2.0",
+  "created": "2026-09-19T13:05:39.270712",
+  "status": "IN_PROGRESS",
+  "directions": [
+    {
+      "id": 1,
+      "name": "Memory, Context, Anti-Hallucination",
+      "description": "Mesterséges memóriarendszer, kontextus menedzsment és téveszmék elleni védelem fejlesztése",
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "completed_steps": [
+        "MCP context rendszer alapjai létrehozva",
+        "active_memory.json és qwen_memory.json struktúra",
+        "memory_manager.py alap funkciók",
+        "Anti-hallucination detector implementálva (anti_hallucination.py)",
+        "4 ellenőrzés: file refs, repo name, tech claims, confidence scoring",
+        "Tesztelve mem0-aio-n: 91.7% confidence, LOW risk, TRUST recommendation",
+        "Batch validáció 81 repón: 73 TRUST, 8 REVIEW, 0 REJECT",
+        "Átlag confidence: 86.3%",
+        " REVIEW repók: URL/technológia nevek tévesen fájlreferenciaként",
+        "URL/technológia kizárás implementálva a detectorban",
+        "Batch validáció 83 repón: 74 TRUST, 9 REVIEW, 0 REJECT",
+        "Átlag confidence: 88.1% (javítás az előző 86.3%-ról)",
+        "Context Prioritizer implementálva (relevance/recency/confidence/usage scoring)",
+        "Memory Compressor implementálva (dedup/archive/summarize)",
+        "10 duplikált bejegyzés eltávolítva a memóriából",
+        "Memory Event Watcher implementálva (memory_event_watcher.py)",
+        "Automatikus eseményfigyelés: új elemzések, batch-ek, REJECT/REVIEW, benchmark, GPU státusz",
+        "Figyelmeztetési rendszer: pending_alerts.json + events.log",
+        "Daemon mód indítva: PID 3238515, 60s ciklus"
+      ],
+      "next_steps": [
+        "MCTS fak melyebb integralasa reasoning repokkal — KESZ (fa export + orchestrator plan_repo_analysis)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Qwen Code Extraction & GPU Forcing",
+      "description": "Qwen kód kinyerés, értelmezés, debugging és GPU kényszerítés + CPU fallback",
+      "priority": "CRITICAL",
+      "status": "COMPLETED",
+      "completed_steps": [
+        "GPU kényszerítés sikeres: n_gpu_layers=-1",
+        "VRAM mérés javítva (nvidia-smi: 5864 MB)",
+        "CPU kizárás megerősítve (n_threads=4)",
+        "tensor_split=[0] és main_gpu=0 beállítások"
+      ],
+      "results": {
+        "gpu_name": "Quadro P4000",
+        "vram_usage_mb": 5864,
+        "n_gpu_layers": -1,
+        "cpu_excluded": true,
+        "tested": true
+      }
+    },
+    {
+      "id": 3,
+      "name": "Monte Carlo Deep Analysis",
+      "description": "Monte Carlo Tree Search (MCTS) alapú repo elemzés token-hatékony LLM mintákkal",
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "completed_steps": [
+        "Monte Carlo repo azonosítva: agentic-os-core",
+        "MCTS implementáció feltérképezve (mcts.py, async_mcts.py)",
+        "4-fázisú MCTS megértve (Selection, Expansion, Simulation, Backpropagation)",
+        "Monte Carlo repo azonosítva: agentic-os-core",
+        "MCTS implementáció feltérképezve (mcts.py, async_mcts.py)",
+        "4-fázisú MCTS megértve (Selection, Expansion, Simulation, Backpropagation)",
+        "Qwen + MCTS integrációs terv kész (mcts_qwen_integration.json)",
+        "4 komponens tervezve: mcts_qwen_bridge, heuristic_evaluator, hybrid_strategy, caching_layer",
+        "4 token-hatékony technika azonosítva: Early Pruning, Beam Search, Caching, Confidence Threshold"
+      ],
+      "next_steps": [
+        "Qwen + MCTS integráció tervezése — KÉSZ (reasoning_pipeline.py integrálja az MCTS motort a Qwen szimulátorral)",
+        "Token-hatékony elemzés algoritmus implementálása — KÉSZ (heterogén backend: deep+rollout, adaptív switch_after)",
+        "UCB1 és pruning stratégiák tesztelése — KÉSZ (test_ucb1_pruning.py: exploration_weight + tree.prune tesztelve)"
+      ],
+      "results": {
+        "token_reduction_target": "70-90%",
+        "speed_improvement_target": "5-10x",
+        "accuracy_target": "85-95%",
+        "implementation_phases": 3
+      }
+    },
+    {
+      "id": 4,
+      "name": "Deep Analysis of ALL Repos",
+      "description": "Összes repo mélyelemzése kiválasztáshoz és kategorizáláshoz",
+      "priority": "MEDIUM",
+      "status": "COMPLETED",
+      "completed_steps": [
+        "84/84 repo feltérképezve a /data/Brain-ben",
+        "18 új repo GPU-kényszerített elemzése",
+        "Qwen subagent 400 token/repó analízise"
+      ],
+      "results": {
+        "total_repos_analyzed": 84,
+        "gpu_forced_analyses": 18,
+        "all_repos_covered": true
+      }
+    },
+    {
+      "id": 5,
+      "name": "Integration & Consolidation",
+      "description": "Összes komponens integrálása és konszolidálása teljes Master-Subagent rendszerben",
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "next_steps": [
+        "End-to-end tesztelés új repón (force_reanalyze) — KÉSZ (mem0-aio force, yggdrasil-mcp plan-repo)",
+        "Qwen tényleges integrálása az orchestrátorba — KÉST (context_query --plan-repo, plan_repo_analysis metódus)",
+        "Benchmark: MCTS-Qwen vs pure Qwen token használat — KÉSZ (benchmark_mcts_vs_qwen.py: heterogén +24% token, minőségjavító)"
+      ],
+      "completed_steps": [
+        "Anti-hallucination detector integrálva",
+        "MCTS-Qwen Bridge komponens készen",
+        "84 repo mélyelemzése cache-elve",
+        "Master Orchestrator implementálva (master_orchestrator.py)",
+        "4 komponens integrálva: anti-hallucination, MCTS-Qwen bridge, qwen_analyzer, memory_manager",
+        "4 stratégia: full_qwen, mcts_hybrid, heuristic_only, cached",
+        "Tesztelve 4 repón: stratégia választás működik (cached)",
+        "Rendszer státusz riport működik",
+        "Master Orchestrator termelési batch futtatás: 84/84 repo GPU-n",
+        "Összes Qwen GPU idő: 2965.1s",
+        "Átlag confidence: 0.881",
+        "Anti-hallucination validáció minden Qwen kimeneten"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Qwen + MCTS Implementation",
+      "description": "Qwen és MCTS hybrid rendszer implementálása token-hatékony repo elemzéshez",
+      "priority": "HIGH",
+      "status": "COMPLETED",
+      "completed_steps": [
+        "Integrációs terv kész (mcts_qwen_integration.json)",
+        "Agentic-os-core MCTS feltérképezve",
+        "MCTS-Qwen Bridge implementálva (mcts_qwen_bridge.py)",
+        "HeuristicEvaluator működik (file-based scoring)",
+        "QwenCache működik (cache hit/miss/stash)",
+        "3 teszt sikeres: Python repo, low-value files, cache hit",
+        "Qwen tényleges integrálva az orchestrátorba (subprocess)",
+        "Batch runner CLI működik (batch_runner.py)",
+        "84 repo elemzve a teljes pipeline-on keresztül",
+        "Valódi Qwen subprocess integrálva az MCTSQwenBridge-be (_call_qwen_subprocess)",
+        "MCTS-Qwen vs Pure Qwen benchmark: 33.3% token megtakarítás, 18% gyorsabb",
+        "Eredmény: kis repókhoz MCTS-Qwen, nagy repókhoz pure Qwen ajánlott"
+      ],
+      "next_steps": [
+        "Qwen tényleges integrálása a bridge-be (qwen_analyzer.py hívás) — KÉSZ (qwen_analyzer.py hívás a pipeline-ban, QwenSimulatorBackend)",
+        "Beam search implementálása MCTS-Qwen kombinációval — KÉSZ (_run_beam_search metódus, --strategy beam --beam-width N CLI)",
+        "Benchmark: token használat vs pure Qwen — KÉSZ (benchmark_mcts_vs_qwen.py)"
+      ]
+    }
+  ],
+  "next_actions": [
+    "Watcher daemon monitorozas: /data/mcp_server/context/pending_alerts.json — KÉSZ",
+    "Reasoning pipeline tesztelese Qwennel (lobol, nem --no-qwen) — KÉSZ",
+    "MCTS heterogen szimulator tovabbfejlesztese (API agent valos bekotese) — KÉSZ",
+    "Benchmark: MCTS-Qwen vs pure Qwen token használat (Direction 5+6 közös cél) — KÉSZ",
+    "UCB1 és pruning stratégiák tesztelése (Direction 3) — KÉSZ",
+    "Beam search implementálása MCTS-Qwen kombinációval (Direction 6) — KÉSZ"
+  ],
+  "modules": {
+    "memory_event_watcher": {
+      "file": "/data/mcp_server/tools/memory_event_watcher.py",
+      "status": "OPERATIONAL",
+      "daemon_pid": 3238515,
+      "interval_sec": 60,
+      "alerts_file": "/data/mcp_server/context/pending_alerts.json",
+      "log_file": "/data/mcp_server/context/events.log",
+      "state_file": "/data/mcp_server/context/watcher_state.json",
+      "watched_events": [
+        "new_analysis (REJECT=CRITICAL, REVIEW=WARN)",
+        "new_batch",
+        "new_benchmark",
+        "gpu_spike",
+        "gpu_vram_high",
+        "memory_corruption",
+        "memory_empty"
+      ]
+    },
+    "adaptive_strategy_selector": {
+      "file": "/data/mcp_server/tools/adaptive_strategy_selector.py",
+      "status": "OPERATIONAL",
+      "integrated_into": "master_orchestrator.py (select_strategy)",
+      "tested_on": {
+        "yggdrasil-mcp": "full_qwen (complexity 0.581, low hist conf)",
+        "mem0-aio": "mcts_qwen (hist conf 0.917)",
+        "vibe-kanban-main": "full_qwen (1845 files, complexity 0.75)"
+      }
+    },
+    "context_prioritizer_integration": {
+      "file": "/data/mcp_server/tools/qwen_analyzer.py (modified)",
+      "status": "OPERATIONAL",
+      "feature": "--context-query CLI opcio, build_context() injekcio a promptba",
+      "tested_query": "Tree of Thoughts reasoning -> yggdrasil-mcp elso helyen (score 0.55)"
+    },
+    "env_sh_fix": {
+      "file": "/data/mcp_server/env.sh (modified)",
+      "status": "FIXED",
+      "issue": "LD_LIBRARY_PATH vegtelen novekedes ismetelt source eseten (E2BIG hiba, 175k+ karakter)",
+      "fix": "case guard: csak egyszer fuzi hozza a CUDA lib utvonalakat",
+      "verified": "1x=146, 2x=146, 3x=146 karakter (nem novekszik)",
+      "last_update": "2026-09-19T14:57:13.591049+00:00"
+    },
+    "cpu_cleanup": {
+      "status": "COMPLETED",
+      "killed": [
+        "PID 1411884 (root while loop, 22.5% CPU, 10 ora)",
+        "PID 1410475 (root while loop, 0% CPU, 10 ora)",
+        "PID 1380308 (beragadt rm pid, 12 ora)",
+        "4 beragadt sudo folyamat (pkill, kill, systemctl, cat /proc)"
+      ],
+      "last_update": "2026-09-19T14:57:13.591093+00:00"
+    },
+    "reasoning_pipeline": {
+      "file": "/data/mcp_server/tools/reasoning_pipeline.py",
+      "status": "OPERATIONAL",
+      "integrates": [
+        "agentic-os-core MCTS motor (4-fazis: Selection/Expansion/Simulation/Backpropagation)",
+        "yggdrasil-mcp tervezesi fazisok (init/clarify/explore/evaluate/finalize)",
+        "Qwen szimulator (tomeges rollout, lokalis GPU)",
+        "API agent szimulator (melyebb gondolkodas, seklelyebb rollout)"
+      ],
+      "heterogen_szimulator": "auto mode: adaptiv switch_after (komplexitas+iteracio+melyseg alapjan, base=1, cap=4)",
+      "mcts_available": true,
+      "tested": "10 iteracio, 3 melyseg, no-qwen mode — 5 fazis lefutott, 4 lepeses best path",
+      "last_update": "2026-09-19T19:18:56+00:00",
+      "adaptive_switch_after": true,
+      "tested_adaptive": "egyszeru (switch_after=1) vs komplex (switch_after=4)"
+    },
+    "context_prioritizer_orchestrator_integration": {
+      "file": "/data/mcp_server/tools/master_orchestrator.py (modified)",
+      "status": "OPERATIONAL",
+      "feature": "analyze_repo() atad --context-query opciot a Qwen hivasnak; qwen_analyzer feldolgozza es ContextPrioritizer.build_context() memóriát injektál",
+      "query_format": "{repo_name} repository analysis",
+      "tested": "mem0-aio force: 38.8s, conf=0.917, TRUST",
+      "last_update": "2026-09-19T18:50:30+00:00"
+    },
+    "mcts_tree_export": {
+      "file": "/data/mcp_server/tools/reasoning_pipeline.py (modified)",
+      "status": "OPERATIONAL",
+      "feature": "_export_tree() ThoughtTree->JSON, _save_tree() mcts_trees konyvtar, plan() result tree_file+tree_visualization+tree_size",
+      "tree_dir": "/data/mcp_server/context/mcts_trees/",
+      "tested": "mem0-aio: tree_size=4, 1316 bytes JSON, vizualizacio",
+      "last_update": "2026-09-19T19:13:30+00:00"
+    },
+    "orchestrator_reasoning_integration": {
+      "file": "/data/mcp_server/tools/master_orchestrator.py (modified)",
+      "status": "OPERATIONAL",
+      "feature": "plan_repo_analysis(repo_path) metodus: repo jellemzokbol epít problémát, heterogén MCTS pipeline futtat, CLI --plan-repo",
+      "cli": "master_orchestrator.py <repo> --plan-repo --iterations N --depth M",
+      "tested": "mem0-aio iter=4 depth=3: backend_calls={qwen:8,api:1}, best_path=4 lepes",
+      "last_update": "2026-09-19T19:13:30+00:00"
+    }
+  }
+}

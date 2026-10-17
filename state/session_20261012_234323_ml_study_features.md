@@ -1,0 +1,4 @@
+# Session: ml_study_features
+*Időbélyeg: 2026-10-12T23:43:23.145104*
+
+TANULÁS: Feature mérnökség mélyelemzése. finmlkit: Feature class fluent interface, operátor overloading, Pandas+Numba backend. Transzformációk: ReturnT (idő-ablakos), EWMST (EWMA std), RealizedVol, Bollinger%B, ParkinsonRange, ATR, VarianceRatio14 (trending vs MR detekció!), ROC, RSI (Wilder), StochK, ADX (trend erősség NEM irány), VPIN (volume-synchronized PIN), FlowAcceleration (vol gyorsulás), VolumeProfile (POC/HVA/LVA), CusumTestRolling, PriceVolumeCorrelation. KULCS IRÁNY-FEATUREK: VPIN (informed flow→irány), Price-Volume Correlation (buy/sell pressure), FlowAccel, OBV, ForceIndex, Momentum Persistence, Vol-Adj Momentum. meta-labeling: 50+ feature (momentum, risk, TA, volume, cross-sectional, regime, skew) + corr pruning (>0.95). BTCUSD proxy-k: DF_Curve (CUSUM sign), Flow_Delta (vol×close_position), PV-Corr, Mom-Persistence, Vol-Adj-Mom, VarianceRatio.

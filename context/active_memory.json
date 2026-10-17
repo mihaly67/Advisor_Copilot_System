@@ -1,0 +1,4335 @@
+{
+  "repositories": {
+    "debugger-mcp-main": {
+      "file_count": 88,
+      "size_mb": 35.42,
+      "languages": {
+        "TypeScript": 47,
+        "JSON": 17,
+        "JavaScript": 9,
+        "Markdown": 4,
+        "Python": 2
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "debugger-mcp-main",
+      "path": "/data/Brain/debugger-mcp-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.463423",
+      "status": "indexed"
+    },
+    "swarm": {
+      "file_count": 288,
+      "size_mb": 0.94,
+      "languages": {
+        "JSON": 202,
+        "Python": 62,
+        "Markdown": 8,
+        "YAML": 3,
+        "Config": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "swarm",
+      "path": "/data/Brain/swarm",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.702136",
+      "status": "indexed"
+    },
+    "yggdrasil-mcp": {
+      "file_count": 37,
+      "size_mb": 0.42,
+      "languages": {
+        "TypeScript": 12,
+        "Markdown": 10,
+        "JSON": 6,
+        "Shell": 2,
+        "YAML": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "yggdrasil-mcp",
+      "path": "/data/Brain/yggdrasil-mcp",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.732178",
+      "status": "indexed"
+    },
+    "knowledge": {
+      "file_count": 24,
+      "size_mb": 0.1,
+      "languages": {
+        "Python": 11,
+        "Markdown": 7,
+        "JSON": 6
+      },
+      "key_files": [],
+      "main_files": [],
+      "name": "knowledge",
+      "path": "/data/LGBM_copilot/knowledge",
+      "memory_stage": "knowledge_space_v1",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-13T18:49:27.942006",
+      "status": "indexed"
+    },
+    "advisors": {
+      "file_count": 826,
+      "size_mb": 8.64,
+      "languages": {
+        "Python": 310,
+        "JSON": 127,
+        "YAML": 39,
+        "Markdown": 35,
+        "C/C++": 15
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md",
+        "readme.ipynb",
+        "license.txt",
+        "license.rst"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "advisors",
+      "path": "/data/Brain/advisors",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.224963",
+      "status": "indexed"
+    },
+    "Adv_Fin_ML": {
+      "file_count": 15,
+      "size_mb": 11.28,
+      "languages": {
+        "Markdown": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "Adv_Fin_ML",
+      "path": "/data/Brain/Adv_Fin_ML",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.160208",
+      "status": "indexed"
+    },
+    "Advances-in-Financial-Machine-Learning": {
+      "file_count": 4,
+      "size_mb": 1.49,
+      "languages": {
+        "Markdown": 1
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md"
+      ],
+      "name": "Advances-in-Financial-Machine-Learning",
+      "path": "/data/Brain/Advances-in-Financial-Machine-Learning",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.160356",
+      "status": "indexed"
+    },
+    "ArcRift": {
+      "file_count": 232,
+      "size_mb": 95.3,
+      "languages": {
+        "TypeScript": 98,
+        "JSON": 20,
+        "Markdown": 17,
+        "JavaScript": 5,
+        "Rust": 3
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "ArcRift",
+      "path": "/data/Brain/ArcRift",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.165702",
+      "status": "indexed"
+    },
+    "CRSM": {
+      "file_count": 106,
+      "size_mb": 0.57,
+      "languages": {
+        "Python": 70,
+        "Markdown": 12,
+        "YAML": 9,
+        "Shell": 4,
+        "Config": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "CRSM",
+      "path": "/data/Brain/CRSM",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.167721",
+      "status": "indexed"
+    },
+    "CogAgent": {
+      "file_count": 32,
+      "size_mb": 5.87,
+      "languages": {
+        "Markdown": 8,
+        "Python": 7,
+        "JSON": 2,
+        "YAML": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "CogAgent",
+      "path": "/data/Brain/CogAgent",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.168166",
+      "status": "indexed"
+    },
+    "DS4SD.Docling-main": {
+      "file_count": 451,
+      "size_mb": 51.76,
+      "languages": {
+        "Markdown": 112,
+        "Python": 107,
+        "JSON": 83,
+        "YAML": 3,
+        "TOML": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "DS4SD.Docling-main",
+      "path": "/data/Brain/DS4SD.Docling-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.172930",
+      "status": "indexed"
+    },
+    "E2B-main": {
+      "file_count": 695,
+      "size_mb": 3.85,
+      "languages": {
+        "Python": 386,
+        "TypeScript": 202,
+        "TOML": 12,
+        "Markdown": 9,
+        "JSON": 8
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile",
+        "readme.hbs"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE"
+      ],
+      "name": "E2B-main",
+      "path": "/data/Brain/E2B-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.182550",
+      "status": "indexed"
+    },
+    "FreqAI-Marcos-Lopez-De-Prado": {
+      "file_count": 658,
+      "size_mb": 47.01,
+      "languages": {
+        "Python": 401,
+        "JSON": 57,
+        "Markdown": 49,
+        "Shell": 6,
+        "YAML": 6
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md",
+        "dockerfile.jupyter",
+        "dockerfile.develop",
+        "dockerfile.armhf",
+        "dockerfile.custom",
+        "dockerfile.freqai_rl",
+        "dockerfile.plot",
+        "dockerfile.freqai"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "Dockerfile.jupyter",
+        "Dockerfile.develop",
+        "Dockerfile.armhf",
+        "Dockerfile.custom",
+        "Dockerfile.freqai_rl",
+        "Dockerfile.plot",
+        "Dockerfile.freqai"
+      ],
+      "name": "FreqAI-Marcos-Lopez-De-Prado",
+      "path": "/data/Brain/FreqAI-Marcos-Lopez-De-Prado",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.189699",
+      "status": "indexed"
+    },
+    "Hybrid-Graph-RAG-Financial-Analyser": {
+      "file_count": 7,
+      "size_mb": 2.97,
+      "languages": {
+        "Python": 1,
+        "Markdown": 1
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md"
+      ],
+      "name": "Hybrid-Graph-RAG-Financial-Analyser",
+      "path": "/data/Brain/Hybrid-Graph-RAG-Financial-Analyser",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.189819",
+      "status": "indexed"
+    },
+    "HybridRAG": {
+      "file_count": 10,
+      "size_mb": 9.28,
+      "languages": {
+        "Markdown": 1
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md"
+      ],
+      "name": "HybridRAG",
+      "path": "/data/Brain/HybridRAG",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.189961",
+      "status": "indexed"
+    },
+    "LightRAG-main": {
+      "file_count": 416,
+      "size_mb": 13.91,
+      "languages": {
+        "Python": 169,
+        "TypeScript": 94,
+        "Markdown": 35,
+        "YAML": 30,
+        "Shell": 21
+      },
+      "key_files": [
+        "dockerfile.lite",
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile.lite",
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "LightRAG-main",
+      "path": "/data/Brain/LightRAG-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.194757",
+      "status": "indexed"
+    },
+    "MegaMemory": {
+      "file_count": 43,
+      "size_mb": 0.87,
+      "languages": {
+        "TypeScript": 25,
+        "Markdown": 4,
+        "JSON": 3,
+        "JavaScript": 2,
+        "Shell": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "MegaMemory",
+      "path": "/data/Brain/MegaMemory",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.195471",
+      "status": "indexed"
+    },
+    "OS-Atlas": {
+      "file_count": 24,
+      "size_mb": 6.89,
+      "languages": {
+        "Markdown": 4,
+        "Python": 4
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "OS-Atlas",
+      "path": "/data/Brain/OS-Atlas",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.196037",
+      "status": "indexed"
+    },
+    "OS-Copilot": {
+      "file_count": 209,
+      "size_mb": 8.59,
+      "languages": {
+        "Python": 76,
+        "JavaScript": 13,
+        "Markdown": 7,
+        "JSON": 5,
+        "YAML": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "Readme.md",
+        "Readme.md",
+        "README.md"
+      ],
+      "name": "OS-Copilot",
+      "path": "/data/Brain/OS-Copilot",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.198928",
+      "status": "indexed"
+    },
+    "OmniParser": {
+      "file_count": 77,
+      "size_mb": 20.56,
+      "languages": {
+        "Python": 26,
+        "Shell": 6,
+        "Markdown": 5,
+        "JSON": 2,
+        "YAML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "readme.md",
+        "Dockerfile",
+        "README.md"
+      ],
+      "name": "OmniParser",
+      "path": "/data/Brain/OmniParser",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.200020",
+      "status": "indexed"
+    },
+    "Qwen-Agent": {
+      "file_count": 344,
+      "size_mb": 23.59,
+      "languages": {
+        "Python": 220,
+        "Markdown": 22,
+        "TypeScript": 15,
+        "JSON": 15,
+        "JavaScript": 6
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "readme.txt"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.txt",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "Qwen-Agent",
+      "path": "/data/Brain/Qwen-Agent",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.204591",
+      "status": "indexed"
+    },
+    "SeeClick": {
+      "file_count": 390,
+      "size_mb": 7.5,
+      "languages": {
+        "JavaScript": 65,
+        "Python": 34,
+        "JSON": 8,
+        "Markdown": 3,
+        "Shell": 1
+      },
+      "key_files": [
+        "readme.md",
+        "license"
+      ],
+      "main_files": [
+        "readme.md",
+        "LICENSE"
+      ],
+      "name": "SeeClick",
+      "path": "/data/Brain/SeeClick",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.210127",
+      "status": "indexed"
+    },
+    "SequentialThinking": {
+      "file_count": 38,
+      "size_mb": 0.26,
+      "languages": {
+        "Python": 29,
+        "Markdown": 3,
+        "JavaScript": 1,
+        "Config": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "SequentialThinking",
+      "path": "/data/Brain/SequentialThinking",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.210678",
+      "status": "indexed"
+    },
+    "UIED": {
+      "file_count": 90,
+      "size_mb": 17.82,
+      "languages": {
+        "Python": 31,
+        "JSON": 6,
+        "Markdown": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "UIED",
+      "path": "/data/Brain/UIED",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.211766",
+      "status": "indexed"
+    },
+    "_qwen_analysis": {
+      "file_count": 147,
+      "size_mb": 0.61,
+      "languages": {
+        "Markdown": 140,
+        "JSON": 3,
+        "Python": 2
+      },
+      "key_files": [],
+      "main_files": [],
+      "name": "_qwen_analysis",
+      "path": "/data/Brain/_qwen_analysis",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.212854",
+      "status": "indexed"
+    },
+    "_vectorized": {
+      "file_count": 3,
+      "size_mb": 2452.36,
+      "languages": {},
+      "key_files": [],
+      "main_files": [],
+      "name": "_vectorized",
+      "path": "/data/Brain/_vectorized",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.212919",
+      "status": "indexed"
+    },
+    "agent-infrastructure-landscape": {
+      "file_count": 4027,
+      "size_mb": 144.04,
+      "languages": {
+        "JSON": 859,
+        "Markdown": 257,
+        "TypeScript": 91,
+        "JavaScript": 90,
+        "Python": 57
+      },
+      "key_files": [
+        "readme.md",
+        "license"
+      ],
+      "main_files": [
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "agent-infrastructure-landscape",
+      "path": "/data/Brain/agent-infrastructure-landscape",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.257431",
+      "status": "indexed"
+    },
+    "agentic-os-core": {
+      "file_count": 93,
+      "size_mb": 0.44,
+      "languages": {
+        "Python": 76,
+        "Markdown": 10,
+        "YAML": 3,
+        "TOML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "agentic-os-core",
+      "path": "/data/Brain/agentic-os-core",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.258689",
+      "status": "indexed"
+    },
+    "aichat-main": {
+      "file_count": 79,
+      "size_mb": 1.72,
+      "languages": {
+        "Rust": 48,
+        "Markdown": 7,
+        "YAML": 3,
+        "Shell": 3,
+        "TOML": 1
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md"
+      ],
+      "name": "aichat-main",
+      "path": "/data/Brain/aichat-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.259604",
+      "status": "indexed"
+    },
+    "anubis-mcp-main": {
+      "file_count": 274,
+      "size_mb": 1.38,
+      "languages": {
+        "Markdown": 14,
+        "JavaScript": 4,
+        "JSON": 4,
+        "TypeScript": 2,
+        "Go": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "anubis-mcp-main",
+      "path": "/data/Brain/anubis-mcp-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.263919",
+      "status": "indexed"
+    },
+    "anything-llm-master": {
+      "file_count": 1292,
+      "size_mb": 15.27,
+      "languages": {
+        "JavaScript": 1000,
+        "Markdown": 29,
+        "JSON": 19,
+        "YAML": 15,
+        "Shell": 3
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "Dockerfile"
+      ],
+      "name": "anything-llm-master",
+      "path": "/data/Brain/anything-llm-master",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.292255",
+      "status": "indexed"
+    },
+    "architecture-decision-record": {
+      "file_count": 670,
+      "size_mb": 1.44,
+      "languages": {
+        "Markdown": 451
+      },
+      "key_files": [
+        "license.md",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "architecture-decision-record",
+      "path": "/data/Brain/architecture-decision-record",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.303135",
+      "status": "indexed"
+    },
+    "autogen-main": {
+      "file_count": 1807,
+      "size_mb": 46.02,
+      "languages": {
+        "Python": 546,
+        "C#": 497,
+        "Markdown": 160,
+        "TypeScript": 125,
+        "YAML": 48
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "autogen-main",
+      "path": "/data/Brain/autogen-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.329095",
+      "status": "indexed"
+    },
+    "blink-mind-desktop-master": {
+      "file_count": 285,
+      "size_mb": 3.03,
+      "languages": {
+        "TypeScript": 179,
+        "JavaScript": 19,
+        "JSON": 8,
+        "YAML": 1,
+        "Markdown": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "blink-mind-desktop-master",
+      "path": "/data/Brain/blink-mind-desktop-master",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.332934",
+      "status": "indexed"
+    },
+    "bloop-main": {
+      "file_count": 773,
+      "size_mb": 10.24,
+      "languages": {
+        "Scala": 423,
+        "Markdown": 125,
+        "Java": 10,
+        "JavaScript": 10,
+        "JSON": 7
+      },
+      "key_files": [
+        "license.md",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "bloop-main",
+      "path": "/data/Brain/bloop-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.351335",
+      "status": "indexed"
+    },
+    "bloop-oss": {
+      "file_count": 679,
+      "size_mb": 15.28,
+      "languages": {
+        "TypeScript": 376,
+        "Rust": 121,
+        "JSON": 26,
+        "Markdown": 6,
+        "YAML": 4
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "bloop-oss",
+      "path": "/data/Brain/bloop-oss",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.360262",
+      "status": "indexed"
+    },
+    "brave-search-mcp-server-main": {
+      "file_count": 52,
+      "size_mb": 0.32,
+      "languages": {
+        "TypeScript": 38,
+        "JSON": 6,
+        "YAML": 2,
+        "Markdown": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "brave-search-mcp-server-main",
+      "path": "/data/Brain/brave-search-mcp-server-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.361059",
+      "status": "indexed"
+    },
+    "browser-extension": {
+      "file_count": 81,
+      "size_mb": 0.49,
+      "languages": {
+        "TypeScript": 40,
+        "JavaScript": 11,
+        "JSON": 3,
+        "Markdown": 1,
+        "Shell": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "browser-extension",
+      "path": "/data/Brain/browser-extension",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.362108",
+      "status": "indexed"
+    },
+    "browser-use": {
+      "file_count": 459,
+      "size_mb": 7.5,
+      "languages": {
+        "Python": 370,
+        "Markdown": 52,
+        "Shell": 6,
+        "YAML": 3,
+        "JSON": 2
+      },
+      "key_files": [
+        "dockerfile.fast",
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile.fast",
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "browser-use",
+      "path": "/data/Brain/browser-use",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.367894",
+      "status": "indexed"
+    },
+    "celery-main": {
+      "file_count": 800,
+      "size_mb": 5.68,
+      "languages": {
+        "Python": 416,
+        "YAML": 9,
+        "Shell": 8,
+        "Config": 3,
+        "JSON": 1
+      },
+      "key_files": [
+        "license",
+        "readme.rst",
+        "readme.txt",
+        "dockerfile",
+        "license.txt",
+        "license.python"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.rst",
+        "readme.txt",
+        "README.rst",
+        "README.rst",
+        "README.rst",
+        "README.rst",
+        "README.rst",
+        "README.rst",
+        "Dockerfile"
+      ],
+      "name": "celery-main",
+      "path": "/data/Brain/celery-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.376539",
+      "status": "indexed"
+    },
+    "chatbox-main": {
+      "file_count": 779,
+      "size_mb": 19.09,
+      "languages": {
+        "TypeScript": 578,
+        "Markdown": 27,
+        "JSON": 19,
+        "YAML": 3,
+        "JavaScript": 3
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "Dockerfile",
+        "README.md"
+      ],
+      "name": "chatbox-main",
+      "path": "/data/Brain/chatbox-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.385746",
+      "status": "indexed"
+    },
+    "chroma-main": {
+      "file_count": 1912,
+      "size_mb": 39.82,
+      "languages": {
+        "Rust": 605,
+        "TypeScript": 239,
+        "Python": 235,
+        "JSON": 119,
+        "Go": 95
+      },
+      "key_files": [
+        "dockerfile.windows",
+        "dockerfile",
+        "license",
+        "readme.md",
+        "dockerfile.migration"
+      ],
+      "main_files": [
+        "Dockerfile.windows",
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "chroma-main",
+      "path": "/data/Brain/chroma-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.410340",
+      "status": "indexed"
+    },
+    "cline": {
+      "file_count": 0,
+      "size_mb": 0.0,
+      "languages": {},
+      "key_files": [],
+      "main_files": [],
+      "name": "cline",
+      "path": "/data/Brain/cline",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.410411",
+      "status": "indexed"
+    },
+    "cline-main": {
+      "file_count": 1929,
+      "size_mb": 40.55,
+      "languages": {
+        "TypeScript": 1448,
+        "Markdown": 60,
+        "JSON": 54,
+        "Shell": 12,
+        "JavaScript": 10
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "cline-main",
+      "path": "/data/Brain/cline-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.432229",
+      "status": "indexed"
+    },
+    "code-interpreter-main": {
+      "file_count": 202,
+      "size_mb": 0.87,
+      "languages": {
+        "Python": 114,
+        "TypeScript": 40,
+        "JSON": 7,
+        "Markdown": 5,
+        "YAML": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md"
+      ],
+      "name": "code-interpreter-main",
+      "path": "/data/Brain/code-interpreter-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.434634",
+      "status": "indexed"
+    },
+    "cortexdb": {
+      "file_count": 1570,
+      "size_mb": 18.08,
+      "languages": {
+        "Go": 956,
+        "Markdown": 64,
+        "JavaScript": 30,
+        "JSON": 25,
+        "Python": 25
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile",
+        "dockerfile.hermes",
+        "license.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "Dockerfile",
+        "Dockerfile.hermes",
+        "README.md",
+        "README.md"
+      ],
+      "name": "cortexdb",
+      "path": "/data/Brain/cortexdb",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.451041",
+      "status": "indexed"
+    },
+    "create-python-server-main": {
+      "file_count": 14,
+      "size_mb": 0.06,
+      "languages": {
+        "Markdown": 4,
+        "Python": 2,
+        "TOML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "server.py.jinja2"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "server.py.jinja2"
+      ],
+      "name": "create-python-server-main",
+      "path": "/data/Brain/create-python-server-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.451277",
+      "status": "indexed"
+    },
+    "crypto-microstructure": {
+      "file_count": 233,
+      "size_mb": 16.95,
+      "languages": {
+        "Python": 162,
+        "Markdown": 5,
+        "TOML": 1,
+        "YAML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "crypto-microstructure",
+      "path": "/data/Brain/crypto-microstructure",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.453679",
+      "status": "indexed"
+    },
+    "csharp-sdk-main": {
+      "file_count": 713,
+      "size_mb": 4.18,
+      "languages": {
+        "C#": 588,
+        "Markdown": 35,
+        "JSON": 30,
+        "YAML": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "csharp-sdk-main",
+      "path": "/data/Brain/csharp-sdk-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.462023",
+      "status": "indexed"
+    },
+    "deepagents-main": {
+      "file_count": 748,
+      "size_mb": 38.39,
+      "languages": {
+        "Python": 494,
+        "Markdown": 95,
+        "TypeScript": 27,
+        "TOML": 25,
+        "JSON": 24
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE"
+      ],
+      "name": "deepagents-main",
+      "path": "/data/Brain/deepagents-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.473434",
+      "status": "indexed"
+    },
+    "e2b-cookbook-main": {
+      "file_count": 307,
+      "size_mb": 29.86,
+      "languages": {
+        "JSON": 62,
+        "TypeScript": 46,
+        "Markdown": 37,
+        "Python": 31,
+        "TOML": 8
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "e2b-cookbook-main",
+      "path": "/data/Brain/e2b-cookbook-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.477487",
+      "status": "indexed"
+    },
+    "ext-auth-main": {
+      "file_count": 9,
+      "size_mb": 0.07,
+      "languages": {
+        "Markdown": 3,
+        "JSON": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "ext-auth-main",
+      "path": "/data/Brain/ext-auth-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.477649",
+      "status": "indexed"
+    },
+    "fracdiff": {
+      "file_count": 42,
+      "size_mb": 2.35,
+      "languages": {
+        "Python": 26,
+        "Markdown": 1,
+        "TOML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "fracdiff",
+      "path": "/data/Brain/fracdiff",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.478265",
+      "status": "indexed"
+    },
+    "gemini-cli-main": {
+      "file_count": 374,
+      "size_mb": 4.72,
+      "languages": {
+        "TypeScript": 267,
+        "JavaScript": 36,
+        "Markdown": 30,
+        "JSON": 10,
+        "Shell": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "gemini-cli-main",
+      "path": "/data/Brain/gemini-cli-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.481942",
+      "status": "indexed"
+    },
+    "graphrag-main": {
+      "file_count": 827,
+      "size_mb": 15.07,
+      "languages": {
+        "Python": 568,
+        "Markdown": 54,
+        "YAML": 16,
+        "TOML": 11,
+        "JSON": 8
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "graphrag-main",
+      "path": "/data/Brain/graphrag-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.493715",
+      "status": "indexed"
+    },
+    "infinity-main": {
+      "file_count": 221,
+      "size_mb": 4.6,
+      "languages": {
+        "Python": 146,
+        "Markdown": 25,
+        "Shell": 6,
+        "YAML": 4,
+        "TOML": 4
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile.neuron",
+        "dockerfile.cpu_auto",
+        "dockerfile.jinja2",
+        "dockerfile.amd_auto",
+        "dockerfile.trt_onnx_auto",
+        "dockerfile.nvidia_auto"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "Dockerfile.neuron",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "infinity-main",
+      "path": "/data/Brain/infinity-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.496751",
+      "status": "indexed"
+    },
+    "infra-main": {
+      "file_count": 1810,
+      "size_mb": 9.18,
+      "languages": {
+        "Go": 1259,
+        "Shell": 36,
+        "YAML": 33,
+        "Markdown": 15,
+        "TypeScript": 7
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "readme.md",
+        "Dockerfile",
+        "Dockerfile",
+        "Dockerfile",
+        "Dockerfile",
+        "Dockerfile"
+      ],
+      "name": "infra-main",
+      "path": "/data/Brain/infra-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.520654",
+      "status": "indexed"
+    },
+    "inite-brain-service": {
+      "file_count": 2626,
+      "size_mb": 22.53,
+      "languages": {
+        "TypeScript": 2160,
+        "Markdown": 122,
+        "JSON": 50,
+        "YAML": 13,
+        "Shell": 5
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "Dockerfile"
+      ],
+      "name": "inite-brain-service",
+      "path": "/data/Brain/inite-brain-service",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.547487",
+      "status": "indexed"
+    },
+    "inspector-main": {
+      "file_count": 1392,
+      "size_mb": 16.87,
+      "languages": {
+        "TypeScript": 1150,
+        "JSON": 72,
+        "Markdown": 49,
+        "JavaScript": 6
+      },
+      "key_files": [
+        "dockerfile",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "inspector-main",
+      "path": "/data/Brain/inspector-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.563544",
+      "status": "indexed"
+    },
+    "java-sdk-main": {
+      "file_count": 261,
+      "size_mb": 3.37,
+      "languages": {
+        "Java": 199,
+        "Markdown": 23,
+        "YAML": 3
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "java-sdk-main",
+      "path": "/data/Brain/java-sdk-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.568813",
+      "status": "indexed"
+    },
+    "langchain-master": {
+      "file_count": 2832,
+      "size_mb": 34.43,
+      "languages": {
+        "Python": 2470,
+        "JSON": 43,
+        "Markdown": 26,
+        "TOML": 24,
+        "Shell": 20
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "readme.org",
+        "readme.rst"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "langchain-master",
+      "path": "/data/Brain/langchain-master",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.603879",
+      "status": "indexed"
+    },
+    "langgraph-main": {
+      "file_count": 530,
+      "size_mb": 11.68,
+      "languages": {
+        "Python": 342,
+        "JSON": 28,
+        "TOML": 21,
+        "Markdown": 14,
+        "TypeScript": 7
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "LICENSE"
+      ],
+      "name": "langgraph-main",
+      "path": "/data/Brain/langgraph-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.611530",
+      "status": "indexed"
+    },
+    "llm-api-proxy": {
+      "file_count": 47,
+      "size_mb": 0.3,
+      "languages": {
+        "TypeScript": 39,
+        "JSON": 2,
+        "Markdown": 2,
+        "YAML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "llm-api-proxy",
+      "path": "/data/Brain/llm-api-proxy",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.612166",
+      "status": "indexed"
+    },
+    "llm-main": {
+      "file_count": 97,
+      "size_mb": 1.24,
+      "languages": {
+        "Rust": 51,
+        "TOML": 17,
+        "Markdown": 8,
+        "JSON": 5
+      },
+      "key_files": [
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "README.md",
+        "README.md",
+        "README.md",
+        "Dockerfile"
+      ],
+      "name": "llm-main",
+      "path": "/data/Brain/llm-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.614021",
+      "status": "indexed"
+    },
+    "lobe-chat-main": {
+      "file_count": 2067,
+      "size_mb": 11.69,
+      "languages": {
+        "TypeScript": 1398,
+        "JSON": 343,
+        "Markdown": 42,
+        "JavaScript": 8,
+        "TOML": 2
+      },
+      "key_files": [
+        "dockerfile",
+        "dockerfile.database",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "Dockerfile.database",
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "lobe-chat-main",
+      "path": "/data/Brain/lobe-chat-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.636900",
+      "status": "indexed"
+    },
+    "marker-master": {
+      "file_count": 287,
+      "size_mb": 12.01,
+      "languages": {
+        "Python": 209,
+        "JSON": 7,
+        "Markdown": 6,
+        "Shell": 2,
+        "YAML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md"
+      ],
+      "name": "marker-master",
+      "path": "/data/Brain/marker-master",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.639329",
+      "status": "indexed"
+    },
+    "mcp-cli-main": {
+      "file_count": 14,
+      "size_mb": 0.09,
+      "languages": {
+        "JavaScript": 7,
+        "Markdown": 2,
+        "JSON": 1,
+        "YAML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "mcp-cli-main",
+      "path": "/data/Brain/mcp-cli-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.639467",
+      "status": "indexed"
+    },
+    "mcp-server-main": {
+      "file_count": 25,
+      "size_mb": 0.31,
+      "languages": {
+        "JSON": 4,
+        "YAML": 3,
+        "Markdown": 3,
+        "Python": 2,
+        "TOML": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "mcp-server-main",
+      "path": "/data/Brain/mcp-server-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.639745",
+      "status": "indexed"
+    },
+    "mem0-aio": {
+      "file_count": 30,
+      "size_mb": 0.12,
+      "languages": {
+        "Python": 9,
+        "Markdown": 6,
+        "Shell": 3,
+        "YAML": 1,
+        "TOML": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "README.md"
+      ],
+      "name": "mem0-aio",
+      "path": "/data/Brain/mem0-aio",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.640224",
+      "status": "indexed"
+    },
+    "meta-knowledge-graph": {
+      "file_count": 89,
+      "size_mb": 3.26,
+      "languages": {
+        "Python": 59,
+        "Markdown": 19,
+        "JSON": 4,
+        "TOML": 2,
+        "Shell": 1
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "meta-knowledge-graph",
+      "path": "/data/Brain/meta-knowledge-graph",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.641104",
+      "status": "indexed"
+    },
+    "modelcontextprotocol-main": {
+      "file_count": 569,
+      "size_mb": 38.18,
+      "languages": {
+        "JSON": 147,
+        "Markdown": 68,
+        "TypeScript": 37,
+        "JavaScript": 3,
+        "Shell": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "modelcontextprotocol-main",
+      "path": "/data/Brain/modelcontextprotocol-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.647887",
+      "status": "indexed"
+    },
+    "open-interpreter": {
+      "file_count": 268,
+      "size_mb": 11.18,
+      "languages": {
+        "Python": 144,
+        "Markdown": 15,
+        "YAML": 6,
+        "Shell": 2,
+        "TOML": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md",
+        "license.mdx"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "license.mdx",
+        "Dockerfile",
+        "README.md"
+      ],
+      "name": "open-interpreter",
+      "path": "/data/Brain/open-interpreter",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.650272",
+      "status": "indexed"
+    },
+    "openai-agents-python": {
+      "file_count": 1258,
+      "size_mb": 14.89,
+      "languages": {
+        "Python": 762,
+        "Markdown": 441,
+        "JSON": 10,
+        "JavaScript": 3,
+        "Shell": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile",
+        "dockerfile.mount"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "openai-agents-python",
+      "path": "/data/Brain/openai-agents-python",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.660028",
+      "status": "indexed"
+    },
+    "php-sdk-main": {
+      "file_count": 243,
+      "size_mb": 0.69,
+      "languages": {
+        "PHP": 234,
+        "Markdown": 4,
+        "JSON": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "php-sdk-main",
+      "path": "/data/Brain/php-sdk-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.661896",
+      "status": "indexed"
+    },
+    "pix2struct": {
+      "file_count": 61,
+      "size_mb": 0.13,
+      "languages": {
+        "Python": 32,
+        "Markdown": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "pix2struct",
+      "path": "/data/Brain/pix2struct",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.662467",
+      "status": "indexed"
+    },
+    "pydantic-core": {
+      "file_count": 264,
+      "size_mb": 3.04,
+      "languages": {
+        "Python": 123,
+        "Rust": 122,
+        "TOML": 3,
+        "YAML": 2,
+        "Markdown": 2
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md"
+      ],
+      "name": "pydantic-core",
+      "path": "/data/Brain/pydantic-core",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.664161",
+      "status": "indexed"
+    },
+    "pyqtgraph-master": {
+      "file_count": 800,
+      "size_mb": 5.68,
+      "languages": {
+        "Python": 435,
+        "Config": 4,
+        "Markdown": 3,
+        "YAML": 2,
+        "TOML": 1
+      },
+      "key_files": [
+        "license.txt",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE.txt",
+        "README.md"
+      ],
+      "name": "pyqtgraph-master",
+      "path": "/data/Brain/pyqtgraph-master",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.669572",
+      "status": "indexed"
+    },
+    "python-sdk-main": {
+      "file_count": 429,
+      "size_mb": 2.91,
+      "languages": {
+        "Python": 355,
+        "Markdown": 36,
+        "TOML": 19,
+        "YAML": 2,
+        "JSON": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.MD",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "python-sdk-main",
+      "path": "/data/Brain/python-sdk-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.673355",
+      "status": "indexed"
+    },
+    "qdrant": {
+      "file_count": 1648,
+      "size_mb": 27.49,
+      "languages": {
+        "Rust": 1207,
+        "Python": 196,
+        "JSON": 59,
+        "Shell": 32,
+        "TOML": 29
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "readme.md",
+        "README.md"
+      ],
+      "name": "qdrant",
+      "path": "/data/Brain/qdrant",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.687337",
+      "status": "indexed"
+    },
+    "rq-master": {
+      "file_count": 145,
+      "size_mb": 2.09,
+      "languages": {
+        "Python": 80,
+        "Markdown": 27,
+        "YAML": 3,
+        "TOML": 2,
+        "Config": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "Dockerfile"
+      ],
+      "name": "rq-master",
+      "path": "/data/Brain/rq-master",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.688369",
+      "status": "indexed"
+    },
+    "rust-sdk-main": {
+      "file_count": 221,
+      "size_mb": 2.19,
+      "languages": {
+        "Rust": 165,
+        "Markdown": 18,
+        "TOML": 16,
+        "JSON": 7,
+        "JavaScript": 4
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "rust-sdk-main",
+      "path": "/data/Brain/rust-sdk-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.690309",
+      "status": "indexed"
+    },
+    "sccache-action-main": {
+      "file_count": 14,
+      "size_mb": 1.47,
+      "languages": {
+        "JSON": 5,
+        "JavaScript": 2,
+        "TypeScript": 2,
+        "YAML": 1,
+        "Markdown": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "sccache-action-main",
+      "path": "/data/Brain/sccache-action-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.690486",
+      "status": "indexed"
+    },
+    "sentence-transformers-main": {
+      "file_count": 643,
+      "size_mb": 20.34,
+      "languages": {
+        "Python": 428,
+        "Markdown": 106,
+        "YAML": 1,
+        "TOML": 1,
+        "JavaScript": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "readme.rst"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.rst",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "sentence-transformers-main",
+      "path": "/data/Brain/sentence-transformers-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.696034",
+      "status": "indexed"
+    },
+    "servers-main": {
+      "file_count": 134,
+      "size_mb": 1.3,
+      "languages": {
+        "TypeScript": 63,
+        "Markdown": 20,
+        "Python": 14,
+        "JSON": 12,
+        "TOML": 3
+      },
+      "key_files": [
+        "license",
+        "readme.md",
+        "dockerfile"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "Dockerfile",
+        "README.md",
+        "Dockerfile",
+        "README.md"
+      ],
+      "name": "servers-main",
+      "path": "/data/Brain/servers-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.697210",
+      "status": "indexed"
+    },
+    "sqlite-vec-main": {
+      "file_count": 301,
+      "size_mb": 2.52,
+      "languages": {
+        "C": 46,
+        "Python": 45,
+        "Markdown": 42,
+        "Rust": 8,
+        "JSON": 6
+      },
+      "key_files": [
+        "readme.md",
+        "cargo.toml.tmpl"
+      ],
+      "main_files": [
+        "README.md",
+        "README.md",
+        "README.md",
+        "Cargo.toml.tmpl",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "sqlite-vec-main",
+      "path": "/data/Brain/sqlite-vec-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.699798",
+      "status": "indexed"
+    },
+    "steelmind-mcp": {
+      "file_count": 18,
+      "size_mb": 0.19,
+      "languages": {
+        "TypeScript": 7,
+        "JSON": 4,
+        "YAML": 1,
+        "JavaScript": 1,
+        "Markdown": 1
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "steelmind-mcp",
+      "path": "/data/Brain/steelmind-mcp",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.699961",
+      "status": "indexed"
+    },
+    "swarmvault": {
+      "file_count": 350,
+      "size_mb": 3.99,
+      "languages": {
+        "TypeScript": 216,
+        "Markdown": 39,
+        "JSON": 20,
+        "YAML": 4,
+        "Shell": 3
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "swarmvault",
+      "path": "/data/Brain/swarmvault",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.705393",
+      "status": "indexed"
+    },
+    "synaptic-memory": {
+      "file_count": 499,
+      "size_mb": 45.03,
+      "languages": {
+        "Python": 296,
+        "Markdown": 82,
+        "JSON": 41,
+        "TOML": 6,
+        "YAML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "synaptic-memory",
+      "path": "/data/Brain/synaptic-memory",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.708435",
+      "status": "indexed"
+    },
+    "text-embeddings-inference": {
+      "file_count": 276,
+      "size_mb": 4.75,
+      "languages": {
+        "Rust": 94,
+        "Python": 21,
+        "Markdown": 18,
+        "TOML": 13,
+        "JavaScript": 3
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "text-embeddings-inference",
+      "path": "/data/Brain/text-embeddings-inference",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.710604",
+      "status": "indexed"
+    },
+    "text-embeddings-inference-main": {
+      "file_count": 276,
+      "size_mb": 4.75,
+      "languages": {
+        "Rust": 94,
+        "Python": 21,
+        "Markdown": 18,
+        "TOML": 13,
+        "JavaScript": 3
+      },
+      "key_files": [
+        "dockerfile",
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "text-embeddings-inference-main",
+      "path": "/data/Brain/text-embeddings-inference-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.712714",
+      "status": "indexed"
+    },
+    "tokenmetry": {
+      "file_count": 7,
+      "size_mb": 0.11,
+      "languages": {
+        "Markdown": 2,
+        "Python": 1,
+        "TOML": 1
+      },
+      "key_files": [
+        "readme.md"
+      ],
+      "main_files": [
+        "README.md"
+      ],
+      "name": "tokenmetry",
+      "path": "/data/Brain/tokenmetry",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.712797",
+      "status": "indexed"
+    },
+    "trace-wave": {
+      "file_count": 43,
+      "size_mb": 0.26,
+      "languages": {
+        "Python": 33,
+        "Markdown": 5,
+        "JSON": 1,
+        "TOML": 1
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "trace-wave",
+      "path": "/data/Brain/trace-wave",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.713198",
+      "status": "indexed"
+    },
+    "transformers.js-main": {
+      "file_count": 684,
+      "size_mb": 3.08,
+      "languages": {
+        "JavaScript": 624,
+        "Markdown": 18,
+        "JSON": 5,
+        "TypeScript": 5,
+        "YAML": 3
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md"
+      ],
+      "name": "transformers.js-main",
+      "path": "/data/Brain/transformers.js-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.722898",
+      "status": "indexed"
+    },
+    "typescript-sdk-main": {
+      "file_count": 352,
+      "size_mb": 3.65,
+      "languages": {
+        "TypeScript": 230,
+        "JSON": 43,
+        "Markdown": 33,
+        "JavaScript": 17,
+        "YAML": 5
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "typescript-sdk-main",
+      "path": "/data/Brain/typescript-sdk-main",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.726216",
+      "status": "indexed"
+    },
+    "yantrikdb": {
+      "file_count": 771,
+      "size_mb": 106.24,
+      "languages": {
+        "Python": 251,
+        "Rust": 239,
+        "Markdown": 102,
+        "TOML": 41,
+        "JSON": 23
+      },
+      "key_files": [
+        "license",
+        "readme.md"
+      ],
+      "main_files": [
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "LICENSE",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md",
+        "README.md"
+      ],
+      "name": "yantrikdb",
+      "path": "/data/Brain/yantrikdb",
+      "memory_stage": "repos_cloned_2026-10-16",
+      "context_type": "comprehensive",
+      "indexed_at": "2026-10-16T21:39:20.731895",
+      "status": "indexed"
+    }
+  },
+  "snippets": [
+    {
+      "id": "mem0-aio-config",
+      "repository": "/data/Brain/mem0-aio",
+      "code": "OPENAI_API_KEY for hosted quick-start, or OLLAMA_BASE_URL for local LLM",
+      "usage": "Provider configuration for mem0-aio"
+    }
+  ],
+  "solutions": {
+    "debugger_implementation": {
+      "timestamp": "2026-09-19T09:40:00+02:00",
+      "problem": "How to implement DAP protocol debugger",
+      "solution": "Use Node.js with DAP adapter configuration",
+      "repository": "debugger-mcp-main"
+    }
+  },
+  "master_subagent_strategy": {
+    "concept": "Két szintű AGI stratégia token-hatékony működésre",
+    "master_role": "Stratégiai irányítás, kontextus optimalizáció, minimális tokenfelhasználás",
+    "subagent_role": "Token-intenzív kód elemzés P4000 GPU-n, memória tárolás, kontextus-mentes működés",
+    "workflow": [
+      "Master: stratégiai kérdések megválaszolása",
+      "Subagent (Qwen P4000): mély repository analízis",
+      "Master: kontextus mentés token-gazdaságos",
+      "Hosszú távú memória: Qwen elemzések tárolása"
+    ],
+    "advantages": [
+      "Token spórolás: Master csak stratégiai kérdésekkel",
+      "Speed: Qwen GPU-n gyors elemzés (38.77 ms/tok)",
+      "Hardver: P4000 GPU használat (8GB VRAM)",
+      "Hosszú távú tanulás: Memóriarendszer tárolja mintákat"
+    ],
+    "gpu_status": {
+      "p4000_working": true,
+      "cuda_buffer": "304 MiB",
+      "pclk": "556 MHz",
+      "test_speed": "38.77 ms/tok"
+    },
+    "issues": [
+      "Practical analyses fallback to CPU despite GPU settings",
+      "VRAM usage shows 0 MB in production runs",
+      "Environment variables may not persist in production"
+    ],
+    "next_actions": [
+      "Force GPU usage in qwen_analyzer.py",
+      "Fix environment variable persistence",
+      "Continue Master-Subagent workflow with more repositories",
+      "Finalize P4000 GPU production integration"
+    ],
+    "timestamp": "2026-09-19 10:45:00"
+  },
+  "deep_analyses": [
+    {
+      "id": "mem0-aio-deep",
+      "repository": "/data/Brain/mem0-aio",
+      "analysis_file": "/data/Brain/mem0-aio/_qwen_analysis/mem0-aio_analysis_20260919_104025.md",
+      "key_findings": [
+        "Unraid-first single-container deployment",
+        "Embedded Qdrant vector store included",
+        "Beginner install path with OpenAI or Ollama support",
+        "Advanced user security configurations"
+      ],
+      "performance": {
+        "duration": "27.1s",
+        "characters": 1159,
+        "gpu_layers": 35
+      },
+      "timestamp": "2026-09-19 10:40:25"
+    }
+  ],
+  "timestamp": "2026-10-16T21:39:20.732954",
+  "code_snippets": {
+    "off_by_one_fix": {
+      "timestamp": "2026-09-19T09:40:00+02:00",
+      "bug_type": "IndexError",
+      "pattern": "range(len(items) + 1) -> IndexError",
+      "solution": "range(len(items))",
+      "repository": "debugger-mcp-main",
+      "file": "examples/python-example.py",
+      "fixed": true
+    }
+  },
+  "status": {
+    "phase": "REASONING PIPELINE + API BACKEND COMPLETE - rendszer production ready",
+    "last_session": "2026-09-19-session-3",
+    "last_update": "2026-09-19T20:49:16.031890+00:00",
+    "all_directions_completed": true,
+    "modules_operational": 6,
+    "daemons_running": 2,
+    "sysvinit_managed": 1,
+    "api_backend_real": true
+  },
+  "qwen_analyses": {
+    "swarm": {
+      "repo_path": "/data/Brain/swarm",
+      "analysis_file": "/data/Brain/swarm/_qwen_analysis/swarm_analysis_20260918_184351.md",
+      "timestamp": "2026-09-19T14:06:52.056464+00:00",
+      "confidence": 0.917,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "Qwen-Agent": {
+      "repo_path": "/data/Brain/Qwen-Agent",
+      "analysis_file": "/data/Brain/Qwen-Agent/_qwen_analysis/Qwen-Agent_analysis_20260919_120843.md",
+      "timestamp": "2026-09-19T14:06:53.796491+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "agentic-os-core": {
+      "repo_path": "/data/Brain/agentic-os-core",
+      "analysis_file": "/data/Brain/agentic-os-core/_qwen_analysis/agentic-os-core_analysis_20260919_235301.md",
+      "timestamp": "2026-09-19T21:53:19.024925+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "CogAgent": {
+      "repo_path": "/data/Brain/CogAgent",
+      "analysis_file": "/data/Brain/CogAgent/_qwen_analysis/CogAgent_analysis_20260919_135045.md",
+      "timestamp": "2026-09-19T14:06:52.487217+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "CRSM": {
+      "repo_path": "/data/Brain/CRSM",
+      "analysis_file": "/data/Brain/CRSM/_qwen_analysis/CRSM_analysis_20260918_163112.md",
+      "timestamp": "2026-09-19T14:06:52.524990+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "text-embeddings-inference": {
+      "repo_path": "/data/Brain/text-embeddings-inference",
+      "analysis_file": "/data/Brain/text-embeddings-inference/_qwen_analysis/text-embeddings-inference_analysis_20260919_144002.md",
+      "timestamp": "2026-09-19T14:06:52.750665+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "openhands-main": {
+      "repo_path": "/data/Brain/openhands-main",
+      "analysis_file": "/data/Brain/openhands-main/_qwen_analysis/openhands-main_analysis_20260918_183051.md",
+      "timestamp": "2026-09-19T14:06:53.049345+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "SeeClick": {
+      "repo_path": "/data/Brain/SeeClick",
+      "analysis_file": "/data/Brain/SeeClick/_qwen_analysis/SeeClick_analysis_20260919_121159.md",
+      "timestamp": "2026-09-19T14:06:53.175760+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "khoj": {
+      "repo_path": "/data/Brain/khoj",
+      "analysis_file": "/data/Brain/khoj/_qwen_analysis/khoj_analysis_20260918_182343.md",
+      "timestamp": "2026-09-19T14:06:53.258712+00:00",
+      "confidence": 0.833,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "openai-agents-python": {
+      "repo_path": "/data/Brain/openai-agents-python",
+      "analysis_file": "/data/Brain/openai-agents-python/_qwen_analysis/openai-agents-python_analysis_20260918_183019.md",
+      "timestamp": "2026-09-19T14:06:53.333279+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "OS-Copilot": {
+      "repo_path": "/data/Brain/OS-Copilot",
+      "analysis_file": "/data/Brain/OS-Copilot/_qwen_analysis/OS-Copilot_analysis_20260918_183318.md",
+      "timestamp": "2026-09-19T14:06:53.364583+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "llm-api-proxy": {
+      "repo_path": "/data/Brain/llm-api-proxy",
+      "analysis_file": "/data/Brain/llm-api-proxy/_qwen_analysis/llm-api-proxy_analysis_20260919_142351.md",
+      "timestamp": "2026-09-19T14:06:53.379546+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "skyvern": {
+      "repo_path": "/data/Brain/skyvern",
+      "analysis_file": "/data/Brain/skyvern/_qwen_analysis/skyvern_analysis_20260919_121435.md",
+      "timestamp": "2026-09-19T14:06:53.536199+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "UIED": {
+      "repo_path": "/data/Brain/UIED",
+      "analysis_file": "/data/Brain/UIED/_qwen_analysis/UIED_analysis_20260919_121506.md",
+      "timestamp": "2026-09-19T14:06:53.619084+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "browser-extension": {
+      "repo_path": "/data/Brain/browser-extension",
+      "analysis_file": "/data/Brain/browser-extension/_qwen_analysis/browser-extension_analysis_20260918_164556.md",
+      "timestamp": "2026-09-19T14:06:53.637576+00:00",
+      "confidence": 0.517,
+      "recommendation": "REVIEW",
+      "risk_level": "MEDIUM",
+      "source": "qwen_gpu"
+    },
+    "browser-use": {
+      "repo_path": "/data/Brain/browser-use",
+      "analysis_file": "/data/Brain/browser-use/_qwen_analysis/browser-use_analysis_20260919_121614.md",
+      "timestamp": "2026-09-19T14:06:53.819215+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "qdrant": {
+      "repo_path": "/data/Brain/qdrant",
+      "analysis_file": "/data/Brain/qdrant/_qwen_analysis/qdrant_analysis_20260918_183720.md",
+      "timestamp": "2026-09-19T14:06:53.933749+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "phidata": {
+      "repo_path": "/data/Brain/phidata",
+      "analysis_file": "/data/Brain/phidata/_qwen_analysis/phidata_analysis_20260919_143024.md",
+      "timestamp": "2026-09-19T14:06:54.151608+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "vibe-kanban-main": {
+      "repo_path": "/data/Brain/vibe-kanban-main",
+      "analysis_file": "/data/Brain/vibe-kanban-main/_qwen_analysis/vibe-kanban-main_analysis_20260919_145008.md",
+      "timestamp": "2026-09-19T14:06:52.796780+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "yggdrasil-mcp": {
+      "repo_path": "/data/Brain/yggdrasil-mcp",
+      "analysis_file": "/data/Brain/yggdrasil-mcp/_qwen_analysis/yggdrasil-mcp_analysis_20260919_232706.md",
+      "timestamp": "2026-09-19T21:27:17.638518+00:00",
+      "confidence": 0.467,
+      "recommendation": "REJECT",
+      "risk_level": "HIGH",
+      "source": "qwen_gpu"
+    },
+    "bloop-main": {
+      "repo_path": "/data/Brain/bloop-main",
+      "analysis_file": "/data/Brain/bloop-main/_qwen_analysis/bloop-main_analysis_20260919_140417.md",
+      "timestamp": "2026-09-19T14:06:52.170270+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "anubis-mcp-main": {
+      "repo_path": "/data/Brain/anubis-mcp-main",
+      "analysis_file": "/data/Brain/anubis-mcp-main/_qwen_analysis/anubis-mcp-main_analysis_20260919_140150.md",
+      "timestamp": "2026-09-19T14:06:52.228586+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "mcp-server-main": {
+      "repo_path": "/data/Brain/mcp-server-main",
+      "analysis_file": "/data/Brain/mcp-server-main/_qwen_analysis/mcp-server-main_analysis_20260919_142559.md",
+      "timestamp": "2026-09-19T14:06:52.232587+00:00",
+      "confidence": 0.925,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "AutoGPT-master": {
+      "repo_path": "/data/Brain/AutoGPT-master",
+      "analysis_file": "/data/Brain/AutoGPT-master/_qwen_analysis/AutoGPT-master_analysis_20260918_163036.md",
+      "timestamp": "2026-09-19T14:06:52.477327+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "sqlite-vec-main": {
+      "repo_path": "/data/Brain/sqlite-vec-main",
+      "analysis_file": "/data/Brain/sqlite-vec-main/_qwen_analysis/sqlite-vec-main_analysis_20260919_143900.md",
+      "timestamp": "2026-09-19T14:06:52.499228+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "marker-master": {
+      "repo_path": "/data/Brain/marker-master",
+      "analysis_file": "/data/Brain/marker-master/_qwen_analysis/marker-master_analysis_20260919_142526.md",
+      "timestamp": "2026-09-19T14:06:52.510573+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "chatbox-main": {
+      "repo_path": "/data/Brain/chatbox-main",
+      "analysis_file": "/data/Brain/chatbox-main/_qwen_analysis/chatbox-main_analysis_20260919_140856.md",
+      "timestamp": "2026-09-19T14:06:52.554758+00:00",
+      "confidence": 0.75,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "sccache-action-main": {
+      "repo_path": "/data/Brain/sccache-action-main",
+      "analysis_file": "/data/Brain/sccache-action-main/_qwen_analysis/sccache-action-main_analysis_20260918_183957.md",
+      "timestamp": "2026-09-19T14:06:52.560629+00:00",
+      "confidence": 0.833,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "aichat-main": {
+      "repo_path": "/data/Brain/aichat-main",
+      "analysis_file": "/data/Brain/aichat-main/_qwen_analysis/aichat-main_analysis_20260919_140047.md",
+      "timestamp": "2026-09-19T14:06:52.571626+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "cline-main": {
+      "repo_path": "/data/Brain/cline-main",
+      "analysis_file": "/data/Brain/cline-main/_qwen_analysis/cline-main_analysis_20260919_104153.md",
+      "timestamp": "2026-09-19T14:06:52.717701+00:00",
+      "confidence": 0.925,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "llm-main": {
+      "repo_path": "/data/Brain/llm-main",
+      "analysis_file": "/data/Brain/llm-main/_qwen_analysis/llm-main_analysis_20260918_182731.md",
+      "timestamp": "2026-09-19T14:06:52.728349+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "rust-sdk-main": {
+      "repo_path": "/data/Brain/rust-sdk-main",
+      "analysis_file": "/data/Brain/rust-sdk-main/_qwen_analysis/rust-sdk-main_analysis_20260919_143527.md",
+      "timestamp": "2026-09-19T14:06:52.765441+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "aider-main": {
+      "repo_path": "/data/Brain/aider-main",
+      "analysis_file": "/data/Brain/aider-main/_qwen_analysis/aider-main_analysis_20260918_180326.md",
+      "timestamp": "2026-09-19T14:06:52.832377+00:00",
+      "confidence": 0.833,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "LightRAG-main": {
+      "repo_path": "/data/Brain/LightRAG-main",
+      "analysis_file": "/data/Brain/LightRAG-main/_qwen_analysis/LightRAG-main_analysis_20260918_182546.md",
+      "timestamp": "2026-09-19T14:06:52.868930+00:00",
+      "confidence": 0.938,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "transformers.js-main": {
+      "repo_path": "/data/Brain/transformers.js-main",
+      "analysis_file": "/data/Brain/transformers.js-main/_qwen_analysis/transformers.js-main_analysis_20260919_144147.md",
+      "timestamp": "2026-09-19T14:06:52.909869+00:00",
+      "confidence": 0.733,
+      "recommendation": "REVIEW",
+      "risk_level": "MEDIUM",
+      "source": "qwen_gpu"
+    },
+    "deepagents-main": {
+      "repo_path": "/data/Brain/deepagents-main",
+      "analysis_file": "/data/Brain/deepagents-main/_qwen_analysis/deepagents-main_analysis_20260919_141356.md",
+      "timestamp": "2026-09-19T14:06:52.939960+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "servers-main": {
+      "repo_path": "/data/Brain/servers-main",
+      "analysis_file": "/data/Brain/servers-main/_qwen_analysis/servers-main_analysis_20260918_184205.md",
+      "timestamp": "2026-09-19T14:06:53.062758+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "infra-main": {
+      "repo_path": "/data/Brain/infra-main",
+      "analysis_file": "/data/Brain/infra-main/_qwen_analysis/infra-main_analysis_20260918_182212.md",
+      "timestamp": "2026-09-19T14:06:53.132732+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "python-sdk-main": {
+      "repo_path": "/data/Brain/python-sdk-main",
+      "analysis_file": "/data/Brain/python-sdk-main/_qwen_analysis/python-sdk-main_analysis_20260919_143401.md",
+      "timestamp": "2026-09-19T14:06:53.209541+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "create-python-server-main": {
+      "repo_path": "/data/Brain/create-python-server-main",
+      "analysis_file": "/data/Brain/create-python-server-main/_qwen_analysis/create-python-server-main_analysis_20260918_181212.md",
+      "timestamp": "2026-09-19T14:06:53.267737+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "mem0-aio": {
+      "repo_path": "/data/Brain/mem0-aio",
+      "analysis_file": "/data/Brain/mem0-aio/_qwen_analysis/mem0-aio_analysis_20260919_185024.md",
+      "timestamp": "2026-09-19T16:51:03.114220+00:00",
+      "confidence": 0.917,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "java-sdk-main": {
+      "repo_path": "/data/Brain/java-sdk-main",
+      "analysis_file": "/data/Brain/java-sdk-main/_qwen_analysis/java-sdk-main_analysis_20260918_182313.md",
+      "timestamp": "2026-09-19T14:06:53.400551+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "e2b-cookbook-main": {
+      "repo_path": "/data/Brain/e2b-cookbook-main",
+      "analysis_file": "/data/Brain/e2b-cookbook-main/_qwen_analysis/e2b-cookbook-main_analysis_20260919_141511.md",
+      "timestamp": "2026-09-19T14:06:53.419183+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "autogen-main": {
+      "repo_path": "/data/Brain/autogen-main",
+      "analysis_file": "/data/Brain/autogen-main/_qwen_analysis/autogen-main_analysis_20260919_140340.md",
+      "timestamp": "2026-09-19T14:06:53.600539+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "langchain-master": {
+      "repo_path": "/data/Brain/langchain-master",
+      "analysis_file": "/data/Brain/langchain-master/_qwen_analysis/langchain-master_analysis_20260919_142213.md",
+      "timestamp": "2026-09-19T14:06:53.721420+00:00",
+      "confidence": 0.875,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "typescript-sdk-main": {
+      "repo_path": "/data/Brain/typescript-sdk-main",
+      "analysis_file": "/data/Brain/typescript-sdk-main/_qwen_analysis/typescript-sdk-main_analysis_20260919_144227.md",
+      "timestamp": "2026-09-19T14:06:53.741216+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "sentence-transformers-main": {
+      "repo_path": "/data/Brain/sentence-transformers-main",
+      "analysis_file": "/data/Brain/sentence-transformers-main/_qwen_analysis/sentence-transformers-main_analysis_20260918_184128.md",
+      "timestamp": "2026-09-19T14:06:53.846065+00:00",
+      "confidence": 0.917,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "langgraph-main": {
+      "repo_path": "/data/Brain/langgraph-main",
+      "analysis_file": "/data/Brain/langgraph-main/_qwen_analysis/langgraph-main_analysis_20260919_142247.md",
+      "timestamp": "2026-09-19T14:06:53.960085+00:00",
+      "confidence": 0.925,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "ext-auth-main": {
+      "repo_path": "/data/Brain/ext-auth-main",
+      "analysis_file": "/data/Brain/ext-auth-main/_qwen_analysis/ext-auth-main_analysis_20260919_141552.md",
+      "timestamp": "2026-09-19T14:06:53.969709+00:00",
+      "confidence": 0.8,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "pix2struct": {
+      "repo_path": "/data/Brain/pix2struct",
+      "analysis_file": "/data/Brain/pix2struct/_qwen_analysis/pix2struct_analysis_20260919_143217.md",
+      "timestamp": "2026-09-19T14:06:54.167494+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "architecture-decision-record": {
+      "repo_path": "/data/Brain/architecture-decision-record",
+      "analysis_file": "/data/Brain/architecture-decision-record/_qwen_analysis/architecture-decision-record_analysis_20260918_164302.md",
+      "timestamp": "2026-09-19T14:06:54.221018+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "chroma-main": {
+      "repo_path": "/data/Brain/chroma-main",
+      "analysis_file": "/data/Brain/chroma-main/_qwen_analysis/chroma-main_analysis_20260919_140924.md",
+      "timestamp": "2026-09-19T14:06:54.308209+00:00",
+      "confidence": 0.94,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "infinity-main": {
+      "repo_path": "/data/Brain/infinity-main",
+      "analysis_file": "/data/Brain/infinity-main/_qwen_analysis/infinity-main_analysis_20260918_182136.md",
+      "timestamp": "2026-09-19T14:06:54.329057+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "celery-main": {
+      "repo_path": "/data/Brain/celery-main",
+      "analysis_file": "/data/Brain/celery-main/_qwen_analysis/celery-main_analysis_20260918_180820.md",
+      "timestamp": "2026-09-19T14:06:54.361652+00:00",
+      "confidence": 0.833,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "postgres-master": {
+      "repo_path": "/data/Brain/postgres-master",
+      "analysis_file": "/data/Brain/postgres-master/_qwen_analysis/postgres-master_analysis_20260918_183552.md",
+      "timestamp": "2026-09-19T14:06:54.562042+00:00",
+      "confidence": 0.812,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "open-interpreter": {
+      "repo_path": "/data/Brain/open-interpreter",
+      "analysis_file": "/data/Brain/open-interpreter/_qwen_analysis/open-interpreter_analysis_20260919_142747.md",
+      "timestamp": "2026-09-19T14:06:54.582426+00:00",
+      "confidence": 0.564,
+      "recommendation": "REVIEW",
+      "risk_level": "MEDIUM",
+      "source": "qwen_gpu"
+    },
+    "guardrails": {
+      "repo_path": "/data/Brain/guardrails",
+      "analysis_file": "/data/Brain/guardrails/_qwen_analysis/guardrails_analysis_20260919_141833.md",
+      "timestamp": "2026-09-19T14:06:54.610339+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "OS-Atlas": {
+      "repo_path": "/data/Brain/OS-Atlas",
+      "analysis_file": "/data/Brain/OS-Atlas/_qwen_analysis/OS-Atlas_analysis_20260918_163513.md",
+      "timestamp": "2026-09-19T14:06:54.634802+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "brave-search-mcp-server-main": {
+      "repo_path": "/data/Brain/brave-search-mcp-server-main",
+      "analysis_file": "/data/Brain/brave-search-mcp-server-main/_qwen_analysis/brave-search-mcp-server-main_analysis_20260919_140625.md",
+      "timestamp": "2026-09-19T14:06:54.649875+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "bloop-oss": {
+      "repo_path": "/data/Brain/bloop-oss",
+      "analysis_file": "/data/Brain/bloop-oss/_qwen_analysis/bloop-oss_analysis_20260918_164446.md",
+      "timestamp": "2026-09-19T14:06:54.696371+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "trace-wave": {
+      "repo_path": "/data/Brain/trace-wave",
+      "analysis_file": "/data/Brain/trace-wave/_qwen_analysis/trace-wave_analysis_20260919_144110.md",
+      "timestamp": "2026-09-19T14:06:54.710123+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "text-embeddings-inference-main": {
+      "repo_path": "/data/Brain/text-embeddings-inference-main",
+      "analysis_file": "/data/Brain/text-embeddings-inference-main/_qwen_analysis/text-embeddings-inference-main_analysis_20260919_144036.md",
+      "timestamp": "2026-09-19T14:06:54.733323+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "RagaAI-Catalyst": {
+      "repo_path": "/data/Brain/RagaAI-Catalyst",
+      "analysis_file": "/data/Brain/RagaAI-Catalyst/_qwen_analysis/RagaAI-Catalyst_analysis_20260918_183825.md",
+      "timestamp": "2026-09-19T14:06:54.765334+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "DS4SD.Docling-main": {
+      "repo_path": "/data/Brain/DS4SD.Docling-main",
+      "analysis_file": "/data/Brain/DS4SD.Docling-main/_qwen_analysis/DS4SD.Docling-main_analysis_20260918_163219.md",
+      "timestamp": "2026-09-19T14:06:54.800988+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "open-webui-main": {
+      "repo_path": "/data/Brain/open-webui-main",
+      "analysis_file": "/data/Brain/open-webui-main/_qwen_analysis/open-webui-main_analysis_20260919_142829.md",
+      "timestamp": "2026-09-19T14:06:54.928292+00:00",
+      "confidence": 0.8,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "FlagEmbedding-master": {
+      "repo_path": "/data/Brain/FlagEmbedding-master",
+      "analysis_file": "/data/Brain/FlagEmbedding-master/_qwen_analysis/FlagEmbedding-master_analysis_20260919_135302.md",
+      "timestamp": "2026-09-19T14:06:55.001930+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "gemini-cli-main": {
+      "repo_path": "/data/Brain/gemini-cli-main",
+      "analysis_file": "/data/Brain/gemini-cli-main/_qwen_analysis/gemini-cli-main_analysis_20260918_181914.md",
+      "timestamp": "2026-09-19T14:06:55.026890+00:00",
+      "confidence": 0.7,
+      "recommendation": "REVIEW",
+      "risk_level": "MEDIUM",
+      "source": "qwen_gpu"
+    },
+    "code-interpreter-main": {
+      "repo_path": "/data/Brain/code-interpreter-main",
+      "analysis_file": "/data/Brain/code-interpreter-main/_qwen_analysis/code-interpreter-main_analysis_20260919_141107.md",
+      "timestamp": "2026-09-19T14:06:55.048436+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "LaVague": {
+      "repo_path": "/data/Brain/LaVague",
+      "analysis_file": "/data/Brain/LaVague/_qwen_analysis/LaVague_analysis_20260918_163358.md",
+      "timestamp": "2026-09-19T14:06:55.090592+00:00",
+      "confidence": 0.875,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "pydantic-core": {
+      "repo_path": "/data/Brain/pydantic-core",
+      "analysis_file": "/data/Brain/pydantic-core/_qwen_analysis/pydantic-core_analysis_20260919_143327.md",
+      "timestamp": "2026-09-19T14:06:55.107947+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "cline": {
+      "repo_path": "/data/Brain/cline",
+      "analysis_file": "/data/Brain/cline/_qwen_analysis/cline_analysis_20260919_104041.md",
+      "timestamp": "2026-09-19T14:06:55.121131+00:00",
+      "confidence": 0.5,
+      "recommendation": "UNKNOWN",
+      "risk_level": "UNKNOWN",
+      "source": "qwen_gpu"
+    },
+    "rq-master": {
+      "repo_path": "/data/Brain/rq-master",
+      "analysis_file": "/data/Brain/rq-master/_qwen_analysis/rq-master_analysis_20260918_183855.md",
+      "timestamp": "2026-09-19T14:06:55.140429+00:00",
+      "confidence": 0.707,
+      "recommendation": "REVIEW",
+      "risk_level": "MEDIUM",
+      "source": "qwen_gpu"
+    },
+    "anything-llm-master": {
+      "repo_path": "/data/Brain/anything-llm-master",
+      "analysis_file": "/data/Brain/anything-llm-master/_qwen_analysis/anything-llm-master_analysis_20260919_140229.md",
+      "timestamp": "2026-09-19T14:06:55.244481+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "E2B-main": {
+      "repo_path": "/data/Brain/E2B-main",
+      "analysis_file": "/data/Brain/E2B-main/_qwen_analysis/E2B-main_analysis_20260918_181710.md",
+      "timestamp": "2026-09-19T14:06:55.296036+00:00",
+      "confidence": 0.94,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "debugger-mcp-main": {
+      "repo_path": "/data/Brain/debugger-mcp-main",
+      "analysis_file": "/data/Brain/debugger-mcp-main/_qwen_analysis/debugger-mcp-main_analysis_20260919_084856.md",
+      "timestamp": "2026-09-19T14:06:55.350721+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "UFO": {
+      "repo_path": "/data/Brain/UFO",
+      "analysis_file": "/data/Brain/UFO/_qwen_analysis/UFO_analysis_20260919_135824.md",
+      "timestamp": "2026-09-19T14:06:55.418275+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "php-sdk-main": {
+      "repo_path": "/data/Brain/php-sdk-main",
+      "analysis_file": "/data/Brain/php-sdk-main/_qwen_analysis/php-sdk-main_analysis_20260919_143058.md",
+      "timestamp": "2026-09-19T14:06:55.441350+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "llama.cpp": {
+      "repo_path": "/data/Brain/llama.cpp",
+      "analysis_file": "/data/Brain/llama.cpp/_qwen_analysis/llama.cpp_analysis_20260918_182615.md",
+      "timestamp": "2026-09-19T14:06:55.523394+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "jan-main": {
+      "repo_path": "/data/Brain/jan-main",
+      "analysis_file": "/data/Brain/jan-main/_qwen_analysis/jan-main_analysis_20260918_182243.md",
+      "timestamp": "2026-09-19T14:06:55.593611+00:00",
+      "confidence": 0.9,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "csharp-sdk-main": {
+      "repo_path": "/data/Brain/csharp-sdk-main",
+      "analysis_file": "/data/Brain/csharp-sdk-main/_qwen_analysis/csharp-sdk-main_analysis_20260919_141233.md",
+      "timestamp": "2026-09-19T14:06:55.625138+00:00",
+      "confidence": 0.564,
+      "recommendation": "REVIEW",
+      "risk_level": "MEDIUM",
+      "source": "qwen_gpu"
+    },
+    "donut": {
+      "repo_path": "/data/Brain/donut",
+      "analysis_file": "/data/Brain/donut/_qwen_analysis/donut_analysis_20260919_141433.md",
+      "timestamp": "2026-09-19T14:06:55.642725+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "gemini_extensions": {
+      "repo_path": "/data/Brain/gemini_extensions",
+      "analysis_file": "/data/Brain/gemini_extensions/_qwen_analysis/gemini_extensions_analysis_20260918_181953.md",
+      "timestamp": "2026-09-19T14:06:55.684098+00:00",
+      "confidence": 0.857,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "modelcontextprotocol-main": {
+      "repo_path": "/data/Brain/modelcontextprotocol-main",
+      "analysis_file": "/data/Brain/modelcontextprotocol-main/_qwen_analysis/modelcontextprotocol-main_analysis_20260919_105254.md",
+      "timestamp": "2026-09-19T14:06:55.857648+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "graphrag-main": {
+      "repo_path": "/data/Brain/graphrag-main",
+      "analysis_file": "/data/Brain/graphrag-main/_qwen_analysis/graphrag-main_analysis_20260919_141755.md",
+      "timestamp": "2026-09-19T14:06:55.921965+00:00",
+      "confidence": 1.0,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    },
+    "OmniParser": {
+      "repo_path": "/data/Brain/OmniParser",
+      "analysis_file": "/data/Brain/OmniParser/_qwen_analysis/OmniParser_analysis_20260918_163642.md",
+      "timestamp": "2026-09-19T14:06:55.948895+00:00",
+      "confidence": 0.85,
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "source": "qwen_gpu"
+    }
+  },
+  "monte_carlo_repo": {
+    "repo_name": "agentic-os-core",
+    "repo_path": "/data/Brain/agentic-os-core",
+    "mcts_file": "/data/Brain/agentic-os-core/src/agentic_os/core/tree/mcts.py",
+    "async_mcts_file": "/data/Brain/agentic-os-core/src/agentic_os/core/tree/async_mcts.py",
+    "example_file": "/data/Brain/agentic-os-core/examples/02_mcts_reasoning.py",
+    "description": "Monte Carlo Tree Search (MCTS) for structured reasoning - 4-phase loop: Selection (UCB1), Expansion, Simulation, Backpropagation",
+    "token_efficient_patterns": [
+      "UCB1 formula for exploration/exploitation balance",
+      "Selective tree exploration (not exhaustive)",
+      "Score threshold pruning (low-scoring nodes removed)",
+      "Beam search for best path selection",
+      "ThoughtNode/ThoughtTree structure"
+    ],
+    "key_classes": [
+      "MCTS",
+      "AsyncMCTS",
+      "ThoughtNode",
+      "ThoughtTree"
+    ],
+    "identified_date": "2026-09-19T12:25:50.326812"
+  },
+  "gpu_status": {
+    "forced": true,
+    "n_gpu_layers": -1,
+    "vram_usage_mb": 5864,
+    "gpu_name": "Quadro P4000",
+    "tensor_split": [
+      0
+    ],
+    "main_gpu": 0,
+    "n_threads": 4,
+    "last_verified": "2026-09-19T12:25:50.326815",
+    "vram_mb": 8,
+    "util_pct": 0,
+    "last_check": "2026-10-17T05:01:15.843696+00:00"
+  },
+  "analysis_stats": {
+    "total_repos_analyzed": 84,
+    "gpu_forced_repos": 18,
+    "all_repos_covered": true,
+    "last_batch_date": "2026-09-19T12:25:50.326819"
+  },
+  "anti_hallucination": {
+    "module": "/data/mcp_server/tools/anti_hallucination.py",
+    "checks": [
+      "file_references",
+      "repo_name_accuracy",
+      "technology_claims",
+      "confidence_scoring"
+    ],
+    "test_result": {
+      "repo": "mem0-aio",
+      "confidence": 0.917,
+      "risk_level": "LOW",
+      "recommendation": "TRUST"
+    },
+    "implemented_date": "2026-09-19T13:22:38.756879",
+    "batch_results": {
+      "total_repos": 83,
+      "trust_count": 74,
+      "review_count": 9,
+      "reject_count": 0,
+      "avg_confidence": 0.881,
+      "results_file": "/data/mcp_server/context/anti_hallucination_results.json",
+      "url_filter_applied": true,
+      "improvement": "URL/technológia kizárás javítva"
+    }
+  },
+  "mcts_qwen_bridge": {
+    "module": "/data/mcp_server/tools/mcts_qwen_bridge.py",
+    "components": [
+      "HeuristicEvaluator",
+      "QwenCache",
+      "MCTSQwenBridge"
+    ],
+    "cache_file": "/data/mcp_server/context/qwen_evaluations.json",
+    "test_results": {
+      "test1_python_repo": "qwen_evaluated (0.55 -> 0.63)",
+      "test2_low_value": "qwen_evaluated (0.475 -> 0.60)",
+      "test3_cache_hit": "cache (0 tokens)"
+    },
+    "implemented_date": "2026-09-19T13:22:38.756901"
+  },
+  "master_orchestrator": {
+    "module": "/data/mcp_server/tools/master_orchestrator.py",
+    "components_integrated": [
+      "anti_hallucination.py",
+      "mcts_qwen_bridge.py",
+      "qwen_analyzer.py",
+      "memory_manager.py"
+    ],
+    "strategies": [
+      "full_qwen",
+      "mcts_hybrid",
+      "heuristic_only",
+      "cached"
+    ],
+    "thresholds": {
+      "small_repo_files": 10,
+      "large_repo_files": 100,
+      "small_repo_size_mb": 5,
+      "large_repo_size_mb": 500
+    },
+    "status": "OPERATIONAL",
+    "implemented_date": "2026-09-19T13:26:19.250798"
+  },
+  "production_run": {
+    "status": "COMPLETED",
+    "total_qwen_gpu_runs": 85,
+    "total_qwen_time_sec": 2965.1,
+    "avg_confidence": 0.881,
+    "gpu": "Quadro P4000",
+    "vram_mb": 5894,
+    "n_gpu_layers": -1,
+    "all_84_repos_analyzed": false,
+    "batch_files": 9,
+    "completed_date": "2026-09-19T14:42:55.282923",
+    "total_repos_in_brain": 86,
+    "last_batch_update": "2026-09-19T14:06:55.966196+00:00",
+    "batch_files_count": 9
+  },
+  "reasoning_repos": [
+    {
+      "repo_name": "yggdrasil-mcp",
+      "repo_path": "/data/Brain/yggdrasil-mcp",
+      "type": "Tree of Thoughts reasoning orchestration MCP",
+      "language": "TypeScript",
+      "relevance": "Kapcsolódik a 3. irányhoz (Monte Carlo/reasoning)"
+    }
+  ],
+  "mcts_qwen_benchmark": {
+    "timestamp": "2026-09-19T15:04:33.418757",
+    "repos_tested": [
+      "yggdrasil-mcp",
+      "mem0-aio"
+    ],
+    "results": {
+      "yggdrasil-mcp": {
+        "mcts_qwen": {
+          "tokens": 400,
+          "time_sec": 30.7,
+          "confidence": 0.505
+        },
+        "pure_qwen": {
+          "tokens": 600,
+          "time_sec": 37.3,
+          "confidence": 0.467
+        },
+        "winner": "mcts_qwen (gyorsabb + magasabb conf)"
+      },
+      "mem0-aio": {
+        "mcts_qwen": {
+          "tokens": 400,
+          "time_sec": 30.3,
+          "confidence": 0.707
+        },
+        "pure_qwen": {
+          "tokens": 600,
+          "time_sec": 37.2,
+          "confidence": 0.917
+        },
+        "winner": "pure_qwen (magasabb conf, de több token)"
+      }
+    },
+    "aggregate": {
+      "total_mcts_tokens": 800,
+      "total_pure_tokens": 1200,
+      "token_savings": 400,
+      "token_savings_pct": 33.3,
+      "total_mcts_time": 61.0,
+      "total_pure_time": 74.5,
+      "time_savings_pct": 18.2,
+      "conclusion": "MCTS-Qwen hibrid 33.3%-kal kevesebb tokent használ és 18%-kal gyorsabb. Pontosság: kis repók esetén a hibrid jobb (yggdrasil), nagy/komplex repók esetén a pure Qwen pontosabb (mem0-aio)."
+    },
+    "results_file": "/data/mcp_server/context/mcts_qwen_benchmark.json"
+  },
+  "e2e_test": {
+    "timestamp": "2026-09-19T15:08:15.762686",
+    "repo_path": "/tmp/e2e_test_repo",
+    "description": "End-to-end teszt egy teljesen ÚJ repón (nem /data/Brain)",
+    "pipeline_steps": {
+      "1_qwen_gpu_analysis": {
+        "status": "PASS",
+        "time_sec": 18.5,
+        "vram_mb": 5864
+      },
+      "2_anti_hallucination": {
+        "status": "PASS",
+        "confidence": 1.0,
+        "missing_files": 0
+      },
+      "3_file_validation": {
+        "status": "PASS",
+        "valid_files": [
+          "src/calculator.py",
+          "src/validator.py",
+          "tests/test_calculator.py"
+        ]
+      },
+      "4_tech_claims": {
+        "status": "PASS",
+        "unverified_count": 0
+      }
+    },
+    "final_result": {
+      "recommendation": "TRUST",
+      "risk_level": "LOW",
+      "confidence": 1.0
+    },
+    "conclusion": "A teljes Master-Subagent pipeline működik: Qwen GPU elemzés → Anti-hallucination validáció → TRUST ajánlás. 100% confidence egy új, kis repón."
+  },
+  "mcts_qwen_benchmark_last": "2026-09-19T15:04:17.698511",
+  "modules_status": {
+    "memory_event_watcher": {
+      "status": "OPERATIONAL (daemon)",
+      "pid": 3378412,
+      "interval_sec": 60,
+      "last_update": "2026-09-19T20:49:16.031855+00:00",
+      "init_script": "/etc/init.d/memory-event-watcher",
+      "sysvinit_integrated": true,
+      "boot_autostart": true,
+      "runlevel_symlinks": {
+        "start": [
+          "S02memory-event-watcher in rc2.d, rc3.d, rc4.d, rc5.d"
+        ],
+        "stop": [
+          "K01memory-event-watcher in rc0.d, rc1.d, rc6.d"
+        ]
+      },
+      "pid_file": "/var/run/memory-event-watcher.pid",
+      "managed_by": "start-stop-daemon (SysVinit)",
+      "commands": [
+        "service memory-event-watcher {start|stop|status|restart|log}"
+      ],
+      "current_pid": 3378412,
+      "signal_handling": true,
+      "graceful_shutdown": true,
+      "log_file_redirect": true,
+      "stop_retry_schedule": "TERM/10/KILL/5",
+      "log_file": "/data/mcp_server/context/watcher_daemon.log",
+      "memory_jsonl": "/data/mcp_server/context/memory.jsonl",
+      "optimization_date": "2026-09-19",
+      "optimization_verified": true
+    },
+    "adaptive_strategy_selector": {
+      "status": "OPERATIONAL",
+      "integrated_into": "master_orchestrator.select_strategy",
+      "last_update": "2026-09-19T14:24:14.039870+00:00"
+    },
+    "context_prioritizer": {
+      "status": "OPERATIONAL",
+      "integrated_into": "qwen_analyzer --context-query",
+      "last_update": "2026-09-19T14:24:14.039875+00:00"
+    },
+    "reasoning_pipeline": {
+      "status": "OPERATIONAL",
+      "integrates": "agentic-os-core MCTS + yggdrasil-mcp fazisok + Qwen/API szimulatok",
+      "heterogen": true,
+      "last_update": "2026-09-19T16:35:53.536196+00:00",
+      "simulator_modes": [
+        "auto (heterogen: sekelyen API, melyben Qwen)",
+        "qwen (mindig Qwen, tomeges rollout)",
+        "api (mindig API agent, melyebb gondolkodas)"
+      ],
+      "qwen_verified": true,
+      "qwen_backend_script": "/data/mcp_server/tools/qwen_reasoning_backend.py",
+      "qwen_model_path": "/data/ml/hf_cache/models--Qwen--Qwen2.5-Coder-7B-Instruct-GGUF/snapshots/13fb94bfda8c8cf22497dc57b78f391a9acb426a/qwen2.5-coder-7b-instruct-q5_k_m.gguf",
+      "cuda_lib_path": "/home/Jules/jules_venv/lib/python3.11/site-packages/nvidia/cuda_runtime/lib",
+      "last_qwen_test": "2026-09-19T15:29:35Z",
+      "api_backend_real": true,
+      "api_backend_profile": "deep (system prompt, temp=0.15, max_tokens=400, indokolt ertekles)",
+      "api_backend_uses": "Qwen deep-generate/deep-evaluate mode (not placeholder heuristics)",
+      "heterogeneous_profiles": {
+        "qwen": "tomeges rollout (temp=0.5, max_tokens=200, rovid valaszok)",
+        "api": "sekely-deep reasoning (system prompt, temp=0.15, max_tokens=400, indoklas)"
+      },
+      "api_verified": true,
+      "api_test_result": {
+        "backend_calls": {
+          "qwen": 0,
+          "api": 1
+        },
+        "best_path_length": 3,
+        "duration_sec": 95,
+        "sample": "MEGKOZELITES A: Log Analizis es Figyeles (Kockazat: Alacsony)"
+      },
+      "auto_mode_tested": true,
+      "auto_mode_result": {
+        "backend_calls": {
+          "qwen": 0,
+          "api": 1
+        },
+        "best_path_length": 4,
+        "depth": 3,
+        "iterations": 4,
+        "note": "auto mod a gyoker kozel (depth<2) a deep reasoning-t valasztja; valoj heterogen valtashoz a MCTS engine belso modositasa kellene"
+      },
+      "parameter_tuning": {
+        "recommended": {
+          "iterations": "4-10 (kis problemak), 20-50 (nagy problemak)",
+          "depth": "2-3 (sekey), 4-5 (mely)",
+          "simulator": "auto (heterogen), qwen (tomeges), api (sekely-deep)"
+        },
+        "duration_observations": {
+          "qwen_mode": "~31s (3 iter, depth 2)",
+          "api_mode": "~95s (3 iter, depth 2, deep reasoning lasabb de reszletesebb)",
+          "auto_mode": "~110s (4 iter, depth 3)"
+        }
+      },
+      "heterogeneous_backend": true,
+      "heterogeneous_verified": true,
+      "hetero_test_result": {
+        "backend_calls": {
+          "qwen": 8,
+          "api": 1
+        },
+        "total_calls": 9,
+        "switch_after": 1,
+        "best_path_length": 4,
+        "note": "elso hivas deep (gyoker), utana 8 Qwen tomeges rollout",
+        "path_mix": "lepes2=deep MEGKOZELITES formatum, lepes3=Qwen tomeges rollout"
+      },
+      "heterogeneous_backend_class": "HeterogeneousBackend (wrapper, depth-proxy call counter)"
+    },
+    "alert_processor": {
+      "status": "OPERATIONAL",
+      "file": "/data/mcp_server/tools/alert_processor.py",
+      "features": [
+        "pending_alerts priorizalas (CRITICAL > WARN > INFO)",
+        "csoportositas tipus szerint",
+        "formazott olvashato kimenet",
+        "process mode: feldolgozas + pending torles",
+        "--critical: csak CRITICAL alertek",
+        "--summary: rovid osszegzes"
+      ],
+      "last_update": "2026-09-19T15:24:37.279817+00:00"
+    },
+    "qwen_reasoning_backend": {
+      "status": "OPERATIONAL",
+      "file": "/data/mcp_server/tools/qwen_reasoning_backend.py",
+      "features": [
+        "generate mode: 3-5 megkozelites generalas",
+        "evaluate mode: 0..1 ertekles",
+        "LD_LIBRARY_PATH auto-setup (cuda_runtime/cublas lib)",
+        "subprocess hivas (nem -c argumentum)",
+        "fallback: 0.5/[] hiba eseten"
+      ],
+      "verified": true,
+      "last_update": "2026-09-19T16:10:07.655493+00:00",
+      "modes": [
+        "generate (tomeges rollout)",
+        "evaluate (tomeges ertekles)",
+        "deep-generate (system prompt, strukturalt megkozelitesek)",
+        "deep-evaluate (részletes indokolt ertekles)"
+      ]
+    }
+  },
+  "system_health": {
+    "cpu_cleanup": {
+      "status": "COMPLETED",
+      "date": "2026-09-19T14:57:13.592435+00:00",
+      "cpu_freed_pct": "~22.5",
+      "processes_killed": 7
+    },
+    "env_sh": {
+      "status": "FIXED",
+      "issue": "LD_LIBRARY_PATH feldagadas (E2BIG)",
+      "fix": "case guard hozzaadva"
+    },
+    "mcp_server": {
+      "status": "AVAILABLE (on-demand, stdio transport)",
+      "note": "A server.py hibatlanul indul ha kliens csatlakozik",
+      "init_script": "/etc/init.d/mcp-bridge"
+    }
+  },
+  "reasoning_results": [
+    {
+      "timestamp": "2026-09-19T15:05:08.879750+00:00",
+      "problem": "Hogyan javitsuk a memoria frissites megbizhatosagat?",
+      "iterations": 10,
+      "best_path": [
+        "Hogyan javitsuk a memoria frissites megbizhatosagat?",
+        "Megközelítés A: strukturált megoldás (Hogyan javitsuk a memoria fris...)",
+        "Megközelítés A: strukturált megoldás (Hogyan javitsuk a memoria fris...)",
+        "Megközelítés A: strukturált megoldás (Hogyan javitsuk a memoria fris...)"
+      ],
+      "mcts_available": true
+    },
+    {
+      "timestamp": "2026-09-19T15:22:16.261030+00:00",
+      "problem": "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+      "iterations": 5,
+      "best_path": [
+        "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+        "Megközelítés A: strukturált megoldás (Hogyan javitsuk a memoria fris...)",
+        "Megközelítés A: strukturált megoldás (Hogyan javitsuk a memoria fris...)"
+      ],
+      "mcts_available": true
+    },
+    {
+      "timestamp": "2026-09-19T15:24:17.471518+00:00",
+      "problem": "Hogyan javitsuk a memoria frissites megbizhatosagat?",
+      "iterations": 3,
+      "best_path": [
+        "Hogyan javitsuk a memoria frissites megbizhatosagat?"
+      ],
+      "mcts_available": true
+    },
+    {
+      "timestamp": "2026-09-19T15:29:35.373886+00:00",
+      "problem": "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+      "iterations": 3,
+      "best_path": [
+        "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+        "1. A watcher daemon konfigurációjának ellenőrzése: Először is ellenőrizze, hogy a watcher daemon megfelelően van-e konfigurálva. Azonosítsa a konfigurációs fájlt, amelyben a daemon beállításai találhatók, és ellenőrizze, hogy a memóriafoglalás és -szabadítás hozzáérősen van-e megadva. Ha nem, javítsa ki a konfigurációt.",
+        "1. A watcher daemon konfigurációjának ellenőrzése: Először is ellenőrizze, hogy a watcher daemon megfelelően van-e konfigurálva. Azonosítsa a konfigurációs fájlt, amelyben a daemon beállításai találhatók, és ellenőrizze, hogy a memóriafoglalás és -szabadítás hozzáérősen van-e megadva. Ha nem, javítsa ki a konfigurációt."
+      ],
+      "mcts_available": true,
+      "qwen_mode_verified": true,
+      "best_path_length": 3,
+      "backend_calls": {
+        "qwen": 1,
+        "api": 0
+      },
+      "qwen_duration_sec": 31,
+      "qwen_real_generation": true,
+      "sample_output": "A watcher daemon konfiguraciojanak ellenorzese..."
+    },
+    {
+      "timestamp": "2026-09-19T16:09:38.995015+00:00",
+      "problem": "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+      "iterations": 3,
+      "best_path": [
+        "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+        "MEGKÖZELÍTÉS A: Log Analízis és Figyelés — A watcher daemon használatával naprakészen lehet követni a memóriára vonatkozó hibákat és figyelmeztetéseket. A naplók analizálásával megállapíthatók a hibák forrása és frekvenciája, ami segít a problémák gyorsabb megoldásában. (Kockázat: Alacsony)",
+        "MEGKÖZELÍTÉS A: Log Analízis és Figyelés — A watcher daemon használatával naprakészen lehet követni a memóriára vonatkozó hibákat és figyelmeztetéseket. A naplók analizálásával megállapíthatók a hibák forrása és frekvenciája, ami segít a problémák gyorsabb megoldásában. (Kockázat: Alacsony)"
+      ],
+      "mcts_available": true
+    },
+    {
+      "timestamp": "2026-09-19T16:13:36.894211+00:00",
+      "problem": "Hogyan optimalizaljuk a reasoning pipeline parametereit?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan optimalizaljuk a reasoning pipeline parametereit?",
+        "MEGKÖZELÍTÉS A: Grid Search — A paraméterek körülbelül egy adott tartományon iterálva, minden lehetséges párosítást teszünk, majd a legjobb eredményt kiválasztjuk. (kockázat: Alacsony)",
+        "MEGKÖZELÍTÉS A: Grid Search — A paraméterek körülbelül egy adott tartományon iterálva, minden lehetséges párosítást teszünk, majd a legjobb eredményt kiválasztjuk. (kockázat: Alacsony)",
+        "MEGKÖZELÍTÉS A: Grid Search — A paraméterek körülbelül egy adott tartományon iterálva, minden lehetséges párosítást teszünk, majd a legjobb eredményt kiválasztjuk. (kockázat: Alacsony)"
+      ],
+      "mcts_available": true
+    },
+    {
+      "timestamp": "2026-09-19T16:35:28.523790+00:00",
+      "problem": "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan javitsuk a memoria frissites megbizhatosagat a watcher daemon segitsegevel?",
+        "MEGKÖZELÍTÉS A: Log Analízis és Figyelés — A watcher daemon használatával naprakészen lehet követni a memóriára vonatkozó hibákat és figyelmeztetéseket. A naplók analizálásával megállapíthatók a hibák forrása és frekvenciája, ami segít a problémák gyorsabb megoldásában. (Kockázat: Alacsony)",
+        "1. A watcher daemon konfigurációjának ellenőrzése: Először is ellenőrizze, hogy a watcher daemon megfelelően van-e konfigurálva. Azonosítsa a konfigurációs fájlt, amelyben a daemon beállításai találhatók, és ellenőrizze, hogy a memóriafoglalás és -szabadítás hozzáérősen van-e megadva. Ha nem, javítsa ki a konfigurációt.",
+        "1. A watcher daemon konfigurációjának ellenőrzése: Először is ellenőrizze, hogy a watcher daemon megfelelően van-e konfigurálva. Azonosítsa a konfigurációs fájlt, amelyben a daemon beállításai találhatók, és ellenőrizze, hogy a memóriafoglalás és -szabadítás hozzáérősen van-e megadva. Ha nem, javítsa ki a konfigurációt."
+      ],
+      "mcts_available": true
+    },
+    {
+      "timestamp": "2026-09-19T17:13:26.826401+00:00",
+      "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+        "MEGKÖZELÍTÉS A: Full Qwen — Teljes Qwen modell használata a fájlok elemzésére. (kockázat: Alacsony)",
+        "1. Teljes Qwen futtatása: Minden fájlra alkalmazza a teljes Qwen modellel, ami a leg pontosabb eredményt adja, de a leglassabb.",
+        "1. Teljes Qwen futtatása: Minden fájlra alkalmazza a teljes Qwen modellel, ami a leg pontosabb eredményt adja, de a leglassabb."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T17:17:14.282426+00:00",
+      "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+        "MEGKÖZELÍTÉS A: Full Qwen — Teljes Qwen modell használata a fájlok elemzésére. (kockázat: Alacsony)",
+        "1. Teljes Qwen futtatása: Minden fájlra alkalmazza a teljes Qwen modellel, ami a leg pontosabb eredményt adja, de a leglassabb.",
+        "1. Teljes Qwen futtatása: Minden fájlra alkalmazza a teljes Qwen modellel, ami a leg pontosabb eredményt adja, de a leglassabb."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T17:18:56.894943+00:00",
+      "problem": "Hogyan javitsuk a rendszer biztonsagat es architekturajat? Kritikus teljesitesi problemak a production kornyezetben. Complex security architecture review needed.",
+      "iterations": 10,
+      "best_path": [
+        "Hogyan javitsuk a rendszer biztonsagat es architekturajat? Kritikus teljesitesi problemak a production kornyezetben. Complex security architecture review needed.",
+        "MEGKÖZELÍTÉS A: Penetrációs tesztek végzése — A biztonsági kockázatokat az ellenőrzési folyamat során megtaláljuk. (kockázat: Magas)",
+        "MEGKÖZELÍTÉS A: Penetrációs tesztek végzése — A biztonsági kockázatokat az ellenőrzési folyamat során megtaláljuk. (kockázat: Magas)",
+        "1. Biztonsági audit és értékelés: Először is végezze el egy teljes biztonsági auditot a rendszeren. Ez lehetővé teszi a kivizsgálatot a biztonsági hibák, a kiválasztott biztonsági intézkedések hatását és a rendszer teljes biztonsági állapotának értékelését. A különböző biztonsági szabadságok és függőségek megértésével javíthatja a rendszer biztonságát és architekturát.",
+        "1. Biztonsági audit és értékelés: Először is végezze el egy teljes biztonsági auditot a rendszeren. Ez lehetővé teszi a kivizsgálatot a biztonsági hibák, a kiválasztott biztonsági intézkedések hatását és a rendszer teljes biztonsági állapotának értékelését. A különböző biztonsági szabadságok és függőségek megértésével javíthatja a rendszer biztonságát és architekturát."
+      ],
+      "mcts_available": true,
+      "tree_size": 5
+    },
+    {
+      "timestamp": "2026-09-19T17:23:17.981414+00:00",
+      "problem": "Hogyan elemezzuk a(z) yggdrasil-mcp repot? 37 fajl, 0.42 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) yggdrasil-mcp repot? 37 fajl, 0.42 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+        "MEGKÖZELÍTÉS A: Full Qwen GPU-t futtatni",
+        "1. Teljes Qwen futtatása: Ez a leggyorsabb módszer, mivel a teljes Qwen algoritmus használata lehetővé teszi a leggyorsabb eldöntések végzését. A fájlok teljes tartalmának beolvasása és a Qwen algoritmusának alkalmazása a leggyorsabb lehetséges elvegzi a feladatot.",
+        "1. Teljes Qwen futtatása: Ez a leggyorsabb módszer, mivel a teljes Qwen algoritmus használata lehetővé teszi a leggyorsabb eldöntések végzését. A fájlok teljes tartalmának beolvasása és a Qwen algoritmusának alkalmazása a leggyorsabb lehetséges elvegzi a feladatot."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T19:25:28.850812+00:00",
+      "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését.",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését.",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T19:26:14.482629+00:00",
+      "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+        "MEGKÖZELÍTÉS A: Full Qwen — A teljes Qwen modellel közvetlenül a fájlokat elemezni. (kockázat: Alacsony)",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését.",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T19:27:51.431155+00:00",
+      "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését.",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését.",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T19:28:37.575834+00:00",
+      "problem": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+      "iterations": 4,
+      "best_path": [
+        "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)?",
+        "MEGKÖZELÍTÉS A: Full Qwen — A teljes Qwen modellel közvetlenül a fájlokat elemezni. (kockázat: Alacsony)",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését.",
+        "1. Manuális elemzés: Az első lehetőség, hogy manuálisan történjen a fájlok elemzése. Minden fájlt külön-külön megnézhetjük, és azok tartalmát, a fájltípusát, a kódolási formátumát, és a fájlméretét is feljegyzhetjük. Ez lehetővé teszi nekünk az adatok általános megértését."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    },
+    {
+      "timestamp": "2026-09-19T19:51:01.278638+00:00",
+      "problem": "Hogyan javitsuk a rendszer memoriakezeleset?",
+      "iterations": 10,
+      "best_path": [
+        "Hogyan javitsuk a rendszer memoriakezeleset?",
+        "1. Memória Profiling: A rendszer memóriájának használatát és a memóriaképesítményt diagnosztizáljuk a memória profiling segítségével. Ez segít megtalálni a memóriában a legtöbbet használó részeket, amelyeket lehetséges, hogy optimizálnunk kellene.",
+        "1. Memória Profiling: A rendszer memóriájának használatát és a memóriaképesítményt diagnosztizáljuk a memória profiling segítségével. Ez segít megtalálni a memóriában a legtöbbet használó részeket, amelyeket lehetséges, hogy optimizálnunk kellene."
+      ],
+      "mcts_available": true,
+      "tree_size": 10
+    },
+    {
+      "timestamp": "2026-09-19T21:29:29.227125+00:00",
+      "problem": "Hogyan optimalizáljuk a Qwen MCTS reasoning pipeline teljesítményét?",
+      "iterations": 10,
+      "best_path": [
+        "Hogyan optimalizáljuk a Qwen MCTS reasoning pipeline teljesítményét?",
+        "MEGKÖZELÍTÉS A: Hyperparameter Tuning — A Qwen MCTS pipeline teljesítményét a hiperparaméterek optimalizálásával lehet javítani. Ez a folyamat a különböző hiperparaméterek értékeinek keresését és tesztelését végzi el, hogy megtalálja a legjobb beállításokat. A hiperparaméterek például a felfedezők számának, a felfedezők mélységének, a felfedezők számának és a felfedezők mélységének változásának gyakoriságának beállítása lehet. (Kockázat: Alacsony)",
+        "1. Algoritmusos optimalizáció: A Qwen MCTS (Monte Carlo Tree Search) algoritmus teljesítménye nagyon fontos a megoldásához. A teljesítmény javítása érdekében a kód felépítését, a paramétereket, a gyorsító technikákat és a hibakezelést is lehet optimalizálni.",
+        "1. Algoritmusos optimalizáció: A Qwen MCTS (Monte Carlo Tree Search) algoritmus teljesítménye nagyon fontos a megoldásához. A teljesítmény javítása érdekében a kód felépítését, a paramétereket, a gyorsító technikákat és a hibakezelést is lehet optimalizálni."
+      ],
+      "mcts_available": true,
+      "tree_size": 4
+    }
+  ],
+  "session_summaries": [
+    {
+      "session_id": "2026-09-19-session-3",
+      "timestamp": "2026-09-19T16:35:53.536234+00:00",
+      "title": "Memoria figyelo + adaptiv strategia + kontextus prioritas + reasoning pipeline + CPU cleanup",
+      "status": "MINDEN BEFEJEZVE",
+      "completed_tasks": [
+        {
+          "task": "Memory Event Watcher (automatikus memoria-iras + figyelmeztetes)",
+          "file": "/data/mcp_server/tools/memory_event_watcher.py",
+          "daemon_pid": 3238515,
+          "interval_sec": 60,
+          "features": [
+            "Uj _qwen_analysis/*.md -> memoria frissites + alert (REJECT=CRITICAL)",
+            "Uj batch_run_*.json -> konszolidacio + alert",
+            "Uj benchmark -> memoria + alert",
+            "GPU spike/VRAM high -> alert",
+            "Memoria corruptio -> CRITICAL alert",
+            "memory_changed hash detekcio (mukodik: 14:22 es 14:23)-ban ertekezett"
+          ],
+          "outputs": [
+            "/data/mcp_server/context/events.log",
+            "/data/mcp_server/context/pending_alerts.json",
+            "/data/mcp_server/context/watcher_state.json"
+          ],
+          "verified": true
+        },
+        {
+          "task": "Adaptiv strategia valaszto (benchmark-tanult)",
+          "file": "/data/mcp_server/tools/adaptive_strategy_selector.py",
+          "integrated_into": "master_orchestrator.py select_strategy",
+          "decision_factors": [
+            "file_count (logaritmikus)",
+            "size_mb",
+            "complexity (nyelvi sulyok)",
+            "test_ratio",
+            "doc_ratio",
+            "historical_confidence (tanulas)"
+          ],
+          "tested_on": {
+            "yggdrasil-mcp": "full_qwen (37 fájl, complexity 0.581, low hist conf 0.467)",
+            "mem0-aio": "mcts_qwen (30 fájl, hist conf 0.917 magas)",
+            "vibe-kanban-main": "full_qwen (1845 fájl, complexity 0.753)"
+          },
+          "verified": true
+        },
+        {
+          "task": "Kontextus prioritas integralasa a Qwen promptba",
+          "file": "/data/mcp_server/tools/qwen_analyzer.py (modified)",
+          "feature": "--context-query CLI opcio, build_context() injekcio",
+          "tested": "Tree of Thoughts reasoning query -> yggdrasil-mcp elso helyen (score 0.55)",
+          "verified": true
+        },
+        {
+          "task": "CPU/process cleanup (sudo-val megoldva)",
+          "killed_processes": [
+            "PID 1411884: root while loop (22.5% CPU, 10 ora)",
+            "PID 1410475: root while loop (0% CPU, 10 ora)",
+            "PID 1380308: beragadt rm pid (12 ora)",
+            "4 beragadt sudo folyamat (pkill, kill, systemctl, cat /proc)"
+          ],
+          "cpu_freed": "~22.5%",
+          "verified": true
+        },
+        {
+          "task": "env.sh javitas (LD_LIBRARY_PATH guard)",
+          "file": "/data/mcp_server/env.sh (modified)",
+          "root_cause": "LD_LIBRARY_PATH minden source-nal novekedett (146 karakter/iteracio), 10 ora utan 175k+ karakter -> E2BIG hiba",
+          "fix": "case guard: csak egyszer fuzi hozza a CUDA lib utvonalakat",
+          "test_result": "1x=146, 2x=146, 3x=146 karakter (nem novekszik)",
+          "verified": true
+        },
+        {
+          "task": "Reasoning Pipeline (heterogen MCTS + yggdrasil + Qwen/API)",
+          "file": "/data/mcp_server/tools/reasoning_pipeline.py",
+          "integrates": [
+            "agentic-os-core MCTS motor (valodi, importalva)",
+            "yggdrasil-mcp fazisok (init/clarify/explore/evaluate/finalize)",
+            "Qwen szimulator (tomeges rollout)",
+            "API agent szimulator (melyebb gondolkodas, sekelyebb rollout)"
+          ],
+          "heterogen_szimulator": "depth<2 es nodes<10 -> API agent, egyebkent Qwen",
+          "tested": "10 iteracio, 3 melyseg, --no-qwen mode — 5 fazis lefutott, 4 lepeses best path",
+          "mcts_available": true,
+          "verified": true
+        },
+        {
+          "task": "Alert Processor (Master ertestitesi kozpontja)",
+          "file": "/data/mcp_server/tools/alert_processor.py",
+          "features": [
+            "priorizalas",
+            "csoportositas",
+            "process mode",
+            "--critical/--summary"
+          ],
+          "verified": true
+        },
+        {
+          "task": "Reasoning pipeline szimulator mode javitas",
+          "change": "simulator_mode parameter (auto/qwen/api) + backend_calls tracker",
+          "bug_fixed": "auto mod mindig API-t valasztott (depth<2, nodes<10) -> Qwen sosem hivodott",
+          "verified": true
+        },
+        {
+          "task": "Qwen reasoning backend (kulon script, robosztus)",
+          "file": "/data/mcp_server/tools/qwen_reasoning_backend.py",
+          "change": "A -c argumentum helyett kulon script subprocess hivas",
+          "fixes": [
+            "LD_LIBRARY_PATH auto-setup (cuda_runtime/cublas lib)",
+            "Model path: HF cache snapshotbol",
+            "Generalt 3 lepeses ut valos Qwen kimenettel"
+          ],
+          "verified": true,
+          "qwen_duration_sec": 31,
+          "backend_calls": {
+            "qwen": 1,
+            "api": 0
+          }
+        },
+        {
+          "task": "SysVinit integracio a memory_event_watcher-nek",
+          "init_script": "/etc/init.d/memory-event-watcher",
+          "features": [
+            "start/stop/status/restart/log parancsok",
+            "start-stop-daemon PID kezeles",
+            "update-rc.d defaults -> boot-kor inditas",
+            "S02 symlink rc2,3,4,5-ben, K01 symlink rc0,1,6-ban",
+            "status: CPU/Mem/pending alerts",
+            "env.sh betoltes + venv aktivlas"
+          ],
+          "tested": [
+            "start (PID 3374760)",
+            "restart (kill -9 fallback)",
+            "stop",
+            "status"
+          ],
+          "verified": true
+        },
+        {
+          "task": "SysVinit init szkript optimalizalas (megjegyzesek javitasa)",
+          "files_modified": [
+            "/data/mcp_server/tools/memory_event_watcher.py (SIGTERM signal handler)",
+            "/etc/init.d/memory-event-watcher (--output log, --retry gracios stop)"
+          ],
+          "issues_fixed": [
+            "start-stop-daemon stdout/stderr /dev/null-ba ment -> --output LOG_FILE",
+            "restart kill -9 kellett -> --retry TERM/10/KILL/5 + SIGTERM handler",
+            "boot-kor: timing problema -> tobb sleep a start utan"
+          ],
+          "memory_jsonl_created": "/data/mcp_server/context/memory.jsonl",
+          "verified": true
+        },
+        {
+          "task": "API agent backend valos bekotese (nem placeholder)",
+          "files_modified": [
+            "/data/mcp_server/tools/qwen_reasoning_backend.py (deep-generate, deep-evaluate fuggvenyek)",
+            "/data/mcp_server/tools/reasoning_pipeline.py (APISimulatorBackend atirva deep Qwen profilra)"
+          ],
+          "approach": "Mivel nincs kulso API kulcs, a Qwen masodik profila (deep) lett az API agent",
+          "profiles": {
+            "qwen": "tomeges rollout (temp 0.5, 200 token)",
+            "api (deep)": "sekely-deep (system prompt, temp 0.15, 400 token, indoklas)"
+          },
+          "verified": true,
+          "test_evidence": "backend_calls {qwen:0, api:1}, best_path 3 lepes strukturalt MEGKOZELITES formatumban"
+        },
+        {
+          "task": "Reasoning pipeline auto mode teszt + parameterhangolas",
+          "test": "auto mode, 4 iter, depth 3",
+          "result": "backend_calls {qwen:0, api:1}, best_path 4 lepes, strukturalt Grid Search megkozelites",
+          "parameter_recommendations": "iterations 4-10 (kis) / 20-50 (nagy); depth 2-3 / 4-5; simulator auto/qwen/api",
+          "verified": true
+        },
+        {
+          "task": "MCTS engine heterogen backend valtas (HeterogeneousBackend wrapper)",
+          "approach": "Kulso kodszerkesztes nelkul: HeterogeneousBackend wrapper osztaly, ami hivasszamlalo alapjan valt (elso hivas=deep, utana=Qwen)",
+          "reason": "Az MCTS engine fixen egy backendet kap; a wrapper ugy viselkedik mint egyetlen backend, de belul valt",
+          "files_modified": [
+            "/data/mcp_server/tools/reasoning_pipeline.py"
+          ],
+          "test_result": {
+            "backend_calls": {
+              "qwen": 8,
+              "api": 1
+            },
+            "total_calls": 9,
+            "best_path_mix": "deep MEGKOZELITES + Qwen tomeges rollout"
+          },
+          "verified": true
+        }
+      ],
+      "system_health_after": {
+        "cpu_load_1min": "rendszer kozel ures",
+        "memory_event_watcher": "FUT (PID 3374760, SysVinit managed)",
+        "hardware_monitor": "FUT (PID 3272305)",
+        "while_true_loops": 0,
+        "gpu_p4000": "8 MiB, 0% (Qwen nem aktive)",
+        "gpu_p2000": "~4007 MiB, 22%"
+      },
+      "next_actions": [
+        "Opcionális: hardware_monitor SysVinit integracio",
+        "switch_after parameter hangolasa (depth/problema meret alapjan)"
+      ]
+    }
+  ]
+}

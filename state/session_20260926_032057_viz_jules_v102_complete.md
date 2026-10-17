@@ -1,0 +1,4 @@
+# Session: viz_jules_v102_complete
+*Időbélyeg: 2026-09-26T03:20:57.779780*
+
+viz_jules_v102.py létrehozva és futtatva. Script: /data/dev/projects/z-ai-copilot/src/viz_jules_v102.py. 3-panel Plotly (sötét theme, 1600x1200): 1) Candlestick + Actual/Pred Long/Short/Noise markers (confidence-based size), 2) P(Long/Short/Noise) + threshold vonalak, 3) Actual Label vs Predicted. Modell: models/labeled_train.pkl. Adat: labeled_train.csv/labeled_oos.csv. Features: FEATURES_V5 (15). Thresholds: th_long=0.35, th_short=0.50, th_noise=0.60. Python venv: /home/Jules/jules_venv/bin/python3. Eredmények: Test(80%) 2000 bar — Pred L:689 S:471 N:840, Actual L:457 S:379 N:1164. OOS 2000 bar — Pred L:668 S:428 N:904, Actual L:351 S:432 N:1217. HTML: docs/viz_jules_v102.html + docs/viz_jules_v102_oos.html. Template: viz_meta_v1_v5fmt.html (candlestick + markers + probs + label vs pred).

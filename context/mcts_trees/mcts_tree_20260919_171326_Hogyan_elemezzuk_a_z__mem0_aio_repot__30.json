@@ -1,0 +1,40 @@
+{
+  "root": {
+    "thought": "Hogyan elemezzuk a(z) mem0-aio repot? 30 fajl, 0.12 MB. Milyen strategia a leghatekonyabb (full Qwen vs MCTS hibrid)? Mely reszeketerdemes Qwen GPU-t futtatni, hol eleg a heurisztika?",
+    "score": 1.4,
+    "visits": 4,
+    "avg_score": 0.35,
+    "depth": 0,
+    "children": [
+      {
+        "thought": "MEGKÖZELÍTÉS A: Full Qwen — Teljes Qwen modell használata a fájlok elemzésére. (kockázat: Alacsony)",
+        "score": 2.2,
+        "visits": 3,
+        "avg_score": 0.7333,
+        "depth": 1,
+        "children": [
+          {
+            "thought": "1. Teljes Qwen futtatása: Minden fájlra alkalmazza a teljes Qwen modellel, ami a leg pontosabb eredményt adja, de a leglassabb.",
+            "score": 0.9,
+            "visits": 2,
+            "avg_score": 0.45,
+            "depth": 2,
+            "children": [
+              {
+                "thought": "1. Teljes Qwen futtatása: Minden fájlra alkalmazza a teljes Qwen modellel, ami a leg pontosabb eredményt adja, de a leglassabb.",
+                "score": 0.6,
+                "visits": 1,
+                "avg_score": 0.6,
+                "depth": 3,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "size": 4,
+  "max_depth": 3,
+  "max_children": 20
+}

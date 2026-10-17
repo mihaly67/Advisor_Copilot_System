@@ -1,0 +1,59 @@
+nohup: bemenet figyelmen kívül hagyása
+🚀 QWEN MCP SZERVER (P4000 kényszerítve, Qwen2.5-Coder-7B)
+   Szerver könyvtár: /data/mcp_server
+   Qwen analyzer: /data/mcp_server/tools/qwen_analyzer.py
+   Lock fájl: /data/mcp_server/lock/mcp.lock
+   MCP SDK elérhető: True
+[2026-09-20 01:22:34] [INFO] MCP szerver indul stdio transport-tal (MCPServer API)...
+[2026-09-20 01:22:34] [INFO] stdin fd: 0, stdout fd: 1
+[2026-09-20 01:22:34] [INFO] stdin/stdout fájl leírók elérhetőek
+[2026-09-20 01:22:34] [ERROR] MCP szerver hiba: unhandled errors in a TaskGroup (1 sub-exception)
+  + Exception Group Traceback (most recent call last):
+  |   File "/data/mcp_server/server.py", line 790, in <module>
+  |     main()
+  |   File "/data/mcp_server/server.py", line 771, in main
+  |     asyncio.run(serve())
+  |   File "/usr/lib/python3.11/asyncio/runners.py", line 190, in run
+  |     return runner.run(main)
+  |            ^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+  |     return self._loop.run_until_complete(task)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+  |     return future.result()
+  |            ^^^^^^^^^^^^^^^
+  |   File "/data/mcp_server/server.py", line 749, in serve
+  |     await server.run_stdio_async()
+  |   File "/data/mcp_server/venv/lib/python3.11/site-packages/mcp/server/mcpserver/server.py", line 1067, in run_stdio_async
+  |     async with stdio_server() as (read_stream, write_stream):
+  |   File "/usr/lib/python3.11/contextlib.py", line 222, in __aexit__
+  |     await self.gen.athrow(typ, value, traceback)
+  |   File "/data/mcp_server/venv/lib/python3.11/site-packages/mcp/server/stdio.py", line 209, in stdio_server
+  |     async with anyio.create_task_group() as tg:
+  |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/_core/_tasks.py", line 327, in _run_coro
+    |     retval = await self._coro
+    |              ^^^^^^^^^^^^^^^^
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/mcp/server/stdio.py", line 187, in stdin_reader
+    |     async for line in stdin:
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/_core/_fileio.py", line 110, in __aiter__
+    |     line = await self.readline()
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/_core/_fileio.py", line 126, in readline
+    |     return await to_thread.run_sync(self._fp.readline, limiter=self._limiter)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/to_thread.py", line 65, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "/data/mcp_server/venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    |     result = context.run(func, *args)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^
+    | OSError: [Errno 9] Bad file descriptor
+    +------------------------------------

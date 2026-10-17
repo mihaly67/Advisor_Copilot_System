@@ -1,0 +1,357 @@
+[
+  {
+    "repo_name": "AutoGPT-master",
+    "repo_path": "/data/Brain/AutoGPT-master",
+    "file_count": 3629,
+    "repo_size_mb": 57.73,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:48:55.709855",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/AutoGPT-master --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 36.955978,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/AutoGPT-master/_qwen_analysis/AutoGPT-master_analysis_20260919_134932.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/AutoGPT-master",
+      "repo_name": "AutoGPT-master",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "/AGENTS.md",
+          "README.md",
+          "CONTRIBUTING.md",
+          "AGENTS.md"
+        ],
+        "missing": [],
+        "valid": [
+          "/AGENTS.md",
+          "README.md",
+          "CONTRIBUTING.md",
+          "AGENTS.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "AutoGPT-master",
+        "found": true,
+        "variants_checked": [
+          "AutoGPT-master",
+          "AutoGPT_master",
+          "AutoGPTmaster",
+          "autogpt-master"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 3
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "CRSM",
+    "repo_path": "/data/Brain/CRSM",
+    "file_count": 106,
+    "repo_size_mb": 0.57,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:49:32.753364",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/CRSM --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 35.191296,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/CRSM/_qwen_analysis/CRSM_analysis_20260919_135007.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/CRSM",
+      "repo_name": "CRSM",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "requirements.txt",
+          "setup.py",
+          "CONTRIBUTING.md"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "requirements.txt",
+          "setup.py",
+          "CONTRIBUTING.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "CRSM",
+        "found": true,
+        "variants_checked": [
+          "CRSM",
+          "CRSM",
+          "CRSM",
+          "crsm"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "CogAgent",
+    "repo_path": "/data/Brain/CogAgent",
+    "file_count": 32,
+    "repo_size_mb": 5.87,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:50:07.949879",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/CogAgent --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 38.193713,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/CogAgent/_qwen_analysis/CogAgent_analysis_20260919_135045.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/CogAgent",
+      "repo_name": "CogAgent",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "Action_space_en.md",
+          "README.md",
+          "requirements.txt",
+          "Action_space.md"
+        ],
+        "missing": [],
+        "valid": [
+          "Action_space_en.md",
+          "README.md",
+          "requirements.txt",
+          "Action_space.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "CogAgent",
+        "found": true,
+        "variants_checked": [
+          "CogAgent",
+          "CogAgent",
+          "CogAgent",
+          "cogagent"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "DS4SD.Docling-main",
+    "repo_path": "/data/Brain/DS4SD.Docling-main",
+    "file_count": 451,
+    "repo_size_mb": 51.76,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:50:46.154266",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/DS4SD.Docling-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 29.103774,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/DS4SD.Docling-main/_qwen_analysis/DS4SD.Docling-main_analysis_20260919_135114.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/DS4SD.Docling-main",
+      "repo_name": "DS4SD.Docling-main",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "main/pyproject.toml",
+          "/data/Brain/DS4SD.Docling-main/pyproject.toml",
+          "main/README.md",
+          "/data/Brain/DS4SD.Docling-main/README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "main/pyproject.toml",
+          "/data/Brain/DS4SD.Docling-main/pyproject.toml",
+          "main/README.md",
+          "/data/Brain/DS4SD.Docling-main/README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "DS4SD.Docling-main",
+        "found": true,
+        "variants_checked": [
+          "DS4SD.Docling-main",
+          "DS4SD.Docling_main",
+          "DS4SD.Doclingmain",
+          "ds4sd.docling-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "E2B-main",
+    "repo_path": "/data/Brain/E2B-main",
+    "file_count": 695,
+    "repo_size_mb": 3.85,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T13:51:15.276161",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/E2B-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 41.102023,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/E2B-main/_qwen_analysis/E2B-main_analysis_20260919_135155.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/E2B-main",
+      "repo_name": "E2B-main",
+      "confidence": 0.94,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "main/README.md",
+          "README.md",
+          "/data/Brain/E2B-main/README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "main/README.md",
+          "README.md",
+          "/data/Brain/E2B-main/README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "E2B-main",
+        "found": true,
+        "variants_checked": [
+          "E2B-main",
+          "E2B_main",
+          "E2Bmain",
+          "e2b-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "JavaScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Java",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 5
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.94,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  }
+]

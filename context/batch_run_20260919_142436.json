@@ -1,0 +1,683 @@
+[
+  {
+    "repo_name": "infinity-main",
+    "repo_path": "/data/Brain/infinity-main",
+    "file_count": 221,
+    "repo_size_mb": 4.6,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:19:02.832433",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/infinity-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 31.566682,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/infinity-main/_qwen_analysis/infinity-main_analysis_20260919_141933.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/infinity-main",
+      "repo_name": "infinity-main",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "docs/assets/create_openapi_with_server_hook.sh",
+          "docs/assets/create_cli_v2_docs.sh",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "docs/assets/create_openapi_with_server_hook.sh",
+          "docs/assets/create_cli_v2_docs.sh",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "infinity-main",
+        "found": true,
+        "variants_checked": [
+          "infinity-main",
+          "infinity_main",
+          "infinitymain",
+          "infinity-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "infra-main",
+    "repo_path": "/data/Brain/infra-main",
+    "file_count": 1810,
+    "repo_size_mb": 9.18,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:19:34.466898",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/infra-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 37.423765,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/infra-main/_qwen_analysis/infra-main_analysis_20260919_142011.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/infra-main",
+      "repo_name": "infra-main",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CLAUDE.md",
+          "README.md",
+          "CONTRIBUTING.md",
+          "golangci.yml",
+          ".golangci.yml"
+        ],
+        "missing": [
+          "golangci.yml"
+        ],
+        "valid": [
+          "CLAUDE.md",
+          "README.md",
+          "CONTRIBUTING.md",
+          ".golangci.yml"
+        ],
+        "missing_ratio": 0.2
+      },
+      "repo_name_check": {
+        "expected": "infra-main",
+        "found": true,
+        "variants_checked": [
+          "infra-main",
+          "infra_main",
+          "inframain",
+          "infra-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "jan-main",
+    "repo_path": "/data/Brain/jan-main",
+    "file_count": 2025,
+    "repo_size_mb": 261.17,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:20:11.967134",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/jan-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 32.266411,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/jan-main/_qwen_analysis/jan-main_analysis_20260919_142043.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/jan-main",
+      "repo_name": "jan-main",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "CONTRIBUTING.md",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "CONTRIBUTING.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "jan-main",
+        "found": true,
+        "variants_checked": [
+          "jan-main",
+          "jan_main",
+          "janmain",
+          "jan-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 3
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "java-sdk-main",
+    "repo_path": "/data/Brain/java-sdk-main",
+    "file_count": 261,
+    "repo_size_mb": 3.37,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:20:44.270454",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/java-sdk-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 31.77813,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/java-sdk-main/_qwen_analysis/java-sdk-main_analysis_20260919_142115.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/java-sdk-main",
+      "repo_name": "java-sdk-main",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "/README.md",
+          "README.md",
+          "/CONTRIBUTING.md",
+          "DEPENDENCY_POLICY.md",
+          "/CODE_OF_CONDUCT.md",
+          "CODE_OF_CONDUCT.md",
+          "CONTRIBUTING.md",
+          "/DEPENDENCY_POLICY.md"
+        ],
+        "missing": [],
+        "valid": [
+          "/README.md",
+          "README.md",
+          "/CONTRIBUTING.md",
+          "DEPENDENCY_POLICY.md",
+          "/CODE_OF_CONDUCT.md",
+          "CODE_OF_CONDUCT.md",
+          "CONTRIBUTING.md",
+          "/DEPENDENCY_POLICY.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "java-sdk-main",
+        "found": true,
+        "variants_checked": [
+          "java-sdk-main",
+          "java_sdk_main",
+          "javasdkmain",
+          "java-sdk-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Java",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "khoj",
+    "repo_path": "/data/Brain/khoj",
+    "file_count": 681,
+    "repo_size_mb": 81.09,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:21:16.076098",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/khoj --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 30.100243,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/khoj/_qwen_analysis/khoj_analysis_20260919_142145.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/khoj",
+      "repo_name": "khoj",
+      "confidence": 0.833,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "pyproject.toml",
+          "_qwen_analysis/khoj_analysis_20260918_182343.md",
+          "README.md"
+        ],
+        "missing": [
+          "_qwen_analysis/khoj_analysis_20260918_182343.md"
+        ],
+        "valid": [
+          "pyproject.toml",
+          "README.md"
+        ],
+        "missing_ratio": 0.3333333333333333
+      },
+      "repo_name_check": {
+        "expected": "khoj",
+        "found": true,
+        "variants_checked": [
+          "khoj",
+          "khoj",
+          "khoj",
+          "khoj"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.833,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "langchain-master",
+    "repo_path": "/data/Brain/langchain-master",
+    "file_count": 2833,
+    "repo_size_mb": 34.43,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:21:46.225158",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/langchain-master --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 27.749592,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/langchain-master/_qwen_analysis/langchain-master_analysis_20260919_142213.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/langchain-master",
+      "repo_name": "langchain-master",
+      "confidence": 0.875,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "AGENTS.md",
+          "CLAUDE.md",
+          "LangChain.js",
+          "README.md"
+        ],
+        "missing": [
+          "LangChain.js"
+        ],
+        "valid": [
+          "AGENTS.md",
+          "CLAUDE.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.25
+      },
+      "repo_name_check": {
+        "expected": "langchain-master",
+        "found": true,
+        "variants_checked": [
+          "langchain-master",
+          "langchain_master",
+          "langchainmaster",
+          "langchain-master"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "JavaScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Java",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 3
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.875,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "langgraph-main",
+    "repo_path": "/data/Brain/langgraph-main",
+    "file_count": 530,
+    "repo_size_mb": 11.68,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:22:14.032660",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/langgraph-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 34.653399,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/langgraph-main/_qwen_analysis/langgraph-main_analysis_20260919_142247.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/langgraph-main",
+      "repo_name": "langgraph-main",
+      "confidence": 0.925,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "AGENTS.md",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "AGENTS.md",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "langgraph-main",
+        "found": true,
+        "variants_checked": [
+          "langgraph-main",
+          "langgraph_main",
+          "langgraphmain",
+          "langgraph-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "JavaScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Java",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 4
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.925,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "llama.cpp",
+    "repo_path": "/data/Brain/llama.cpp",
+    "file_count": 2767,
+    "repo_size_mb": 143.27,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:22:48.733916",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/llama.cpp --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 30.710888,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/llama.cpp/_qwen_analysis/llama.cpp_analysis_20260919_142318.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/llama.cpp",
+      "repo_name": "llama.cpp",
+      "confidence": 1.0,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "/README.md",
+          "README.md",
+          "/pyproject.toml",
+          "/CONTRIBUTING.md",
+          "CONTRIBUTING.md",
+          "llama.cpp",
+          "pyproject.toml"
+        ],
+        "missing": [],
+        "valid": [
+          "/README.md",
+          "README.md",
+          "/pyproject.toml",
+          "/CONTRIBUTING.md",
+          "CONTRIBUTING.md",
+          "llama.cpp",
+          "pyproject.toml"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "llama.cpp",
+        "found": true,
+        "variants_checked": [
+          "llama.cpp",
+          "llama.cpp",
+          "llama.cpp",
+          "llama.cpp"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 1.0,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "llm-api-proxy",
+    "repo_path": "/data/Brain/llm-api-proxy",
+    "file_count": 47,
+    "repo_size_mb": 0.3,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:23:19.485372",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/llm-api-proxy --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 32.625315,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/llm-api-proxy/_qwen_analysis/llm-api-proxy_analysis_20260919_142351.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/llm-api-proxy",
+      "repo_name": "llm-api-proxy",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "src/index.ts",
+          "README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "src/index.ts",
+          "README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "llm-api-proxy",
+        "found": true,
+        "variants_checked": [
+          "llm-api-proxy",
+          "llm_api_proxy",
+          "llmapiproxy",
+          "llm-api-proxy"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "llm-main",
+    "repo_path": "/data/Brain/llm-main",
+    "file_count": 97,
+    "repo_size_mb": 1.24,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:23:52.116885",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/llm-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 44.127507,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/llm-main/_qwen_analysis/llm-main_analysis_20260919_142435.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/llm-main",
+      "repo_name": "llm-main",
+      "confidence": 0.75,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "hook.toml",
+          "Cargo.toml",
+          "README.md",
+          ".rusty-hook.toml",
+          "CHANGELOG.md"
+        ],
+        "missing": [
+          "hook.toml"
+        ],
+        "valid": [
+          "Cargo.toml",
+          "README.md",
+          ".rusty-hook.toml",
+          "CHANGELOG.md"
+        ],
+        "missing_ratio": 0.2
+      },
+      "repo_name_check": {
+        "expected": "llm-main",
+        "found": true,
+        "variants_checked": [
+          "llm-main",
+          "llm_main",
+          "llmmain",
+          "llm-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.75,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  }
+]

@@ -1,0 +1,4 @@
+# Session: rag_direction_research
+*Időbélyeg: 2026-09-24T03:43:55.082433*
+
+RAG kutatás befejezve. Fő találatok: (1) LGBM-Stock-Prediction-main repo: nyers signed returns (past_return_1-10, past_log_return_1-10, momentum_score) ATR normalizálás nélkül. (2) mlfinlab meta-labeling: get_bins() side_prediction paraméterrel → bináris trade/no-trade label. (3) Gyökérok: a mi feature-ink ATR-normalizáltak voltak (Bar_Direction, Mom5_Direction), ami megöli a magnitúdó információt. 18 új feature implementálva (PastRet_1-10, PastLogRet_1-10, MomScore_14, Slope_Close_14, AccRet_3, RetAccel_1). V17 tanítva: Slope_Close_14 bekerült top 10-be (SHAP=0.057), PastLogRet_1 első irány-diszkrimináló (L_minus_S=-0.009). Opposite 43.5%. Következő: SHAP prune V18, meta-labeling.

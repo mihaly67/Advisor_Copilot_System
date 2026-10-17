@@ -1,0 +1,688 @@
+[
+  {
+    "repo_name": "brave-search-mcp-server-main",
+    "repo_path": "/data/Brain/brave-search-mcp-server-main",
+    "file_count": 52,
+    "repo_size_mb": 0.32,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:05:44.477965",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/brave-search-mcp-server-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 41.142787,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/brave-search-mcp-server-main/_qwen_analysis/brave-search-mcp-server-main_analysis_20260919_140625.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/brave-search-mcp-server-main",
+      "repo_name": "brave-search-mcp-server-main",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "glama.json",
+          "README.md",
+          "compose.yml",
+          "docker-compose.yml",
+          "/README.md"
+        ],
+        "missing": [
+          "compose.yml"
+        ],
+        "valid": [
+          "glama.json",
+          "README.md",
+          "docker-compose.yml",
+          "/README.md"
+        ],
+        "missing_ratio": 0.2
+      },
+      "repo_name_check": {
+        "expected": "brave-search-mcp-server-main",
+        "found": true,
+        "variants_checked": [
+          "brave-search-mcp-server-main",
+          "brave_search_mcp_server_main",
+          "bravesearchmcpservermain",
+          "brave-search-mcp-server-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [],
+        "unverified_count": 0,
+        "total_claims": 0
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "browser-extension",
+    "repo_path": "/data/Brain/browser-extension",
+    "file_count": 81,
+    "repo_size_mb": 0.49,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:06:25.632154",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/browser-extension --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 42.860352,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/browser-extension/_qwen_analysis/browser-extension_analysis_20260919_140707.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/browser-extension",
+      "repo_name": "browser-extension",
+      "confidence": 0.667,
+      "risk_level": "MEDIUM",
+      "file_references": {
+        "referenced": [
+          "popup.html",
+          "background.bundle.js",
+          "bundle.js",
+          "README.md",
+          "contentScript.bundle.js",
+          "manifest.json"
+        ],
+        "missing": [
+          "popup.html",
+          "background.bundle.js",
+          "bundle.js",
+          "contentScript.bundle.js"
+        ],
+        "valid": [
+          "README.md",
+          "manifest.json"
+        ],
+        "missing_ratio": 0.6666666666666666
+      },
+      "repo_name_check": {
+        "expected": "browser-extension",
+        "found": true,
+        "variants_checked": [
+          "browser-extension",
+          "browser_extension",
+          "browserextension",
+          "browser-extension"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "REVIEW"
+    },
+    "confidence": 0.667,
+    "risk_level": "MEDIUM",
+    "recommendation": "REVIEW"
+  },
+  {
+    "repo_name": "browser-use",
+    "repo_path": "/data/Brain/browser-use",
+    "file_count": 459,
+    "repo_size_mb": 7.5,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:07:08.501950",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/browser-use --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 33.417337,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/browser-use/_qwen_analysis/browser-use_analysis_20260919_140741.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/browser-use",
+      "repo_name": "browser-use",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "CLAUDE.md",
+          "AGENTS.md",
+          "pyproject.toml"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "CLAUDE.md",
+          "AGENTS.md",
+          "pyproject.toml"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "browser-use",
+        "found": true,
+        "variants_checked": [
+          "browser-use",
+          "browser_use",
+          "browseruse",
+          "browser-use"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "celery-main",
+    "repo_path": "/data/Brain/celery-main",
+    "file_count": 800,
+    "repo_size_mb": 5.68,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:07:41.941728",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/celery-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 41.590885,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/celery-main/_qwen_analysis/celery-main_analysis_20260919_140822.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/celery-main",
+      "repo_name": "celery-main",
+      "confidence": 0.833,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "pyproject.toml",
+          "Setup.cfg",
+          "setup.cfg",
+          "setup.py",
+          "celery/__init__.py",
+          "Pyproject.toml"
+        ],
+        "missing": [
+          "Setup.cfg",
+          "Pyproject.toml"
+        ],
+        "valid": [
+          "pyproject.toml",
+          "setup.cfg",
+          "setup.py",
+          "celery/__init__.py"
+        ],
+        "missing_ratio": 0.3333333333333333
+      },
+      "repo_name_check": {
+        "expected": "celery-main",
+        "found": true,
+        "variants_checked": [
+          "celery-main",
+          "celery_main",
+          "celerymain",
+          "celery-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.833,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "chatbox-main",
+    "repo_path": "/data/Brain/chatbox-main",
+    "file_count": 779,
+    "repo_size_mb": 19.09,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:08:23.560652",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/chatbox-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 33.221391,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/chatbox-main/_qwen_analysis/chatbox-main_analysis_20260919_140856.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/chatbox-main",
+      "repo_name": "chatbox-main",
+      "confidence": 0.75,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "ErrorHandling.md"
+        ],
+        "missing": [
+          "ErrorHandling.md"
+        ],
+        "valid": [
+          "README.md"
+        ],
+        "missing_ratio": 0.5
+      },
+      "repo_name_check": {
+        "expected": "chatbox-main",
+        "found": true,
+        "variants_checked": [
+          "chatbox-main",
+          "chatbox_main",
+          "chatboxmain",
+          "chatbox-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 0,
+        "total_claims": 1
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.75,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "chroma-main",
+    "repo_path": "/data/Brain/chroma-main",
+    "file_count": 1912,
+    "repo_size_mb": 39.82,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:08:56.828964",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/chroma-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 28.254402,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/chroma-main/_qwen_analysis/chroma-main_analysis_20260919_140924.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/chroma-main",
+      "repo_name": "chroma-main",
+      "confidence": 0.94,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "Cargo.toml",
+          "/pyproject.toml",
+          "pyproject.toml",
+          "/Cargo.toml",
+          "README.md",
+          "/README.md"
+        ],
+        "missing": [],
+        "valid": [
+          "Cargo.toml",
+          "/pyproject.toml",
+          "pyproject.toml",
+          "/Cargo.toml",
+          "README.md",
+          "/README.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "chroma-main",
+        "found": true,
+        "variants_checked": [
+          "chroma-main",
+          "chroma_main",
+          "chromamain",
+          "chroma-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "JavaScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Rust",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Java",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 5
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.94,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "cline",
+    "repo_path": "/data/Brain/cline",
+    "file_count": 0,
+    "repo_size_mb": 0.0,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:09:25.126354",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/cline --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 18.610403,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/cline/_qwen_analysis/cline_analysis_20260919_140943.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/cline",
+      "repo_name": "cline",
+      "confidence": 0.5,
+      "risk_level": "MEDIUM",
+      "file_references": {
+        "referenced": [
+          "cline_analysis_20260919_104041.md"
+        ],
+        "missing": [
+          "cline_analysis_20260919_104041.md"
+        ],
+        "valid": [],
+        "missing_ratio": 1.0
+      },
+      "repo_name_check": {
+        "expected": "cline",
+        "found": true,
+        "variants_checked": [
+          "cline",
+          "cline",
+          "cline",
+          "cline"
+        ]
+      },
+      "technology_claims": {
+        "claims": [],
+        "unverified_count": 0,
+        "total_claims": 0
+      },
+      "recommendation": "REVIEW"
+    },
+    "confidence": 0.5,
+    "risk_level": "MEDIUM",
+    "recommendation": "REVIEW"
+  },
+  {
+    "repo_name": "cline-main",
+    "repo_path": "/data/Brain/cline-main",
+    "file_count": 1929,
+    "repo_size_mb": 40.55,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:09:43.769254",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/cline-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 41.560261,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/cline-main/_qwen_analysis/cline-main_analysis_20260919_141024.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/cline-main",
+      "repo_name": "cline-main",
+      "confidence": 0.925,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "CLAUDE.md",
+          "CONTRIBUTING.md"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "CLAUDE.md",
+          "CONTRIBUTING.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "cline-main",
+        "found": true,
+        "variants_checked": [
+          "cline-main",
+          "cline_main",
+          "clinemain",
+          "cline-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "JavaScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          },
+          {
+            "technology": "Java",
+            "claimed": true,
+            "has_repo_evidence": true
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 4
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.925,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "code-interpreter-main",
+    "repo_path": "/data/Brain/code-interpreter-main",
+    "file_count": 202,
+    "repo_size_mb": 0.87,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:10:25.366741",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/code-interpreter-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 42.70322,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/code-interpreter-main/_qwen_analysis/code-interpreter-main_analysis_20260919_141107.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/code-interpreter-main",
+      "repo_name": "code-interpreter-main",
+      "confidence": 0.9,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "chart_data_extractor/README.md",
+          "chart_data_extractor/e2b_charts/__init__.py",
+          "chart_data_extractor/e2b_charts/charts/__init__.py",
+          "README.md",
+          "chart_data_extractor/e2b_charts/charts/bars.py"
+        ],
+        "missing": [],
+        "valid": [
+          "chart_data_extractor/README.md",
+          "chart_data_extractor/e2b_charts/__init__.py",
+          "chart_data_extractor/e2b_charts/charts/__init__.py",
+          "README.md",
+          "chart_data_extractor/e2b_charts/charts/bars.py"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "code-interpreter-main",
+        "found": true,
+        "variants_checked": [
+          "code-interpreter-main",
+          "code_interpreter_main",
+          "codeinterpretermain",
+          "code-interpreter-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "TypeScript",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 3
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.9,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  },
+  {
+    "repo_name": "create-python-server-main",
+    "repo_path": "/data/Brain/create-python-server-main",
+    "file_count": 14,
+    "repo_size_mb": 0.06,
+    "strategy": "full_qwen",
+    "timestamp": "2026-09-19T14:11:08.074913",
+    "qwen_command": "python3 /data/mcp_server/tools/qwen_analyzer.py /data/Brain/create-python-server-main --max-files 12 --max-tokens 600",
+    "max_files": 12,
+    "max_tokens": 600,
+    "qwen_elapsed_sec": 40.620902,
+    "qwen_exit_code": 0,
+    "analysis_file": "/data/Brain/create-python-server-main/_qwen_analysis/create-python-server-main_analysis_20260919_141147.md",
+    "source": "qwen_gpu",
+    "tokens_used": 600,
+    "validation": {
+      "repo_path": "/data/Brain/create-python-server-main",
+      "repo_name": "create-python-server-main",
+      "confidence": 0.85,
+      "risk_level": "LOW",
+      "file_references": {
+        "referenced": [
+          "README.md",
+          "pyproject.toml",
+          "CONTRIBUTING.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing": [],
+        "valid": [
+          "README.md",
+          "pyproject.toml",
+          "CONTRIBUTING.md",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "missing_ratio": 0.0
+      },
+      "repo_name_check": {
+        "expected": "create-python-server-main",
+        "found": true,
+        "variants_checked": [
+          "create-python-server-main",
+          "create_python_server_main",
+          "createpythonservermain",
+          "create-python-server-main"
+        ]
+      },
+      "technology_claims": {
+        "claims": [
+          {
+            "technology": "Python",
+            "claimed": true,
+            "has_repo_evidence": true
+          },
+          {
+            "technology": "Go",
+            "claimed": true,
+            "has_repo_evidence": false
+          }
+        ],
+        "unverified_count": 1,
+        "total_claims": 2
+      },
+      "recommendation": "TRUST"
+    },
+    "confidence": 0.85,
+    "risk_level": "LOW",
+    "recommendation": "TRUST"
+  }
+]

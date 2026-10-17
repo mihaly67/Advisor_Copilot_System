@@ -1,0 +1,2 @@
+nohup: bemenet figyelmen kívül hagyása
+python3: can't open file '/data/mcp_server/tools/brain_batch_analyzer.py': [Errno 2] No such file or directory

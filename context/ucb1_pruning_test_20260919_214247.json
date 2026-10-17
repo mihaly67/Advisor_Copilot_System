@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-09-19T21:42:47.238323+00:00",
+  "problem": "Hogyan optimalizaljuk a Qwen MCTS reasoning pipeline teljesitmenyet?",
+  "iterations": 100,
+  "depth": 5,
+  "exploration_weight_results": {
+    "0.1": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "0.5": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "1.0": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "1.414": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "2.0": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    }
+  },
+  "pruning_results": {
+    "0.0": {
+      "size_before": 6,
+      "removed": 0,
+      "size_after": 6,
+      "best_path_steps": 6
+    },
+    "0.3": {
+      "size_before": 6,
+      "removed": 0,
+      "size_after": 6,
+      "best_path_steps": 6
+    },
+    "0.5": {
+      "size_before": 6,
+      "removed": 0,
+      "size_after": 6,
+      "best_path_steps": 6
+    },
+    "0.7": {
+      "size_before": 6,
+      "removed": 0,
+      "size_after": 6,
+      "best_path_steps": 6
+    },
+    "0.9": {
+      "size_before": 6,
+      "removed": 0,
+      "size_after": 6,
+      "best_path_steps": 6
+    }
+  }
+}

@@ -1,0 +1,8 @@
+nohup: bemenet figyelmen kívül hagyása
+🧠 MCP Backend API on :8420
+   Viz: Chromium headless + Pillow
+   Memory: yantrikdb (Rust) + cortexdb gRPC :47821
+/data/mcp_server/mcp_backend_api.py:38: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  pixels = list(img.getdata()); sample = pixels[::10]
+/data/mcp_server/mcp_backend_api.py:48: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  qp = list(q.getdata())[::20]

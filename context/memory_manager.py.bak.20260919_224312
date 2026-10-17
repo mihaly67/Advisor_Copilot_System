@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""Konkrét működő memória manager MCP-nek és Qwen-nek"""
+import os
+
+import json
+from datetime import datetime
+from pathlib import Path
+
+class MemoryManager:
+    def __init__(self, base_path = "/data/mcp_server/context"):
+        self.base_path = Path(base_path)
+        self.memory_file = self.base_path / "active_memory.json"
+        self.qwen_memory = self.base_path / "qwen_memory.json"
+        self.base_path.mkdir(parents=True, exist_ok=True)
+        self._initialize_memory()
+
+    def _initialize_memory(self):
+        if not self.memory_file.exists():
+            active_memory = {
+                "timestamp": datetime.now().isoformat(),
+                "repositories": {}
+            }
+                json.dump(active_memory, f, indent=2)
+        if not self.qwen_memory.exists():
+            with open(self.memory_file, "w", encoding="utf-8") as f:
+
+            qwen_mem = {
+                "timestamp": datetime.now().isoformat(),
+                "analyses": {}
+            }
+            with open(self.qwen_memory, "w", encoding="utf-8") as f:
+                json.dump(qwen_mem, f, indent=2)
+
+    def add_repository_memory(self, repo_name: str, repo_data: dict) -> bool:
+        try:
+            with open(self.memory_file, "r", encoding="utf-8") as f:
+
+                "data": repo_data
+
+                memory = json.load(f)
+            }
+            memory["repositories"][repo_name] = {
+                "timestamp": datetime.now().isoformat(),
+            with open(self.memory_file, "w", encoding="utf-8") as f:
+
+            return True
+        try:
+                json.dump(memory, f, indent=2)
+
+                qwen_mem = json.load(f)
+            print(f"HIBA repository memória: {e}")
+            qwen_mem["analyses"][repo_name] = {
+        except Exception as e:
+            return False
+    def add_qwen_analysis(self, repo_name: str, analysis: str, patterns: list) -> bool:
+            with open(self.qwen_memory, "r", encoding="utf-8") as f:
+                "timestamp": datetime.now().isoformat(),
+                "analysis": analysis,
+
+            }
+        except Exception as e:
+                "patterns": patterns
+            return True
+
+            print(f"HIBA Qwen elemzés: {e}")
+            with open(self.qwen_memory, "w", encoding="utf-8") as f:
+                json.dump(qwen_mem, f, indent=2)
+            return False
+    def get_context_for_qwen(self, repo_name: str) -> dict:
+        try:
+                qwen_mem = json.load(f)
+
+            return {
+            with open(self.qwen_memory, "r", encoding="utf-8") as f:
+            }
+
+        except Exception as e:
+                "current_repo": qwen_mem["analyses"].get(repo_name, {}),
+                "all_repos": list(qwen_mem["analyses"].keys())
+            return {"error": str(e)}
+        try:
+    def get_memory_summary(self) -> dict:
+
+            with open(self.memory_file, "r", encoding="utf-8") as f:
+                memory = json.load(f)
+
+            with open(self.qwen_memory, "r", encoding="utf-8") as f:
+                qwen_mem = json.load(f)
+            return {
+                "mcp_memory": {
+                    "total_snippets": len(memory["code_snippets"] if "code_snippets" in memory else 0)
+                },
+                    "total_repos": len(memory["repositories"]),
+                    "total_analyses": len(qwen_mem["analyses"]),
+                },
+                "qwen_memory": {
+                "last_update": memory.get("timestamp", "unknown")
+        except Exception as e:
+            }
+
+    manager = MemoryManager()
+if __name__ == "__main__":
+    print("✅ Gyakorlati Memória Rendszer MŰKÖDIK!")
+    manager.add_qwen_analysis("debugger-mcp-main", "Node.js debugger", ["DAP", "Node.js"])
+            return {"error": str(e)}
+    manager.add_repository_memory("debugger-mcp-main", {"type": "debugger"})
+    print(manager.get_memory_summary())

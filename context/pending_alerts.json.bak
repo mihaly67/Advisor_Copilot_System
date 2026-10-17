@@ -1,0 +1,296 @@
+{
+  "pending": [
+    {
+      "timestamp": "2026-09-19T14:12:47.735243+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:38:40.092842+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:38:50.674644+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:38:51.792446+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:17.284654+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:24.327026+00:00",
+      "event_type": "watcher_stop",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo leallitva (signal)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:25.492630+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:59.539349+00:00",
+      "event_type": "watcher_stop",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo leallitva (signal)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:59.763579+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:07:00.860287+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:09:00.960692+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:13:01.158125+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 14%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:35:02.292722+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->99%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:51:03.114237+00:00",
+      "event_type": "new_analysis",
+      "severity": "INFO",
+      "message": "Uj Qwen elemzes: mem0-aio (conf=0.917, TRUST)",
+      "data": {
+        "repo": "mem0-aio",
+        "analysis_file": "/data/Brain/mem0-aio/_qwen_analysis/mem0-aio_analysis_20260919_185024.md",
+        "confidence": 0.917,
+        "recommendation": "TRUST"
+      }
+    },
+    {
+      "timestamp": "2026-09-19T17:13:04.275835+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T17:17:04.488505+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T17:23:04.804341+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->99%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T19:26:11.236388+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->100%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T19:42:12.079066+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T19:48:12.387945+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->99%, VRAM=5360MB",
+      "data": {}
+    }
+  ],
+  "history": [
+    {
+      "timestamp": "2026-09-19T14:12:47.735243+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:38:40.092842+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:38:50.674644+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:38:51.792446+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:17.284654+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:24.327026+00:00",
+      "event_type": "watcher_stop",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo leallitva (signal)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:25.492630+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:59.539349+00:00",
+      "event_type": "watcher_stop",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo leallitva (signal)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T15:45:59.763579+00:00",
+      "event_type": "watcher_start",
+      "severity": "INFO",
+      "message": "Memoria esemenyfigyelo elindult (interval=60s)",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:07:00.860287+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:09:00.960692+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:13:01.158125+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 14%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:35:02.292722+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->99%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T16:51:03.114237+00:00",
+      "event_type": "new_analysis",
+      "severity": "INFO",
+      "message": "Uj Qwen elemzes: mem0-aio (conf=0.917, TRUST)",
+      "data": {
+        "repo": "mem0-aio",
+        "analysis_file": "/data/Brain/mem0-aio/_qwen_analysis/mem0-aio_analysis_20260919_185024.md",
+        "confidence": 0.917,
+        "recommendation": "TRUST"
+      }
+    },
+    {
+      "timestamp": "2026-09-19T17:13:04.275835+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T17:17:04.488505+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T17:23:04.804341+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->99%, VRAM=5358MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T19:26:11.236388+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->100%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T19:42:12.079066+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->98%, VRAM=5360MB",
+      "data": {}
+    },
+    {
+      "timestamp": "2026-09-19T19:48:12.387945+00:00",
+      "event_type": "gpu_spike",
+      "severity": "WARN",
+      "message": "GPU spike: util 0%->99%, VRAM=5360MB",
+      "data": {}
+    }
+  ]
+}

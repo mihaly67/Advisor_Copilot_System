@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-09-19T15:04:17.698511",
+  "results": [
+    {
+      "repo": "yggdrasil-mcp",
+      "mcts_qwen": {
+        "method": "mcts_qwen",
+        "elapsed_sec": 30.732795000076294,
+        "tokens_used": 400,
+        "confidence": 0.50475,
+        "source": "qwen_evaluated",
+        "heuristic_score": 0.5425,
+        "cache_hit": false,
+        "files_evaluated": 20
+      },
+      "pure_qwen": {
+        "method": "pure_qwen",
+        "elapsed_sec": 37.30377,
+        "tokens_used": 600,
+        "confidence": 0.467,
+        "source": "qwen_gpu",
+        "analysis_file": "/data/Brain/yggdrasil-mcp/_qwen_analysis/yggdrasil-mcp_analysis_20260919_150309.md"
+      },
+      "token_savings": 200,
+      "token_savings_pct": 33.3,
+      "time_diff_sec": -6.6
+    },
+    {
+      "repo": "mem0-aio",
+      "mcts_qwen": {
+        "method": "mcts_qwen",
+        "elapsed_sec": 30.258115768432617,
+        "tokens_used": 400,
+        "confidence": 0.7072499999999999,
+        "source": "qwen_evaluated",
+        "heuristic_score": 0.4974999999999999,
+        "cache_hit": false,
+        "files_evaluated": 20
+      },
+      "pure_qwen": {
+        "method": "pure_qwen",
+        "elapsed_sec": 37.188474,
+        "tokens_used": 600,
+        "confidence": 0.917,
+        "source": "qwen_gpu",
+        "analysis_file": "/data/Brain/mem0-aio/_qwen_analysis/mem0-aio_analysis_20260919_150416.md"
+      },
+      "token_savings": 200,
+      "token_savings_pct": 33.3,
+      "time_diff_sec": -6.9
+    }
+  ]
+}

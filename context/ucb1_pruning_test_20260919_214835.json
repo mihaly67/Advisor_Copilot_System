@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-09-19T21:48:35.130003+00:00",
+  "problem": "Hogyan optimalizaljuk a rendszer memoriakezeleset?",
+  "iterations": 100,
+  "depth": 5,
+  "exploration_weight_results": {
+    "0.1": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "0.5": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "1.0": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "1.414": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    },
+    "2.0": {
+      "elapsed_sec": 0.001,
+      "tree_size": 6,
+      "best_path_steps": 6,
+      "avg_score": 1.1465
+    }
+  },
+  "pruning_results": {
+    "0.0": {
+      "size_before": 16,
+      "removed": 0,
+      "size_after": 16,
+      "best_path_steps": 3
+    },
+    "0.3": {
+      "size_before": 16,
+      "removed": 0,
+      "size_after": 16,
+      "best_path_steps": 3
+    },
+    "0.5": {
+      "size_before": 16,
+      "removed": 5,
+      "size_after": 11,
+      "best_path_steps": 3
+    },
+    "0.7": {
+      "size_before": 16,
+      "removed": 5,
+      "size_after": 11,
+      "best_path_steps": 3
+    },
+    "0.9": {
+      "size_before": 16,
+      "removed": 7,
+      "size_after": 9,
+      "best_path_steps": 3
+    },
+    "1.5": {
+      "size_before": 16,
+      "removed": 7,
+      "size_after": 9,
+      "best_path_steps": 3
+    },
+    "3.0": {
+      "size_before": 16,
+      "removed": 13,
+      "size_after": 3,
+      "best_path_steps": 2
+    },
+    "5.0": {
+      "size_before": 16,
+      "removed": 15,
+      "size_after": 1,
+      "best_path_steps": 1
+    }
+  }
+}
