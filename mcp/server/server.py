@@ -1151,8 +1151,9 @@ _ZHIPU_CHAT_MODELS = [
     "glm-4.7", "glm-4.6", "glm-4.5", "glm-4.5-air", "glm-4-plus",
     "glm-5", "glm-5-turbo", "glm-5.1", "glm-5.2",
 ]
-_ZHIPU_EMBED_MODELS = ["embedding-3", "embedding-2"]  # Külön engedélyezés kell!
-_ZHIPU_VISION_MODELS = ["glm-4v-flash", "glm-4v"]  # Külön engedélyezés kell!
+_ZHIPU_EMBED_MODELS = ["embedding-3", "embedding-2"]  # Külön aktiválás kell a bigmodel.cn fiókon!
+_ZHIPU_VISION_MODELS = ["glm-4v-flash", "glm-4v"]  # Külön aktiválás kell!
+_ZHIPU_VISION_FALLBACK = ["glm-5.3-flashx", "glm-5.3-flash"]  # Multimodális chat modellek
 
 
 def tool_zhipu_embedding(text="", texts="", model="embedding-3") -> str:
@@ -1210,8 +1211,8 @@ def tool_zhipu_vision(image_url="", image_path="", prompt="Mit látsz ezen a ké
         else:
             return "HIBA: image_url vagy image_path szükséges"
         
-        # Próbáljuk a vision modelleket (glm-4v-flash, glm-5.3-flash multimodális)
-        for m in _ZHIPU_VISION_MODELS + ["glm-5.3-flash"]:
+        # Próbáljuk a vision modelleket, fallback multimodális chat modellekkel
+        for m in _ZHIPU_VISION_MODELS + _ZHIPU_VISION_FALLBACK:
             try:
                 response = client.chat.completions.create(
                     model=m,
