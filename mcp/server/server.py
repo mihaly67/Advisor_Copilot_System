@@ -1137,46 +1137,64 @@ def tool_shared_brain(action="server_status", text="", query="",
         return f"HIBA: {e}"
 
 
-def tool_zhipu_embedding(text="", texts="") -> str:
-    """ZhipuAI embedding-3 (2048 dim) — szöveg → vektor, Brain RAG vektorizáláshoz."""
+def _zhipu_client():
+    """ZhipuAI kliens gyártó — közös API kulcs kezelés."""
+    from zhipuai import ZhipuAI
+    api_key = os.environ.get("ZHIPUAI_API_KEY", "")
+    if not api_key:
+        raise ValueError("ZHIPUAI_API_KEY nincs beállítva. (Ugyanaz a kulcs amit Cline használ.)")
+    return ZhipuAI(api_key=api_key)
+
+# ZhipuAI elérhető modellek (a fiókunkon tesztelve)
+_ZHIPU_CHAT_MODELS = [
+    "glm-5.3-flash", "glm-5.3", "glm-5.3-flashx",
+    "glm-4.7", "glm-4.6", "glm-4.5", "glm-4.5-air", "glm-4-plus",
+    "glm-5", "glm-5-turbo", "glm-5.1", "glm-5.2",
+]
+_ZHIPU_EMBED_MODELS = ["embedding-3", "embedding-2"]  # Külön engedélyezés kell!
+_ZHIPU_VISION_MODELS = ["glm-4v-flash", "glm-4v"]  # Külön engedélyezés kell!
+
+
+def tool_zhipu_embedding(text="", texts="", model="embedding-3") -> str:
+    """ZhipuAI embedding — szöveg → vektor, Brain RAG vektorizáláshoz.
+    Ha embedding-3 nem elérhető (fiók korlát), próbálja embedding-2-t."""
     try:
-        from zhipuai import ZhipuAI
-        api_key = os.environ.get("ZHIPUAI_API_KEY", "")
-        if not api_key:
-            return "HIBA: ZHIPUAI_API_KEY nincs beállítva. (Ugyanaz a kulcs amit Cline használ.)"
-        client = ZhipuAI(api_key=api_key)
+        client = _zhipu_client()
         
         if texts:  # Bulk embedding (JSON lista)
             import json as _json
             text_list = _json.loads(texts) if isinstance(texts, str) else texts
             results = []
             for t in text_list:
-                resp = client.embeddings.create(model="embedding-3", input=t)
+                resp = client.embeddings.create(model=model, input=t)
                 emb = resp.data[0].embedding
                 results.append({"text": t[:60], "dims": len(emb), "preview": emb[:3],
                                 "norm": round(sum(x*x for x in emb)**0.5, 4)})
-            return _json.dumps({"model": "embedding-3", "count": len(results),
+            return _json.dumps({"model": model, "count": len(results),
                                 "embeddings": results}, ensure_ascii=False, indent=2)
         
         if not text:
             return "HIBA: text (vagy texts JSON lista) szükséges"
-        response = client.embeddings.create(model="embedding-3", input=text)
-        emb = response.data[0].embedding
-        return json.dumps({"model": "embedding-3", "text": text[:60],
-            "dimensions": len(emb), "preview": emb[:5],
-            "norm": round(sum(x*x for x in emb)**0.5, 4)}, indent=2)
+        # Próbáljuk a kért modellt, ha fail → fallback
+        for m in [model] + [x for x in _ZHIPU_EMBED_MODELS if x != model]:
+            try:
+                response = client.embeddings.create(model=m, input=text)
+                emb = response.data[0].embedding
+                return json.dumps({"model": m, "text": text[:60],
+                    "dimensions": len(emb), "preview": emb[:5],
+                    "norm": round(sum(x*x for x in emb)**0.5, 4)}, indent=2)
+            except Exception:
+                continue
+        return "HIBA: Egyik embedding modell sem elérhető ezen a fiókon."
     except Exception as e:
         return f"HIBA: {e}"
 
 
 def tool_zhipu_vision(image_url="", image_path="", prompt="Mit látsz ezen a képen?") -> str:
-    """GLM-4V-Flash vision — kép → szöveg (OCR, képelemzés, diagram olvasás)."""
+    """GLM vision — kép → szöveg (OCR, képelemzés, diagram olvasás).
+    Használja glm-4v-flash vagy glm-5.3-flash (multimodális) modelleket."""
     try:
-        from zhipuai import ZhipuAI
-        api_key = os.environ.get("ZHIPUAI_API_KEY", "")
-        if not api_key:
-            return "HIBA: ZHIPUAI_API_KEY nincs beállítva. (Ugyanaz a kulcs amit Cline használ.)"
-        client = ZhipuAI(api_key=api_key)
+        client = _zhipu_client()
         
         # Kép forrás: URL vagy base64
         if image_url:
@@ -1192,17 +1210,22 @@ def tool_zhipu_vision(image_url="", image_path="", prompt="Mit látsz ezen a ké
         else:
             return "HIBA: image_url vagy image_path szükséges"
         
-        response = client.chat.completions.create(
-            model="glm-4v-flash",
-            messages=[{"role": "user", "content": img_content + [{"type": "text", "text": prompt}]}],
-            temperature=0.1, max_tokens=1024)
-        
-        result = response.choices[0].message.content
-        usage = response.usage
-        return json.dumps({"model": "glm-4v-flash", "response": result,
-            "usage": {"prompt_tokens": usage.prompt_tokens,
-                      "completion_tokens": usage.completion_tokens}
-        }, ensure_ascii=False, indent=2)
+        # Próbáljuk a vision modelleket (glm-4v-flash, glm-5.3-flash multimodális)
+        for m in _ZHIPU_VISION_MODELS + ["glm-5.3-flash"]:
+            try:
+                response = client.chat.completions.create(
+                    model=m,
+                    messages=[{"role": "user", "content": img_content + [{"type": "text", "text": prompt}]}],
+                    temperature=0.1, max_tokens=1024)
+                result = response.choices[0].message.content
+                usage = response.usage
+                return json.dumps({"model": m, "response": result,
+                    "usage": {"prompt_tokens": usage.prompt_tokens,
+                              "completion_tokens": usage.completion_tokens}
+                }, ensure_ascii=False, indent=2)
+            except Exception:
+                continue
+        return "HIBA: Egyik vision modell sem elérhető. Lehet hogy külön engedélyezés kell a fiókon."
     except Exception as e:
         return f"HIBA: {e}"
 

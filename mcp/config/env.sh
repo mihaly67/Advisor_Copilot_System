@@ -78,3 +78,4 @@ echo 'QWEN_MODEL_PATH:' $QWEN_MODEL_PATH
 echo 'QWEN_GPU_LAYERS:' $QWEN_GPU_LAYERS'/'$QWEN_TOTAL_LAYERS
 echo 'QWEN_GPU_TARGET:' $QWEN_GPU_TARGET_PERCENT'%'
 [ -f /data/mcp_server/.gh_token ] && source /data/mcp_server/.gh_token
+[ -f /data/mcp_server/.zhipu_key ] && source /data/mcp_server/.zhipu_key
