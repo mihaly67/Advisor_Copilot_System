@@ -1,51 +1,67 @@
-# LGBM Copilot — .gitignore
+# LGBM Copilot — .gitignore (merged)
 
-# === NEM felküldendő (túl nagy / generált) ===
-models/
-charts/
+# Python
 __pycache__/
 *.pyc
 *.pyo
-
-# Nyers adat CSV-k (GB-ok, symlink célpontok NEM versionáltók)
-data/raw/BTCUSD/*.csv
-data/raw/XAUUSD/*.csv
-data/exam/BTCUSD/*.csv
-data/exam/XAUUSD/*.csv
-data/labeled/
-data/processed/
-data/synthetic_btcusd.csv
-data/features_*
-data/labels_*
-data/pipeline_result_*
-
-# Optuna adatbázis
-*.db
-
-# venv — sosem megy fel
-venv/
 .venv/
+venv/
 env/
 
-# Nagy log fájlok (36MB+)
+# Data (too large for GitHub)
+data/raw/
+data/processed/
+data/labeled/
+data/exam/
+*.csv
+*.parquet
+*.pkl
+*.pth
+*.npy
+*.gguf
+*.db
+*.sqlite
+
+# Models (large binary)
+models/
+charts/
+*.bin
+*.onnx
+*.wasm
+
+# Logs (rotate, don't store)
+logs/*.log
 *.log
 
-# DEB csomagok
-*.deb
+# Lock files
+lock/*.pid
+lock/*.lock
 
-# GraphRAG output (generált gráf adatok)
-graphrag_data/output/
-graphrag_data/cache/
-graphrag_data/lancedb/
-
-# IDE user-specifikus (nem verziózott)
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
+# Rust build artifacts
+tools/yantrikdb_py/target/
+*.so
+*.d
 
 # Temp
 *.tmp
 *.bak
 .gh_token
+
+# IDE
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# DEB csomagok
+*.deb
+
+# GraphRAG output
+graphrag_data/output/
+graphrag_data/cache/
+graphrag_data/lancedb/
+
+# Secure
+secure/

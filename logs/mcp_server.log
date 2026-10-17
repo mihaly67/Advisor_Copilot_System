@@ -21033,3 +21033,7 @@ ValueError: Failed to load model from file: /data/ml/hf_cache/models--Qwen--Qwen
 [2026-10-17 01:59:22] [INFO] yantrikdb engine inicializálva: /data/mcp_server/data/yantrikdb_cognitive
 [2026-10-17 02:17:09] [INFO] yantrikdb engine inicializálva: /data/mcp_server/data/yantrikdb_cognitive
 [2026-10-17 02:30:42] [INFO] yantrikdb engine inicializálva: /data/mcp_server/data/yantrikdb_cognitive
+[2026-10-17 13:05:35] [INFO] call_tool: cognitive_memory action=record
+[2026-10-17 13:05:36] [INFO] yantrikdb engine inicializálva: /data/mcp_server/data/yantrikdb_cognitive
+[2026-10-17 13:05:47] [INFO] call_tool: store_session stage=chart_analyzer_complete
+[2026-10-17 13:05:47] [INFO] Session mentve: /data/mcp_server/state/session_20261017_130547_chart_analyzer_complete.md
