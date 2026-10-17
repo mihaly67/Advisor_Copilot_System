@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Realtime Dashboard (Z.ai + Qwen)
+Comment=Valós idejű token/cost dashboard - Z.ai + Local Qwen GPU
+Exec=bash -c 'cd /data/mcp_server/tools/qwen_assistant && python3 realtime_dashboard_gui.py'
+Icon=utilities-system-monitor
+Terminal=false
+Categories=System;Monitor;
+StartupNotify=true

@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+update-desktop-database /usr/share/applications 2>/dev/null || true
+gtk-update-icon-cache /usr/share/icons/hicolor 2>/dev/null || true
+chmod +x /usr/bin/zai-token-dashboard
+echo "Z.ai Token Dashboard telepitve."
+echo "Inditas: zai-token-dashboard vagy alkalmazasok menu."

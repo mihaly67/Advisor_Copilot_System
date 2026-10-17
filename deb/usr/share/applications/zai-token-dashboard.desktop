@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Z.ai Token Dashboard
+Comment=Token fogyasztás és GPU/Qwen monitor
+Exec=/usr/bin/zai-token-dashboard
+Icon=zai-dashboard
+Terminal=false
+Categories=System;Monitor;
+StartupNotify=false

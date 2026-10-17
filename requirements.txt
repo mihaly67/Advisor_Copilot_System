@@ -1,0 +1,8 @@
+# MCP Server Requirements
+mcp>=2.2.0
+numpy>=2.0
+sentence-transformers>=6.0
+transformers>=5.0
+torch>=2.0
+rdflib>=7.0
+yantrikdb-py>=0.1.0

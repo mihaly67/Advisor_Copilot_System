@@ -1,0 +1,816 @@
+#!/usr/bin/env python3
+"""
+Z.ai Token Dashboard v2.0 — Egyszerűsített, megbízható.
+4 kártya: Összköltség, Mai használat, GPU, Qwen.
+Nincs kontextus/session parsing — csak a megbízható cost + GPU adatok.
+"""
+import sys
+import os
+import re
+import json
+import glob
+import subprocess
+from datetime import datetime, date, timedelta
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+    QLabel, QFrame, QGridLayout, QPushButton,
+    QSystemTrayIcon, QMenu, QAction, QSizePolicy
+)
+from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtWidgets import QStyleFactory
+from PyQt5.QtGui import QColor, QPalette, QIcon
+
+# ===========================================================================
+# KONFIG
+# ===========================================================================
+CLINE_LOG_GLOB = "/home/Jules/.config/Code/logs/*/window*/exthost/output_logging_*/1-Cline.log"
+COST_STATE_FILE = "/data/mcp_server/state/cost_persistent.json"
+
+# Breeze Dark színkészlet
+COLOR_BG = "#232629"
+COLOR_CARD = "#2d3033"
+COLOR_BORDER = "#5c6063"
+COLOR_TEXT = "#eff0f1"
+COLOR_TEXT_DIM = "#bdc3c7"
+COLOR_GREEN = "#1cdc9a"
+COLOR_TEAL = "#1cdc9a"
+COLOR_YELLOW = "#fdbc4b"
+COLOR_RED = "#da4453"
+COLOR_BLUE = "#1d99f3"
+COLOR_PURPLE = "#9b59b6"
+
+USAGE_RE = re.compile(r'Task usage:.*?tokensIn=(\d+).*?tokensOut=(\d+).*?cost=([0-9.]+)')
+
+
+def parse_cost_entries():
+    """Visszaadja az összes Task usage entry-t a Cline logokból — csak költség adatok.
+    Nincs kontextus/session parsing — megbízható, egyszerű."""
+    entries = []
+    log_files = sorted(glob.glob(CLINE_LOG_GLOB))
+    for lf in log_files:
+        try:
+            with open(lf, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    m = USAGE_RE.search(line)
+                    if m:
+                        ts_match = re.match(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})', line)
+                        ts = ts_match.group(1) if ts_match else "unknown"
+                        entries.append({
+                            "timestamp": ts,
+                            "date": ts[:10],
+                            "tokensIn": int(m.group(1)),
+                            "tokensOut": int(m.group(2)),
+                            "cost": float(m.group(3)),
+                        })
+        except Exception:
+            pass
+    return entries
+
+
+def load_cost_state():
+    """Perzisztens költségállapot betöltése (túléli a log-törlődést)."""
+    try:
+        with open(COST_STATE_FILE, "r") as f:
+            return json.load(f)
+    except Exception:
+        return {"total_cost": 0, "total_in": 0, "total_out": 0, "total_calls": 0, "active_days_set": []}
+
+
+def save_cost_state(total_cost, total_in, total_out, total_calls, active_days_list, per_day=None):
+    """Perzisztens költségállapot mentése."""
+    try:
+        data = {
+            "total_cost": total_cost,
+            "total_in": total_in,
+            "total_out": total_out,
+            "total_calls": total_calls,
+            "active_days_set": active_days_list,
+        }
+        if per_day is not None:
+            data["per_day"] = per_day
+        with open(COST_STATE_FILE, "w") as f:
+            json.dump(data, f)
+    except Exception:
+        pass
+
+
+def get_gpu_status():
+    """P4000 GPU státusz — teljes elérési út, hosszabb timeout."""
+    try:
+        r = subprocess.run(
+            ['/usr/bin/nvidia-smi', '--query-gpu=memory.used,memory.total,utilization.gpu,temperature.gpu',
+             '--format=csv,noheader,nounits', '-i', '0'],
+            capture_output=True, text=True, timeout=10
+        )
+        if r.returncode != 0:
+            return None
+        parts = r.stdout.strip().split(', ')
+        if len(parts) < 4:
+            return None
+        return {
+            'vram_used': int(parts[0]),
+            'vram_total': int(parts[1]),
+            'gpu_util': int(parts[2]),
+            'temp': int(parts[3]),
+        }
+    except Exception:
+        return None
+
+
+def get_qwen_status():
+    """MQL5 Qwen feldolgozás státusza a logból."""
+    log_file = "/data/mcp_server/logs/mql5_book_qwen.log"
+    try:
+        with open(log_file, "r", encoding="utf-8", errors="replace") as f:
+            lines = f.readlines()
+        phase = "?"
+        current = 0
+        total = 0
+        last_tps = 0
+        for line in lines:
+            if "PHASE 1" in line:
+                phase = "1: RAG"
+            elif "PHASE 2" in line:
+                phase = "2: Könyv"
+            elif "PHASE 3" in line:
+                phase = "3: Összegzés"
+            m = re.search(r'\[(\d+)/(\d+)\]', line)
+            if m:
+                current = int(m.group(1))
+                total = int(m.group(2))
+            m2 = re.search(r'([\d.]+) tok/s', line)
+            if m2:
+                last_tps = float(m2.group(1))
+        running = os.path.exists("/data/mcp_server/lock/mcp.lock")
+        return {
+            'phase': phase, 'current': current, 'total': total,
+            'tps': last_tps, 'running': running,
+        }
+    except Exception:
+        return None
+
+
+COLOR_ORANGE = "#ff7f00"
+
+# Kontextus figyelmeztetési küszöbök (token input)
+CTX_THRESHOLD_GREEN = 10000   # optimális
+CTX_THRESHOLD_YELLOW = 30000  # mérsékelt
+CTX_THRESHOLD_ORANGE = 60000  # nehéz
+# felette = piros, reset ajánlott
+
+# Dashboard saját log — task események (dupla biztosíték)
+DASHBOARD_TASK_LOG = "/data/mcp_server/logs/token_dashboard_task.log"
+
+# Regex: Cline session status események
+SESSION_STATUS_RE = re.compile(
+    r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)\s+LOG\s+\[MessageTranslator\]\s+Session status:\s+(running|pending|idle)'
+)
+SESSION_REBUILT_RE = re.compile(
+    r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)\s+LOG\s+\[SdkController\]\s+Session rebuilt'
+)
+CONTINUING_IDLE_RE = re.compile(
+    r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)\s+LOG\s+\[SdkController\]\s+Continuing idle session'
+)
+TASK_INITIALIZED_RE = re.compile(
+    r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)\s+LOG\s+\[SdkController\]\s+Task initialized:\s+(\S+)'
+)
+
+
+def _parse_ts(ts_str):
+    """ISO timestamp → datetime, hibós esetén now().
+    Ha Z suffix van (UTC), átalakítja helyi időre (CEST=UTC+2)."""
+    try:
+        # Z suffix = UTC → helyi idő
+        if ts_str.endswith("Z"):
+            # Lehet milliszekundum is: 2026-09-21T19:38:01.249Z
+            try:
+                utc_dt = datetime.strptime(ts_str[:-1], "%Y-%m-%dT%H:%M:%S.%f")
+            except ValueError:
+                utc_dt = datetime.strptime(ts_str[:-1], "%Y-%m-%dT%H:%M:%S")
+            import time as _time
+            offset_sec = _time.altzone if _time.daylight else _time.timezone
+            return utc_dt - timedelta(seconds=offset_sec)
+        try:
+            return datetime.strptime(ts_str, "%Y-%m-%dT%H:%M:%S.%f")
+        except ValueError:
+            return datetime.strptime(ts_str, "%Y-%m-%dT%H:%M:%S")
+    except Exception:
+        return datetime.now()
+
+
+def write_task_log(event_type, **kwargs):
+    """Dashboard saját log — dupla biztosíték újraindítás után.
+    Formátum: 2026-09-21T19:17:31 | TASK_START | ctx=1582 calls=0
+              2026-09-21T19:19:53 | TASK_END   | ctx=2035 calls=3 cost=0.033
+    """
+    try:
+        os.makedirs(os.path.dirname(DASHBOARD_TASK_LOG), exist_ok=True)
+        ts = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        parts = [f"{ts} | {event_type}"]
+        for k, v in kwargs.items():
+            parts.append(f"{k}={v}")
+        line = " | ".join(parts) + "\n"
+        with open(DASHBOARD_TASK_LOG, "a", encoding="utf-8") as f:
+            f.write(line)
+    except Exception:
+        pass
+
+
+def read_dashboard_task_log():
+    """Dashboard saját log visszolvasása — utolsó task határok.
+    Visszaad: (last_task_start, last_task_end, last_ctx, last_calls, last_cost)
+    """
+    try:
+        with open(DASHBOARD_TASK_LOG, "r", encoding="utf-8", errors="replace") as f:
+            lines = f.readlines()
+        last_start = None
+        last_end = None
+        last_ctx = 0
+        last_calls = 0
+        last_cost = 0.0
+        for line in lines:
+            if "| TASK_START |" in line:
+                m = re.match(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})', line)
+                if m:
+                    last_start = _parse_ts(m.group(1))
+                cm = re.search(r'ctx=(\d+)', line)
+                if cm:
+                    last_ctx = int(cm.group(1))
+                last_end = None
+            elif "| TASK_END |" in line:
+                m = re.match(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})', line)
+                if m:
+                    last_end = _parse_ts(m.group(1))
+                cm = re.search(r'ctx=(\d+)', line)
+                if cm:
+                    last_ctx = int(cm.group(1))
+                cm2 = re.search(r'calls=(\d+)', line)
+                if cm2:
+                    last_calls = int(cm2.group(1))
+                cm3 = re.search(r'cost=([0-9.]+)', line)
+                if cm3:
+                    last_cost = float(cm3.group(1))
+        return last_start, last_end, last_ctx, last_calls, last_cost
+    except Exception:
+        return None, None, 0, 0, 0.0
+
+
+def parse_cline_session_events(log_files):
+    """Cline log session események — az ÖSSZES log fájlból.
+    Visszaad: [(timestamp, 'running'|'idle'|'task_init'), ...]
+    - 'task_init' = új task/csevegés indítása (Task initialized: <task_id>)
+    - 'idle' = Cline végzett az aktuális üzenettel
+    - 'running' = új üzenet érkezett (idle→running, DE csak ha előtte idle volt)
+    """
+    events = []
+    last_status = None
+    for log_file in log_files:
+        try:
+            with open(log_file, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    # Task initialized → új task kezdete (mindig jelentős!)
+                    m4 = TASK_INITIALIZED_RE.search(line)
+                    if m4:
+                        events.append((_parse_ts(m4.group(1)), 'task_init'))
+                        last_status = 'running'
+                        continue
+                    m3 = CONTINUING_IDLE_RE.search(line)
+                    if m3:
+                        events.append((_parse_ts(m3.group(1)), 'running'))
+                        last_status = 'running'
+                        continue
+                    if SESSION_REBUILT_RE.search(line):
+                        continue
+                    m = SESSION_STATUS_RE.search(line)
+                    if m:
+                        status = m.group(2)
+                        if status == 'idle':
+                            events.append((_parse_ts(m.group(1)), 'idle'))
+                            last_status = 'idle'
+                        elif status == 'running':
+                            if last_status in (None, 'idle'):
+                                events.append((_parse_ts(m.group(1)), 'running'))
+                                last_status = 'running'
+                            else:
+                                last_status = 'running'
+                        elif status == 'pending':
+                            last_status = 'pending'
+                        continue
+        except Exception:
+            pass
+    return events
+
+
+def get_session_context():
+    """Aktuális session kontextus elemzés — Cline log idle/running alapján.
+    Task határ: 'idle' → következő 'running' = új task kezdete.
+    Csak az aktuális task API hívásait számolja.
+    Dashboard saját logot is ír (dupla biztosíték)."""
+    log_files = sorted(glob.glob(CLINE_LOG_GLOB))
+    if not log_files:
+        return None
+
+    # --- 1. API usage entries — az ÖSSZES log fájlból ---
+    entries = []
+    for lf in log_files:
+        try:
+            with open(lf, "r", encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    m = USAGE_RE.search(line)
+                    if m:
+                        ts_match = re.match(r'(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)', line)
+                        ts = _parse_ts(ts_match.group(1)) if ts_match else datetime.now()
+                        entries.append({
+                            'ts': ts,
+                            'tokensIn': int(m.group(1)),
+                            'tokensOut': int(m.group(2)),
+                            'cost': float(m.group(3)),
+                        })
+        except Exception:
+            pass
+
+    if not entries:
+        return None
+
+    # --- 2. Session események — az ÖSSZES log fájlból ---
+    session_events = parse_cline_session_events(log_files)
+
+    # --- 3. Task kezdete = UTOLSÓ 'task_init' esemény (Task initialized: <id>) ---
+    # Ez az új csevegés/feladat indítása, amikor az előzmények törlődnek.
+    # Ha nincs task_init, az első running a fallback.
+    # task_active = az utolsó esemény running/task_init-e (éppen dolgozik-e Cline)
+    task_start_ts = None
+    task_active = False
+
+    if session_events:
+        # Utolsó task_init megkeresése = aktuális task kezdete
+        for ev_ts, ev_type in session_events:
+            if ev_type == 'task_init':
+                task_start_ts = ev_ts
+        # Ha nincs task_init, az első running a fallback
+        if task_start_ts is None:
+            for ev_ts, ev_type in session_events:
+                if ev_type == 'running':
+                    task_start_ts = ev_ts
+                    break
+        if task_start_ts is None and session_events:
+            task_start_ts = session_events[0][0]
+        # Active = utolsó esemény
+        last_ev = session_events[-1]
+        task_active = last_ev[1] in ('running', 'task_init')
+    else:
+        task_start_ts = entries[0]['ts']
+        task_active = True
+
+    # --- 4. Fallback: saját dashboard logból ---
+    if task_start_ts is None:
+        dl_start, dl_end, _, _, _ = read_dashboard_task_log()
+        if dl_start and (dl_end is None):
+            task_start_ts = dl_start
+            task_active = True
+
+    # --- 5. Ha még mindig nincs task_start, az első entry ---
+    if task_start_ts is None:
+        task_start_ts = entries[0]['ts']
+        task_active = True
+
+    # --- 6. Aktuális task API hívásai: task_start utáni entries ---
+    current_task = [e for e in entries if e['ts'] >= task_start_ts]
+
+    if not current_task:
+        current_task = [entries[-1]]
+
+    # --- 7. Számítások ---
+    current_context = current_task[-1]['tokensIn']
+    first_context = current_task[0]['tokensIn']
+    context_growth = current_context - first_context
+
+    task_in = sum(e['tokensIn'] for e in current_task)
+    task_out = sum(e['tokensOut'] for e in current_task)
+    task_cost = sum(e['cost'] for e in current_task)
+    task_calls = len(current_task)
+
+    # Költség hatékonyság: $ per hívás (nem per 1K input, mert az ismétlődő kontextust tartalmaz)
+    cost_per_call = task_cost / task_calls if task_calls > 0 else 0
+
+    # Task duration
+    task_duration = (datetime.now() - task_start_ts).total_seconds()
+
+    # --- 8. Dashboard saját log írása (task_start_ts-sel, nem now()-vel!) ---
+    dl_start, dl_end, _, _, _ = read_dashboard_task_log()
+    if task_active:
+        if dl_end is not None or dl_start is None:
+            write_task_log("TASK_START", ctx=current_context, calls=task_calls,
+                          start=task_start_ts.strftime("%H:%M:%S"))
+    else:
+        if dl_start is not None and dl_end is None:
+            write_task_log("TASK_END", ctx=current_context, calls=task_calls,
+                          cost=f"{task_cost:.4f}")
+
+    # --- 9. Figyelmeztetés szintje ---
+    if current_context < CTX_THRESHOLD_GREEN:
+        warning_color = COLOR_GREEN
+        warning_text = "🟢 Hatékony kontextus"
+        tip = "Optimális — folytasd a munkát"
+    elif current_context < CTX_THRESHOLD_YELLOW:
+        warning_color = COLOR_YELLOW
+        warning_text = "🟡 Mérsékelt kontextus"
+        tip = "Figyelj a kontextus növekedésre"
+    elif current_context < CTX_THRESHOLD_ORANGE:
+        warning_color = COLOR_ORANGE
+        warning_text = "🟠 Nehéz kontextus"
+        tip = "Zárj felesleges fájlokat, tömöríts"
+    else:
+        warning_color = COLOR_RED
+        warning_text = "🔴 TÚL HOSSZÚ — RESET ajánlott"
+        tip = "Új task / context reset = költség csökkenés"
+
+    return {
+        'current_context': current_context,
+        'first_context': first_context,
+        'context_growth': context_growth,
+        'task_in': task_in,
+        'task_out': task_out,
+        'task_cost': task_cost,
+        'task_calls': task_calls,
+        'cost_per_call': cost_per_call,
+        'warning_color': warning_color,
+        'warning_text': warning_text,
+        'tip': tip,
+        'task_start_ts': task_start_ts,
+        'task_active': task_active,
+        'task_duration': task_duration,
+        'log_files_count': len(log_files),
+    }
+
+
+class CardWidget(QFrame):
+    """Egy kártya a dashboard-on — egyszerűsítve."""
+    def __init__(self, title, parent=None):
+        super().__init__(parent)
+        self.setFrameStyle(QFrame.StyledPanel)
+        self.setStyleSheet(f"""
+            QFrame {{
+                background-color: {COLOR_CARD};
+                border-radius: 6px;
+                border: 1px solid {COLOR_BORDER};
+            }}
+        """)
+        sp = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+        self.setSizePolicy(sp)
+        self.layout_v = QVBoxLayout(self)
+        self.layout_v.setContentsMargins(8, 3, 8, 3)
+        self.layout_v.setSpacing(1)
+        self.title_label = QLabel(title)
+        self.title_label.setStyleSheet(f"color: {COLOR_TEXT_DIM}; font-size: 10px; font-weight: bold; letter-spacing: 1px;")
+        self.title_label.setMinimumHeight(13)
+        self.layout_v.addWidget(self.title_label)
+
+    def add_label(self, text, color=COLOR_TEXT, size=14, bold=False):
+        lbl = QLabel(text)
+        lbl.setWordWrap(True)
+        weight = "bold" if bold else "normal"
+        lbl.setStyleSheet(f"color: {color}; font-size: {size}px; font-weight: {weight};")
+        lbl.setMinimumHeight(size + 2)
+        self.layout_v.addWidget(lbl)
+        return lbl
+
+
+class DashboardWindow(QMainWindow):
+    """Fő dashboard ablak — 4 kártya, egyszerű és megbízható."""
+    def __init__(self, start_minimized=False):
+        super().__init__()
+        self.setWindowTitle("Z.ai Token Dashboard")
+        self.setMinimumSize(680, 400)
+        self.setStyleSheet(f"QMainWindow {{ background-color: {COLOR_BG}; }}")
+        icon_path = "/usr/share/icons/hicolor/256x256/apps/zai-dashboard.png"
+        if os.path.isfile(icon_path):
+            self.setWindowIcon(QIcon(icon_path))
+        self.tray = None
+        self._start_minimized = start_minimized
+        self._init_ui()
+        self._init_tray()
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.refresh)
+        self.timer.start(5000)
+        self.refresh()
+        self.adjustSize()
+        if start_minimized:
+            self.hide()
+            if self.tray:
+                self.tray.show()
+
+    def _init_ui(self):
+        central = QWidget()
+        self.setCentralWidget(central)
+        main_layout = QVBoxLayout(central)
+        main_layout.setSpacing(5)
+        main_layout.setContentsMargins(8, 6, 8, 6)
+
+        header = QLabel("  Z.ai TOKEN DASHBOARD")
+        header.setStyleSheet(f"color: {COLOR_BLUE}; font-size: 18px; font-weight: bold; padding: 4px;")
+        main_layout.addWidget(header)
+
+        self.lbl_clock = QLabel("")
+        self.lbl_clock.setStyleSheet(f"color: {COLOR_PURPLE}; font-size: 11px;")
+        main_layout.addWidget(self.lbl_clock)
+
+        grid = QGridLayout()
+        grid.setSpacing(5)
+        main_layout.addLayout(grid)
+
+        # 1. Összköltség (all-time)
+        self.card_total = CardWidget("ÖSSZES KÖLTSÉG (ALL-TIME)")
+        grid.addWidget(self.card_total, 0, 0)
+        self.total_cost = self.card_total.add_label("$0.00", COLOR_RED, 22, bold=True)
+        self.total_tokens = self.card_total.add_label("Tokenek: --", COLOR_TEXT_DIM, 11)
+        self.total_calls = self.card_total.add_label("API hívások: --", COLOR_TEXT_DIM, 11)
+        self.total_days = self.card_total.add_label("Aktív napok: --", COLOR_TEXT_DIM, 11)
+
+        # 2. Mai használat
+        self.card_today = CardWidget("MAI HASZNÁLAT")
+        grid.addWidget(self.card_today, 0, 1)
+        self.today_in = self.card_today.add_label("IN: --", COLOR_BLUE, 13, bold=True)
+        self.today_out = self.card_today.add_label("OUT: --", COLOR_GREEN, 13, bold=True)
+        self.today_cost = self.card_today.add_label("Költség: --", COLOR_YELLOW, 15, bold=True)
+        self.today_calls = self.card_today.add_label("API hívások: --", COLOR_TEXT_DIM, 11)
+
+        # 3. GPU
+        self.card_gpu = CardWidget("P4000 GPU")
+        grid.addWidget(self.card_gpu, 1, 0)
+        self.gpu_vram = self.card_gpu.add_label("VRAM: --", COLOR_TEAL, 12)
+        self.gpu_util = self.card_gpu.add_label("GPU: --%", COLOR_GREEN, 12)
+        self.gpu_temp = self.card_gpu.add_label("Temp: --°C", COLOR_TEXT_DIM, 11)
+
+        # 4. Qwen MQL5
+        self.card_qwen = CardWidget("QWEN 14B MQL5")
+        grid.addWidget(self.card_qwen, 1, 1)
+        self.qwen_status = self.card_qwen.add_label("Qwen: --", COLOR_BLUE, 12)
+        self.qwen_tps = self.card_qwen.add_label("Speed: --", COLOR_TEXT_DIM, 11)
+
+        # 5. Session kontextus figyelmeztető
+        self.card_session = CardWidget("SESSION KONTEXTUS")
+        grid.addWidget(self.card_session, 2, 0, 1, 2)
+        self.session_task_start = self.card_session.add_label("Task indulás: --", COLOR_BLUE, 11, bold=True)
+        self.session_context = self.card_session.add_label("Kontextus: --", COLOR_PURPLE, 15, bold=True)
+        self.session_warning = self.card_session.add_label("🟢 Hatékony", COLOR_GREEN, 13, bold=True)
+        self.session_growth = self.card_session.add_label("Növekedés: -- | Hívások: --", COLOR_TEXT_DIM, 11)
+        self.session_cost = self.card_session.add_label("Task költség: -- | Hívás: --", COLOR_YELLOW, 11)
+        self.session_tip = self.card_session.add_label("Tipp: --", COLOR_TEXT_DIM, 10)
+
+        # Gombok
+        btn_layout = QHBoxLayout()
+        self.btn_pause = QPushButton("GPU Pause")
+        self.btn_resume = QPushButton("GPU Resume")
+        self.btn_refresh = QPushButton("Frissítés")
+        for b in [self.btn_pause, self.btn_resume, self.btn_refresh]:
+            b.setStyleSheet(f"""
+                QPushButton {{
+                    background-color: {COLOR_CARD};
+                    color: {COLOR_TEXT};
+                    border: 1px solid {COLOR_BORDER};
+                    border-radius: 6px;
+                    padding: 6px 16px;
+                    font-size: 12px;
+                }}
+                QPushButton:hover {{ background-color: {COLOR_BORDER}; color: {COLOR_BLUE}; }}
+                QPushButton:pressed {{ background-color: {COLOR_BLUE}; color: white; }}
+            """)
+        self.btn_pause.clicked.connect(lambda: os.system("/data/mcp_server/tools/gpu_pause.sh"))
+        self.btn_resume.clicked.connect(lambda: os.system("/data/mcp_server/tools/gpu_resume.sh"))
+        self.btn_refresh.clicked.connect(self.refresh)
+        btn_layout.addWidget(self.btn_pause)
+        btn_layout.addWidget(self.btn_resume)
+        btn_layout.addWidget(self.btn_refresh)
+        main_layout.addLayout(btn_layout)
+
+    def _init_tray(self):
+        self.tray = QSystemTrayIcon(self)
+        icon_path = "/usr/share/icons/hicolor/48x48/apps/zai-dashboard.png"
+        if os.path.isfile(icon_path):
+            self.tray.setIcon(QIcon(icon_path))
+        self.tray.setToolTip("Z.ai Token Dashboard")
+        menu = QMenu()
+        act_show = QAction("Megjelenítés", self)
+        act_show.triggered.connect(self._show_window)
+        act_quit = QAction("Kilépés", self)
+        act_quit.triggered.connect(self._do_quit)
+        menu.addAction(act_show)
+        menu.addSeparator()
+        menu.addAction(act_quit)
+        self.tray.setContextMenu(menu)
+        self.tray.activated.connect(self._tray_activated)
+        self.tray.show()
+
+    def _show_window(self):
+        self.showNormal()
+        self.activateWindow()
+        self.raise_()
+
+    def _tray_activated(self, reason):
+        if reason == QSystemTrayIcon.DoubleClick:
+            self._show_window()
+
+    def _do_quit(self):
+        """Valódi kilépés — tray elrejtése + app leállítása."""
+        if self.tray:
+            self.tray.hide()
+        QApplication.quit()
+
+    def closeEvent(self, event):
+        """X gomb = tálca letétel (rejtés), nem kilépés.
+        Valódi kilépés a tray menüből (Kilépés)."""
+        event.ignore()
+        self.hide()
+        if self.tray:
+            self.tray.show()
+
+    def refresh(self):
+        """Adatok frissítése 5s-enként — csak megbízható cost + GPU adatok."""
+        entries = parse_cost_entries()
+        now = datetime.now()
+        self.lbl_clock.setText(f"Frissítve: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+
+        # --- Mai tokenek ---
+        today_str = date.today().isoformat()
+        today_entries = [e for e in entries if e["date"] == today_str]
+        tin = sum(e["tokensIn"] for e in today_entries)
+        tout = sum(e["tokensOut"] for e in today_entries)
+        cost = sum(e["cost"] for e in today_entries)
+        calls = len(today_entries)
+        self.today_in.setText(f"IN: {tin:,} ({tin/1000:.1f}K)")
+        self.today_out.setText(f"OUT: {tout:,} ({tout/1000:.1f}K)")
+        self.today_cost.setText(f"Költség: ${cost:.4f}")
+        self.today_calls.setText(f"API hívások: {calls}")
+
+        # --- Összköltség (all-time, perzisztens) ---
+        # Naponkénti bontás: minden napra max(mentett_nap, log_nap)
+        # Így log-törlődés esetén a mentett érték megmarad, új bejegyzések pedig frissítik
+        state = load_cost_state()
+        saved_days = state.get("per_day", {})  # {"2026-09-19": {"cost": 5.84, "in": 12345, "out": 678, "calls": 280}, ...}
+
+        # Log adatok naponkénti aggregálása
+        log_per_day = {}
+        for e in entries:
+            d = e["date"]
+            if d not in log_per_day:
+                log_per_day[d] = {"cost": 0, "in": 0, "out": 0, "calls": 0}
+            log_per_day[d]["cost"] += e["cost"]
+            log_per_day[d]["in"] += e["tokensIn"]
+            log_per_day[d]["out"] += e["tokensOut"]
+            log_per_day[d]["calls"] += 1
+
+        # Egyesítés: minden napra max(mentett, log)
+        all_days = set(saved_days.keys()) | set(log_per_day.keys())
+        total_cost_all = 0
+        total_in_all = 0
+        total_out_all = 0
+        total_calls_all = 0
+        new_per_day = {}
+        for d in all_days:
+            s = saved_days.get(d, {"cost": 0, "in": 0, "out": 0, "calls": 0})
+            l = log_per_day.get(d, {"cost": 0, "in": 0, "out": 0, "calls": 0})
+            merged = {
+                "cost": max(s["cost"], l["cost"]),
+                "in": max(s["in"], l["in"]),
+                "out": max(s["out"], l["out"]),
+                "calls": max(s["calls"], l["calls"]),
+            }
+            new_per_day[d] = merged
+            total_cost_all += merged["cost"]
+            total_in_all += merged["in"]
+            total_out_all += merged["out"]
+            total_calls_all += merged["calls"]
+
+        active_days = len(all_days)
+
+        # Perzisztens állapot mentése (per_day breakdown-nal)
+        save_cost_state(total_cost_all, total_in_all, total_out_all, total_calls_all, sorted(all_days), per_day=new_per_day)
+
+        self.total_cost.setText(f"${total_cost_all:.2f}")
+        self.total_tokens.setText(f"Tokenek: {total_in_all+total_out_all:,} (IN: {total_in_all/1_000_000:.2f}M, OUT: {total_out_all/1_000_000:.2f}M)")
+        self.total_calls.setText(f"API hívások: {total_calls_all:,}")
+        self.total_days.setText(f"Aktív napok: {active_days}")
+
+        # --- GPU ---
+        gpu = get_gpu_status()
+        if gpu:
+            self.gpu_vram.setText(f"VRAM: {gpu['vram_used']}/{gpu['vram_total']} MB ({gpu['vram_used']/gpu['vram_total']*100:.0f}%)")
+            self.gpu_util.setText(f"GPU: {gpu['gpu_util']}%")
+            self.gpu_temp.setText(f"Temp: {gpu['temp']}°C")
+            uc = COLOR_GREEN if gpu['gpu_util'] < 60 else (COLOR_YELLOW if gpu['gpu_util'] < 80 else COLOR_RED)
+            self.gpu_util.setStyleSheet(f"color: {uc}; font-size: 12px;")
+
+        # --- Qwen MQL5 ---
+        qwen = get_qwen_status()
+        if qwen:
+            status = "FUT" if qwen['running'] else "ALL"
+            self.qwen_status.setText(f"Qwen 14B: {status} | Phase {qwen['phase']}")
+            if qwen['total'] > 0:
+                self.qwen_tps.setText(f"Haladás: {qwen['current']}/{qwen['total']} | {qwen['tps']:.1f} tok/s")
+            else:
+                self.qwen_tps.setText(f"Sebesség: {qwen['tps']:.1f} tok/s")
+
+        # --- Session kontextus ---
+        sess = get_session_context()
+        if sess:
+            ctx = sess['current_context']
+            # Task indulás ideje + duration
+            start_str = sess['task_start_ts'].strftime("%H:%M:%S")
+            dur = int(sess['task_duration'])
+            h = dur // 3600
+            m = (dur % 3600) // 60
+            s = dur % 60
+            if h > 0:
+                dur_str = f"{h}ó {m}p"
+            else:
+                dur_str = f"{m}p {s}mp"
+            active_str = "🟢 AKTÍV" if sess['task_active'] else "⚪ IDLE"
+            self.session_task_start.setText(f"Task indulás: {start_str} ({dur_str}) {active_str}")
+            self.session_context.setText(f"Kontextus: {ctx:,} ({ctx/1000:.1f}K)")
+            self.session_warning.setText(sess['warning_text'])
+            self.session_warning.setStyleSheet(f"color: {sess['warning_color']}; font-size: 13px; font-weight: bold;")
+            growth_sign = "+" if sess['context_growth'] >= 0 else ""
+            self.session_growth.setText(
+                f"Növekedés: {growth_sign}{sess['context_growth']:,} | Hívások: {sess['task_calls']}"
+            )
+            self.session_cost.setText(
+                f"Task költség: ${sess['task_cost']:.4f} | Hívás: ${sess['cost_per_call']:.4f}"
+            )
+            self.session_tip.setText(f"💡 {sess['tip']}")
+
+        # --- Tray tooltip frissítése ---
+        if self.tray and self.tray.isVisible():
+            tip = f"Összesen: ${total_cost_all:.2f} | Ma: ${cost:.4f}"
+            if gpu:
+                tip += f" | GPU: {gpu['gpu_util']}%"
+            if sess:
+                tip += f" | CTX: {sess['current_context']/1000:.1f}K"
+            self.tray.setToolTip(tip)
+
+
+def apply_breeze_dark(app):
+    """Breeze Dark téma alkalmazása — Fusion stílus + sötét paletta."""
+    app.setStyle(QStyleFactory.create("Fusion"))
+    pal = QPalette()
+    # Breeze Dark színek
+    bg = QColor("#232629")
+    bg_alt = QColor("#2d3033")
+    text = QColor("#eff0f1")
+    text_dim = QColor("#bdc3c7")
+    accent = QColor("#3daee9")
+    border = QColor("#5c6063")
+    # Szerepek beállítása
+    pal.setColor(QPalette.Window, bg)
+    pal.setColor(QPalette.WindowText, text)
+    pal.setColor(QPalette.Base, bg_alt)
+    pal.setColor(QPalette.AlternateBase, bg)
+    pal.setColor(QPalette.ToolTipBase, bg_alt)
+    pal.setColor(QPalette.ToolTipText, text)
+    pal.setColor(QPalette.Text, text)
+    pal.setColor(QPalette.Button, bg_alt)
+    pal.setColor(QPalette.ButtonText, text)
+    pal.setColor(QPalette.BrightText, QColor("#ffffff"))
+    pal.setColor(QPalette.Link, accent)
+    pal.setColor(QPalette.Highlight, accent)
+    pal.setColor(QPalette.HighlightedText, QColor("#ffffff"))
+    # Inaktív állapotok
+    pal.setColor(QPalette.Disabled, QPalette.WindowText, text_dim)
+    pal.setColor(QPalette.Disabled, QPalette.Text, text_dim)
+    pal.setColor(QPalette.Disabled, QPalette.ButtonText, text_dim)
+    app.setPalette(pal)
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Z.ai Token Dashboard")
+    parser.add_argument("--minimized", action="store_true", help="Indítás tálcán (minimalizálva)")
+    args = parser.parse_args()
+
+    app = QApplication(sys.argv)
+    app.setApplicationName("Z.ai Token Dashboard")
+    app.setApplicationDisplayName("Z.ai Token Dashboard")
+
+    # --- Single instance lock (QSharedMemory) ---
+    from PyQt5.QtCore import QSharedMemory
+    shared = QSharedMemory("zai-token-dashboard-singleton")
+    if shared.attach():
+        shared.detach()
+    if not shared.create(1):
+        print("Z.ai Token Dashboard már fut — kilépés.")
+        sys.exit(0)
+
+    apply_breeze_dark(app)
+    icon_path = "/usr/share/icons/hicolor/256x256/apps/zai-dashboard.png"
+    if os.path.isfile(icon_path):
+        app.setWindowIcon(QIcon(icon_path))
+    if not QSystemTrayIcon.isSystemTrayAvailable():
+        print("Figyelem: rendszertálca nem elérhető — ablak módban indul.")
+        args.minimized = False
+    window = DashboardWindow(start_minimized=args.minimized)
+    window.show()
+    sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()

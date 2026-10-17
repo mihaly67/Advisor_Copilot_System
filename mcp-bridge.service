@@ -1,0 +1,21 @@
+[Unit]
+Description=MCP Bridge Service - Qwen Server Auto-Start
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=Jules
+WorkingDirectory=/data/mcp_server
+Environment="PATH=/home/Jules/jules_venv/bin:/usr/local/bin:/usr/bin:/bin"
+EnvironmentFile=/data/mcp_server/env.sh
+ExecStart=/home/Jules/jules_venv/bin/python3 /data/mcp_server/server.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=30
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

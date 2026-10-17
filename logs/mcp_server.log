@@ -21037,3 +21037,11 @@ ValueError: Failed to load model from file: /data/ml/hf_cache/models--Qwen--Qwen
 [2026-10-17 13:05:36] [INFO] yantrikdb engine inicializálva: /data/mcp_server/data/yantrikdb_cognitive
 [2026-10-17 13:05:47] [INFO] call_tool: store_session stage=chart_analyzer_complete
 [2026-10-17 13:05:47] [INFO] Session mentve: /data/mcp_server/state/session_20261017_130547_chart_analyzer_complete.md
+[2026-10-17 13:24:49] [INFO] call_tool: store_session stage=chart_analyzer_done
+[2026-10-17 13:24:49] [INFO] Session mentve: /data/mcp_server/state/session_20261017_132449_chart_analyzer_done.md
+[2026-10-17 13:24:58] [INFO] call_tool: cognitive_memory action=record
+[2026-10-17 14:13:03] [INFO] call_tool: visualize action=html_file
+[2026-10-17 14:19:18] [INFO] call_tool: zhipu_vision path=/tmp/pred_visual_screenshot.png
+[2026-10-17 14:26:38] [INFO] call_tool: store_session stage=chart_visual_analyzer_done
+[2026-10-17 14:26:38] [INFO] Session mentve: /data/mcp_server/state/session_20261017_142638_chart_visual_analyzer_done.md
+[2026-10-17 14:26:48] [INFO] call_tool: cognitive_memory action=record

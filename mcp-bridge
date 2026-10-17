@@ -1,0 +1,174 @@
+#!/bin/bash
+# MCP Bridge Service - SysVinit script for MX Linux
+# description: Qwen MCP Server - Auto-start and bridge for VSCode Cline
+
+### BEGIN INIT INFO
+# Provides:          mcp-bridge
+# Required-Start:    $network $local_fs
+# Required-Stop:     $network $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: MCP Bridge Service for Qwen Server
+# Description:       Model Context Protocol server that bridges VSCode Cline with Qwen2.5-Coder
+### END INIT INFO
+
+# Venv és config
+VENV_PATH="/home/Jules/jules_venv"
+MCP_SERVER="/data/mcp_server/server.py"
+ENV_FILE="/data/mcp_server/env.sh"
+PID_FILE="/var/run/mcp-bridge.pid"
+LOG_FILE="/var/log/mcp-bridge.log"
+
+# Process név
+PROG_NAME="mcp-bridge"
+DAEMON="$VENV_PATH/bin/python3"
+
+# Ellenőrzés, hogy minden fájl létezik
+if [ ! -f "$DAEMON" ]; then
+    echo "❌ HIBA: $DAEMON nem található!"
+    exit 1
+fi
+
+if [ ! -f "$MCP_SERVER" ]; then
+    echo "❌ HIBA: $MCP_SERVER nem található!"
+    exit 1
+fi
+
+# PID ellenőrzés
+check_pid() {
+    if [ -f "$PID_FILE" ]; then
+        PID=$(cat "$PID_FILE")
+        if ps -p "$PID" > /dev/null 2>&1; then
+            return 0  # Fut
+        else
+            return 1  # Nem fut (stale PID)
+        fi
+    else
+        return 1  # Nincs PID fájl
+    fi
+}
+
+# Indítás
+do_start() {
+    echo "🚀 MCP Bridge indítása..."
+    
+    if check_pid; then
+        echo "⚠️  MCP Bridge MÁR FUT (PID: $(cat $PID_FILE))"
+        return 0
+    fi
+    
+    # Környezet betöltése
+    if [ -f "$ENV_FILE" ]; then
+        source "$ENV_FILE"
+    fi
+    
+    # Venv aktiválása és indítás
+    source "$VENV_PATH/bin/activate"
+    
+    # Háttérben indítjuk
+    start-stop-daemon --start --quiet --pidfile "$PID_FILE" --make-pidfile \
+        --background --chdir /data/mcp_server \
+        --startas "$DAEMON" -- "$MCP_SERVER"
+    
+    sleep 2
+    
+    if check_pid; then
+        echo "✅ MCP Bridge ELINDÍTVA (PID: $(cat $PID_FILE))"
+        echo "   Log: $LOG_FILE"
+        return 0
+    else
+        echo "❌ MCP Bridge HIBÁSAN INDÍTVA!"
+        echo "   Ellenőrizze a logot: tail -f $LOG_FILE"
+        return 1
+    fi
+}
+
+# Leállítás
+do_stop() {
+    echo "🛑 MCP Bridge leállítása..."
+    
+    if ! check_pid; then
+        echo "⚠️  MCP Bridge NEM FUT"
+        return 0
+    fi
+    
+    PID=$(cat "$PID_FILE")
+    start-stop-daemon --stop --quiet --pidfile "$PID_FILE"
+    
+    sleep 1
+    
+    if ! check_pid; then
+        rm -f "$PID_FILE"
+        echo "✅ MCP Bridge LEÁLLÍTVA"
+        return 0
+    else
+        echo "❌ MCP Bridge NEM LEÁLLÍTHATÓ (PID: $PID)"
+        return 1
+    fi
+}
+
+# Státusz
+do_status() {
+    echo "📊 MCP Bridge státusz:"
+    
+    if check_pid; then
+        PID=$(cat "$PID_FILE")
+        echo "   ✅ FUT (PID: $PID)"
+        echo "   Indítva: $(ps -p $PID -o lstart=)"
+        echo "   CPU: $(ps -p $PID -o %cpu=)%"
+        echo "   Mem: $(ps -p $PID -o %mem=)%"
+        return 0
+    else
+        echo "   ❌ NEM FUT"
+        return 1
+    fi
+}
+
+# Újraindítás
+do_restart() {
+    do_stop
+    sleep 1
+    do_start
+}
+
+# Log
+do_log() {
+    if [ -f "$LOG_FILE" ]; then
+        echo "📄 MCP Bridge log (utolsó 50 sor):"
+        tail -50 "$LOG_FILE"
+    else
+        echo "❌ Log fájl nem található: $LOG_FILE"
+    fi
+}
+
+# Fő entry point
+case "$1" in
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    status)
+        do_status
+        ;;
+    restart)
+        do_restart
+        ;;
+    log)
+        do_log
+        ;;
+    *)
+        echo "Használat: $0 {start|stop|status|restart|log}"
+        echo ""
+        echo "Parancsok:"
+        echo "  start   - MCP Bridge indítása"
+        echo "  stop    - MCP Bridge leállítása"
+        echo "  status  - MCP Bridge státusz"
+        echo "  restart - MCP Bridge újraindítása"
+        echo "  log     - MCP Bridge log megtekintése"
+        exit 1
+        ;;
+esac
+
+exit $?

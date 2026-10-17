@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=MCP Infra Dashboard
+Comment=GPU, Qwen, MCP server es koltség monitor
+Exec=/usr/bin/mcp-infra-dashboard
+Icon=mcp-infra
+Terminal=false
+Type=Application
+Categories=System;Monitor;

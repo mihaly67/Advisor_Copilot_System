@@ -1,0 +1,3 @@
+#!/bin/bash
+# Ne oljuk meg sajat magunkat!
+pkill -f 'python3 /usr/bin/zai-token-dashboard' 2>/dev/null || true
