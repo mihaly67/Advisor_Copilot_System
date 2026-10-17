@@ -1289,6 +1289,90 @@ def tool_visualize(action="render", html="", path="", width=1280, height=900) ->
         return f"HIBA: {e}"
 
 
+def tool_chart_analyzer(path="", html="", method="auto", wait_ms=3000) -> str:
+    """HTML Plotly chart elemzés — DOM-based adatkinyerés + vizuális elemzés."""
+    import urllib.request
+    backend_url = "http://127.0.0.1:8420"
+    try:
+        data = json.dumps({
+            "path": path, "html": html,
+            "method": method, "wait_ms": wait_ms
+        }).encode()
+        req = urllib.request.Request(f"{backend_url}/chart-analyze", data=data,
+                                    headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            result = json.loads(resp.read().decode())
+        
+        if "error" in result:
+            return f"HIBA: {result['error']}"
+        
+        out = ["📊 CHART ELEMZÉS", "=" * 40]
+        out.append(f"Forrás: {result.get('source', 'N/A')}")
+        out.append(f"Méret: {result.get('file_size_kb', 0)} KB")
+        
+        summary = result.get("summary", {})
+        if summary:
+            out.append("\n📋 ÖSSZEFOGLALÓ:")
+            if "title" in summary:
+                out.append(f"  Cím: {summary['title']}")
+            if "panels" in summary:
+                out.append(f"  Panelek: {', '.join(summary['panels'])}")
+            if "time_range" in summary:
+                tr = summary["time_range"]
+                out.append(f"  Idő: {tr['start']} → {tr['end']} ({tr['num_bars']} bar)")
+            if "prediction_curves" in summary:
+                out.append(f"  Predikció görbék: {', '.join(summary['prediction_curves'])}")
+            if "class_counts" in summary:
+                cc = summary["class_counts"]
+                out.append(f"  Osztályok: {cc}")
+            if "thresholds" in summary:
+                out.append(f"  Küszöbök: {', '.join(summary['thresholds'])}")
+        
+        # Regex részletek
+        ra = result.get("regex_analysis", {})
+        if ra.get("trace_names"):
+            out.append(f"\n📈 Trace nevek: {', '.join(ra['trace_names'])}")
+        if ra.get("candlestick"):
+            cd = ra["candlestick"]
+            if "time_range" in cd:
+                out.append(f"  Gyertya: {cd['time_range']['num_bars']} bar")
+            for k in ['open_range','high_range','low_range','close_range']:
+                if k in cd:
+                    kr = cd[k]
+                    out.append(f"  {k.replace('_range','')}: {kr['min']:.2f} - {kr['max']:.2f}")
+        
+        # Scatter trace stats
+        st = ra.get("scatter_traces", [])
+        if st:
+            out.append("\n📈 PREDIKCIÓ GÖRBÉK:")
+            for t in st:
+                line = f"  {t.get('name','?')}"
+                if "y_stats" in t:
+                    ys = t["y_stats"]
+                    line += f" — count:{ys['count']} min:{ys['min']:.4f} max:{ys['max']:.4f} mean:{ys['mean']:.4f}"
+                out.append(line)
+        
+        # Playwright részletek
+        pa = result.get("playwright_analysis", {})
+        if pa and "error" not in pa:
+            out.append("\n🌐 PLAYWRIGHT DOM:")
+            if pa.get("screenshot_path"):
+                out.append(f"  Screenshot: {pa['screenshot_path']}")
+            if pa.get("visual"):
+                out.append(f"  Vizuális: {pa['visual']}")
+            plots = pa.get("plots", {})
+            for k, v in plots.items():
+                if k.startswith("_"): continue
+                out.append(f"  Plot div #{k}: {v.get('num_traces',0)} trace")
+        
+        return "\n".join(out)
+        
+    except urllib.error.URLError:
+        return "HIBA: MCP Backend API nem elérhető (port 8420)"
+    except Exception as e:
+        return f"HIBA: {e}"
+
+
 def dispatch_tool(name: str, args: dict) -> str:
     """Egy MCP tool hívás végrehajtása név szerint."""
     try:
@@ -1372,6 +1456,13 @@ def dispatch_tool(name: str, args: dict) -> str:
                 args.get("image_path", ""),
                 args.get("prompt", "Mit látsz ezen a képen?"),
             )
+        elif name == "chart_analyzer":
+            return tool_chart_analyzer(
+                args.get("path", ""),
+                args.get("html", ""),
+                args.get("method", "auto"),
+                int(args.get("wait_ms", 3000)),
+            )
         else:
             return f"HIBA: ismeretlen tool: {name}"
     except Exception as e:
@@ -1391,7 +1482,10 @@ async def serve():
         instructions=(
             "MCP szerver Qwen2.5-Coder-7B-Instruct repó-elemzővel P4000 GPU-n "
             "(P2000 elzárva). Tool-ok: list_gpu, read_repo, write_log, "
-            "analyze_with_qwen, store_session, read_session."
+            "analyze_with_qwen, store_session, read_session, "
+            "repository_memory_indexer, rag_query, knowledge_graph, "
+            "cognitive_memory, shared_brain, visualize, "
+            "zhipu_embedding, zhipu_vision, chart_analyzer."
         ),
     )
 
@@ -1601,6 +1695,24 @@ async def serve():
         _log(f"call_tool: zhipu_vision path={image_path}")
         return dispatch_tool("zhipu_vision", {
             "image_url": image_url, "image_path": image_path, "prompt": prompt
+        })
+
+    @server.tool(
+        name="chart_analyzer",
+        description=(
+            "Plotly HTML chart elemző — DOM-based adatkinyerés predikciós modellekből. "
+            "Két módszer: (1) regex — gyors, HTML-ből regex-sel kinyeri trace-eket, címet, paneleket, küszöböket; "
+            "(2) playwright — Playwright DOM query, JS futtatás a Plotly objektumokon + screenshot. "
+            "method='auto': mindkettő, method='regex': csak regex, method='playwright': csak DOM. "
+            "path: HTML fájl útvonal, html: HTML tartalom string, wait_ms: Plotly render várakozás."
+        ),
+    )
+    def chart_analyzer(path: str = "", html: str = "",
+                       method: str = "auto", wait_ms: int = 3000) -> str:
+        """Plotly HTML chart elemzés — DOM-based adatkinyerés."""
+        _log(f"call_tool: chart_analyzer path={path} method={method}")
+        return dispatch_tool("chart_analyzer", {
+            "path": path, "html": html, "method": method, "wait_ms": wait_ms
         })
 
     _log("MCP szerver indul stdio transport-tal (MCPServer API)...")
