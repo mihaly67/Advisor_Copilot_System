@@ -18,7 +18,11 @@ SYNC_DIR="$LOCAL_REPO/mcp"
 echo "🔄 MCP → GitHub Sync"
 echo "===================="
 
-# 1. Auth check
+# 1. Load tokens
+[ -f /data/mcp_server/.gh_token ] && source /data/mcp_server/.gh_token
+[ -f /data/mcp_server/.zhipu_key ] && source /data/mcp_server/.zhipu_key
+
+# 2. Auth check
 if ! gh auth status &>/dev/null; then
     if [ -z "$GH_TOKEN" ]; then
         echo "❌ Nincs GitHub auth. Állíts be GH_TOKEN vagy futtass gh auth login"
