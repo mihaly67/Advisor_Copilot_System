@@ -120,6 +120,31 @@ class DollarBarAggregator:
             return {'open': current_price, 'high': current_price, 'low': current_price}
         return {'open': self.o, 'high': self.h, 'low': self.l}
 
+    def init_from_history(self, history_bars):
+        """Rekonstruálja a dollár barokat az M1 history-ból (history_init.csv).
+
+        Az M1 gyertyák close árával szimulálunk tick-eket. DOLLAR_THR=$0.5M és
+        BTCUSD ár ~$83000 mellett ~6 M1 gyertya zár 1 dollár bart. 1500 M1
+        gyertyából ~250 dollár bar adódik — bőven elég a MIN_BARS_FOR_PREDICT=110
+        küszöbhöz, így a bridge újraindítás után azonnal prediktálhat (nem kell
+        ~15 percet várni 110 élő dollar bar felépülésére).
+
+        Megjegyzés: a rekonstruált barok szélesebbek az élő baroknál (M1 vs
+        ~1min), így az első percekben a predikciók kissé out-of-distribution
+        lehetnek. Ahogy az élő tick-ek érkeznek, a ring buffer (250) fokozatosan
+        frissül élő barokkal, ~15 perc múlva teljesen friss a rolling ablak.
+        """
+        if not history_bars:
+            return
+        for bar in history_bars:
+            # M1 time (CEST string) → EEST unix ms (szerver idő, mint az élő tick-ek)
+            dt = datetime.strptime(bar['time'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc) + timedelta(hours=MT5_TZ_OFFSET)
+            ts_ms = int(dt.timestamp()) * 1000
+            price = bar['close']
+            self.add_tick(ts_ms, price)
+        print(f"[Bridge] ✅ DollarBarAggregator inicializálva: {len(self.bars)} bar "
+              f"(formálódó: {self.cum:.0f}/${self.dthr:.0f})", flush=True)
+
 
 class M1BarAggregator:
     """Tick-ek → M1 (1 perces) gyertyák — MT5 chart pontos másolata.
@@ -474,10 +499,14 @@ def main():
                   f"pL={msg.get('p_long',0):.3f} pS={msg.get('p_short',0):.3f} "
                   f"sig={msg.get('signal',0)}", flush=True)
 
-    def init_m1_aggregator_from_history():
-        """Beolvassa a history_init.csv-t és inicializálja az M1BarAggregator állapotát
-        az utolsó M1 gyertyával. A HUD maga olvassa a history_init.csv-t az első tick-nél
-        (mint a v1.59 minta), így nincs ZMQ slow joiner probléma.
+    def init_aggregators_from_history():
+        """Beolvassa a history_init.csv-t és inicializálja az aggregátorok állapotát.
+
+        - M1BarAggregator: az utolsó M1 gyertyával (HUD chart másolat)
+        - DollarBarAggregator: az összes M1 gyertyával rekonstruálva (azonnali predikció)
+
+        A HUD maga olvassa a history_init.csv-t az első tick-nél (mint a v1.59 minta),
+        így nincs ZMQ slow joiner probléma.
         """
         history_bars = load_history_init()
         if history_bars and len(history_bars) > 0:
@@ -485,11 +514,13 @@ def main():
             m1_aggregator.init_from_last_bar(last_bar['time'], last_bar)
             print(f"[Bridge] ✅ M1Aggregator inicializálva: {len(history_bars)} gyertya "
                   f"(utolsó: {last_bar['time']} close={last_bar['close']:.1f})", flush=True)
+            # Dollar bar rekonstrukció M1 history-ből (cold start → azonnali predikció)
+            aggregator.init_from_history(history_bars)
 
-    tcp_server = TCPServerThread(on_tick_callback=on_tick, on_connect_callback=init_m1_aggregator_from_history)
+    tcp_server = TCPServerThread(on_tick_callback=on_tick, on_connect_callback=init_aggregators_from_history)
     tcp_server.start()
-    # Induláskor is inicializáljuk az M1Aggregatort (ha a fájl már létezik)
-    init_m1_aggregator_from_history()
+    # Induláskor is inicializáljuk az aggregátorokat (ha a fájl már létezik)
+    init_aggregators_from_history()
 
     def shutdown(sig, frame):
         print(f"\n[Bridge] Leállítás ({sig})...", flush=True)
