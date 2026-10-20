@@ -6,7 +6,18 @@ Koncepciók beépítése:
 2. CRSM: Multi-Headed Consensus (többszörös validáció)
 3. Yggdrasil: Deep Planning fázisok (init→clarify→explore→evaluate→finalize)
 4. trace-wave: Decision Trace (döntés lánc dokumentálás)
-5. Microsoft GraphRAG: Entity-Relationship-Community tudásgráf (hierarchikus Leiden)
+5. MegaMemory: SQLite Knowledge Graph (concept/edge tárolás, conflict detect)
+6. yantrikdb: Contradiction Detection (explicit + implicit kontradikciók)
+7. yantrikdb: Temporal Decay (importance csökkenés idővel)
+8. SequentialThinking: Többlépéses strukturált gondolkodás
+9. ContextCompressor: Token-optimalizált kontextus (decay + injection)
+
+Inspiráció források (Brain repók):
+- MegaMemory ★725 — MCP server + SQLite KG for coding agents
+- cortexdb ★435 — SQLite + KG + RAG, 80+ tools
+- yantrikdb ★66 — contradiction detection, temporal decay, cognitive memory
+- HybridRAG ★54 — vector + graph hybrid search
+- SequentialThinking — structured multi-step reasoning MCP
 """
 
 import json, time
@@ -261,11 +272,53 @@ if __name__ == '__main__':
     t.trace_decision('gov_fix','Vizsga=OOS',['exam CSV'],'Pipeline atirva',150)
     print(f"  {t.summary()}")
     
-    # 5. Knowledge Graph
-    print("\n5. LightRAG: Knowledge Graph")
-    kg = build_scalper_knowledge_graph()
-    print(f"  triple_barrier REQUIRES: {kg.query('triple_barrier','REQUIRES')}")
-    print(f"  sample_weights CONFLICTS: {kg.query('sample_weights','CONFLICTS_WITH')}")
-    print(f"  meta_labeling -> AFML: {kg.trace_path('meta_labeling','AFML')}")
+    # 5. Knowledge Graph (Enhanced — MegaMemory + yantrikdb)
+    print("\n5. Knowledge Graph (MegaMemory + yantrikdb)")
+    try:
+        sys.path.insert(0, "/data/mcp_server/tools")
+        from knowledge_graph_tools import (
+            KnowledgeGraphDB, NodeKind, RelationType, ConceptNode,
+            SequentialThinker, ContextCompressor, build_scalper_knowledge_graph
+        )
+        kg_db = KnowledgeGraphDB("/data/LGBM_copilot/data/knowledge_graph.db")
+        build_scalper_knowledge_graph(kg_db)
+        stats = kg_db.get_stats()
+        print(f"  Concepts: {stats['concepts']}, Edges: {stats['edges']}, Domains: {stats['domains']}")
+        # Kontradikciók
+        contradictions = kg_db.detect_contradictions()
+        if contradictions:
+            print(f"  ⚠️  {len(contradictions)} contradictions detected:")
+            for c in contradictions[:5]:
+                print(f"    {c.concept_a} ↔ {c.concept_b}: {c.reason} [sev={c.severity:.1f}]")
+        # Sequential thinking
+        thinker = SequentialThinker(kg_db)
+        result = thinker.start("Use meta-labeling with sample weights?") \
+            .analyze("Both address class imbalance via different mechanisms — combining risks double-counting", 0.85) \
+            .consider_options([("meta-labeling only", 0.80), ("sample-weights only", 0.70), ("both", 0.35)]) \
+            .evaluate("meta-labeling only", "Simpler, avoids double-counting", 0.80) \
+            .conclude("Use meta-labeling as primary; do NOT combine with sample weights")
+        print(f"  Thinking: conf={result['confidence']:.2f}, contradictions={result['contradictions']}")
+        # Hybrid layers
+        try:
+            from kg_hybrid_layers import EmbeddingSearch, HybridRAGRetriever, RDFExporter, yantrikdbBridge
+            es = EmbeddingSearch("/data/LGBM_copilot/data/knowledge_graph.db")
+            idx = es.index_all()
+            print(f"  Embeddings: {idx.get('indexed',0)} indexed, model={idx.get('model','?')}")
+            rdf = RDFExporter(kg_db)
+            exp = rdf.export_to_rdf()
+            print(f"  RDF: {exp['triples']} triples, {exp['concepts']} concepts")
+            yt = yantrikdbBridge(kg_db)
+            print(f"  yantrikdb: engine={yt.engine_type}")
+            es.close()
+        except Exception as he:
+            print(f"  Hybrid layers: {he}")
+        kg_db.close()
+    except ImportError as e:
+        # Fallback: régi in-memory gráf
+        kg = build_scalper_knowledge_graph()
+        print(f"  (fallback) triple_barrier REQUIRES: {kg.query('triple_barrier','REQUIRES')}")
+        print(f"  (fallback) sample_weights CONFLICTS: {kg.query('sample_weights','CONFLICTS_WITH')}")
+        print(f"  Import error: {e}")
+
     
     print("\n✅ Self-upgrade keszen!")

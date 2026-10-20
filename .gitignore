@@ -65,3 +65,11 @@ graphrag_data/lancedb/
 
 # Secure
 secure/
+
+# Session 2026-10-20 kiegészítés (BTCUSD HUD v6 → XAUUSD adaptáció előkészítés)
+*.bak2
+logs/*.txt
+logs/*.png
+logs/*.xwd
+logs/*.sh
+v7x_all_results.json
