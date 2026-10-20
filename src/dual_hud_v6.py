@@ -19,10 +19,18 @@ from pathlib import Path
 # A history_init.csv timestamp-jei szerver EEST szerintiek, a chart-on local CEST-et mutatunk
 MT5_TZ_OFFSET = 1  # szerver EEST → local CEST: -1 óra
 
-# RDP/VNC fekete képernyő javítás
-os.environ["QTWEBENGINE_DISABLE_GPU"] = "1"
-os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-gpu --disable-software-rasterizer"
-sys.argv.append("--disable-gpu")
+# QtWebEngine GPU beállítások.
+# Alapértelmezés: hardveres gyorsítás BEKAPCSOLVA (P4000 OpenGL renderelés).
+# RDP/VNC esetén (ha fekete képernyő van a GPU kompozitálással) a HUD_NO_GPU=1
+# env változóval vissza lehet kapcsolni a software módra.
+if os.environ.get("HUD_NO_GPU", "0") == "1":
+    # Software mód (RDP/VNC escape hatch)
+    os.environ["QTWEBENGINE_DISABLE_GPU"] = "1"
+    os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-gpu --disable-software-rasterizer"
+    sys.argv.append("--disable-gpu")
+else:
+    # Hardveres gyorsítás (alapértelmezett — P4000 8GB VRAM)
+    os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--enable-gpu --ignore-gpu-blocklist --enable-native-gpu-memory-buffers"
 sys.argv.append("--no-sandbox")
 
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, QWidget,

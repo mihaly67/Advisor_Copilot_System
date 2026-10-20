@@ -23,11 +23,22 @@ HUD_PID_FILE="/tmp/scalper_v6_hud.pid"
 
 # QT_QPA_PLATFORM: üres = látható HUD ablak; 'offscreen' = láthatatlan (debug)
 #   Alapértelmezett: látható ablak. Debug-hoz: QT_QPA_PLATFORM=offscreen ./scalper_v6_start.sh start
+# HUD_NO_GPU=1: RDP/VNC esetén software renderelés (alap: hardveres gyorsítás P4000-n)
 export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-}"
-export QTWEBENGINE_DISABLE_GPU="1"
-export QTWEBENGINE_CHROMIUM_FLAGS="--disable-gpu --disable-software-rasterizer"
-# DISPLAY beállítása ha nincs (GUI-hoz kell a X11-nek)
 export DISPLAY="${DISPLAY:-:0}"
+# Alapértelmezés: hardveres GPU gyorsítás BEKAPCSOLVA (P4000 8GB VRAM tétlenül áll).
+# A dual_hud_v6.py ezt olvassa be. Csak HUD_NO_GPU=1 esetén kapcsol ki (RDP/VNC).
+: "${HUD_NO_GPU:=0}"
+# PRIME render offload: HUD_USE_P4000=1 esetén a QtWebEngine a P4000-re (GPU 0)
+# tereli a GL renderelést, nem a P2000-re (amelyik a primer/megjelenítési GPU,
+# de csak ~250 MiB szabad VRAM — kevés a 3 chart-hoz, fagyást okozhat).
+# A P4000 8GB VRAM-mal, 0%-on tétlenül áll. Csak akkor kapcsoljuk be, ha a
+# P4000-hez van renderelési lehetőség (PRIME offload támogatott).
+if [ "${HUD_USE_P4000:-1}" = "1" ]; then
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    echo "[start.sh] PRIME offload: P4000 (GPU 0) renderelés"
+fi
 
 # ─── SEGÉD FÜGGVÉNYEK ───
 is_bridge_running() {
